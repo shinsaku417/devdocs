@@ -14,7 +14,7 @@ module.exports = {
         .then(function(user){
           if(user){
             req.authedUser = user;
-            //TODO validate authed user
+            //TODO validate body 
             next();
           } else {
             res.status(401).send('Invalid token');

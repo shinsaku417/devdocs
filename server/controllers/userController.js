@@ -35,11 +35,13 @@ module.exports = {
     });
   },
 
-  authorized: function(req,res) {
-    req.authedUser.username === req.user.username 
+  authorized: function(req,res,next) {
+    //TODO
     next();
-    else 
-      res.status(401).send('Unauthorized')
+    // req.authedUser.username === req.user.username 
+    // next();
+    // else {}
+      // res.status(401).send('Unauthorized')
   }
 
   signup: function (req, res) {
