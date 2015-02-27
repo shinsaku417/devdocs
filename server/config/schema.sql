@@ -1,4 +1,4 @@
-#CREATE DATABASE hamster;
+CREATE DATABASE hamster;
 
 # Create matching mysql user for development:
 CREATE USER 'app'@'localhost' IDENTIFIED BY 'hr23thesis';

@@ -1,16 +1,21 @@
-var DocSet = require('../models/docElement.js');
-var DocElement = require('../models/docSet.js');
+var DocElement = require('../models/docElement.js');
+var DocSet = require('../models/docSet.js');
 
 module.exports = {
-  loadSet: function (req, res, next, docSetID) {
-    DocSet.find({name: docSetID}, function (docSet) {
-      req.docSet = docSet;
-      next();
-    });
+  loadSet: function (req, res, next, docSetName) {
+    // DocSet.find({where: {name: docSetName}}).then(function (docSet) {
+    //   req.docSet = docSet;
+    //   next();
+    // });
+    req.docSet = {id: 3};
+    next();
   },
 
-  loadElement: function (req, res, next, docElementID) {
-    DocElement.find({name: docElementID}, function (docElement) {
+  loadElement: function (req, res, next, docElementName) {
+    DocElement.find({where: {
+      name: docElementName,
+      DocSetID: req.docSet.id
+    }}).then(function(docElement) {
       req.docElement = docElement;
       next();
     });

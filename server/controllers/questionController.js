@@ -1,9 +1,9 @@
-var Example = require('../models/example.js');
+var Question = require('../models/question.js');
 
 module.exports = {
-  load: function (req, res, next, exampleID) {
-    Example.find(exampleID).then(function (example) {
-      req.example = example;
+  load: function (req, res, next, questionID) {
+    Question.find(questionID).then(function (question) {
+      req.question = question;
       next();
     });
   },

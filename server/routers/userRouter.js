@@ -3,7 +3,7 @@ var jwt = require('../jwtAuth.js');
 
 module.exports = function (app) {
   // app === userRouter injected from middlware.js
-  // mounted at /users/
+  // mounted at /api/users/
 
   app.param('user', userController.load); // load user data from the DB
 

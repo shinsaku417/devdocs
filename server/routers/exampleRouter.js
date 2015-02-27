@@ -4,7 +4,7 @@ var jwt = require('../jwtAuth.js')
 
 module.exports = function (app) {
   // app is injected from middlware.js
-  // MOUNTED AT /examples/
+  // MOUNTED AT /api/examples/
 
   app.param('example', exampleController.load); //load the example data from DB
 
