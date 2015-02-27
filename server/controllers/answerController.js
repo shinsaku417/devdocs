@@ -11,6 +11,15 @@ module.exports = {
       }
     });
   },
+
+  authorize: function (req, res, next) {
+    if (req.authedUser.id === req.answer.UserID) {
+      next();
+    }
+    else {
+      res.status(401).send('Unauthorized');
+    }
+  },
  
   create: function (req, res) {
     Answer.create(req.body).then(function(result) {

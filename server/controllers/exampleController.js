@@ -12,6 +12,15 @@ module.exports = {
     });
   },
 
+  authorize: function (req, res, next) {
+    if (req.authedUser.id === req.example.UserID) {
+      next();
+    }
+    else {
+      res.status(401).send('Unauthorized');
+    }
+  },
+
   create: function (req, res) {
     Example.create(req.body).then(function(result) {
       //TODO branch on result instanceof Sequelize.ValidaitonError

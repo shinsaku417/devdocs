@@ -7,9 +7,18 @@ module.exports = {
         req.question = question;
         next();
       } else {
-        res.status(404.send('Question ' + quesitonID  + ' not found'));
+        res.status(404).send('Question ' + quesitonID  + ' not found');
       }
     });
+  },
+
+  authorize: function (req, res, next) {
+    if (req.authedUser.id === req.question.UserID) {
+      next();
+    }
+    else {
+      res.status(401).send('Unauthorized');
+    }
   },
 
   create: function (req, res) {

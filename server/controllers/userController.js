@@ -14,6 +14,15 @@ module.exports = {
     });
   },
 
+  authorize: function (req, res, next) {
+    if (req.authedUser.id === req.user.id) {
+      next();
+    }
+    else {
+      res.status(401).send('Unauthorized');
+    }
+  },
+
   get: function (req, res) {
     res.status(200).send(req.user); //TODO mask private settings for get; leave them in for edit...?
   },
@@ -34,15 +43,6 @@ module.exports = {
       res.status(200).send('User deactivated')
     });
   },
-
-  authorized: function(req,res,next) {
-    //TODO
-    next();
-    // req.authedUser.username === req.user.username 
-    // next();
-    // else {}
-      // res.status(401).send('Unauthorized')
-  }
 
   signup: function (req, res) {
     // check to see if user already exists
