@@ -23,7 +23,7 @@ var App = React.createClass({
     var context = this;
     libraries.forEach(function(library, index) {
       $.ajax({
-        url: 'http://localhost:3000/test',
+        url: 'http://localhost:3000/index.json',
         dataType: 'json',
         success: function(data) {
           console.log('successfully fetched data for library ', library);

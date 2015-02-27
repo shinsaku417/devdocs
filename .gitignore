@@ -16,5 +16,4 @@ server/libraries/supportedLibraries/*
 !.elasticbeanstalk/*.global.yml
 .elasticbeanstalk/.*
 
-client/react/assets/*
-client/react/bundle.js
+public/js/bundle.js
