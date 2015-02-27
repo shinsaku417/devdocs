@@ -1,29 +1,45 @@
 {
-  "name": "devdocs",
-  "version": "0.0.1",
-  "private": true,
+  "name": "flockdocs",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js"
   },
-  "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "~1.10.0",
-    "compression": "~1.3.0",
-    "cookie-parser": "~1.3.3",
-    "express": "~4.11.0",
-    "glob": "~4.3.1",
-    "jade": "~1.9.1",
-    "jwt-simple": "^0.2.0",
-    "method-override": "~2.3.0",
-    "morgan": "~1.5.0",
-    "mysql": "~2.5.3",
-    "sequelize": "~2.0.0-rc7",
-    "serve-favicon": "~2.2.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Troubled-Hamster/Troubled-Hamster.git"
   },
+  "author": "flockdocs",
   "devDependencies": {
-    "gulp": "~3.8.10",
-    "gulp-ruby-sass": "~0.7.1",
-    "gulp-nodemon": "~1.0.4",
-    "gulp-livereload": "~3.4.0"
+    "browser-sync": "^1.5.7",
+    "clone-stats": "0.0.1",
+    "expect.js": "^0.3.1",
+    "gulp": "^3.8.5",
+    "gulp-if": "^1.2.5",
+    "gulp-jshint": "^1.6.3",
+    "gulp-nodemon": "^1.0.4",
+    "gulp-shell": "^0.2.7",
+    "jshint-stylish": "^0.2.0",
+    "mocha": "^1.20.1"
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "body-parser": "^1.4.3",
+    "cors": "^2.5.3",
+    "es6-promise": "^2.0.1",
+    "express": "^4.4.5",
+    "jsdom": "^3.1.1",
+    "jwt-simple": "^0.2.0",
+    "mongoose": "^3.8.23",
+    "morgan": "^1.1.1",
+    "node-bing-api": "^0.1.7",
+    "object-assign": "^2.0.0",
+    "passport": "^0.2.0",
+    "react": "^0.12.2",
+    "reactify": "^1.0.0",
+    "request": "^2.36.0",
+    "superagent": "^0.21.0",
+    "underscore": "^1.7.0"
   }
 }
