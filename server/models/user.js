@@ -22,19 +22,4 @@ var User = db.define('Users', {
   karma: Sequelize.INTEGER
 });
 
-User.hasMany(Question);
-User.hasMany(Answer);
-User.hasMany(Example);
-// User.hasMany(Tips);
-// User.hasMany(Feedback);
-
-User.sync()
-  .complete(function(err){
-    if(!!err) {
-      console.log('An error occurred while creating the User table: ', err);
-    } else {
-      console.log('User table created');
-    }
-  });
-
 module.exports = User;

@@ -1,6 +1,8 @@
 var express = require('express');
 var port = process.env.PORT || 3000;
 
+require('./models/'); // set up all the sequel models
+
 var app = express();
 
 // configure our server with all the middleware and and routing

@@ -12,8 +12,4 @@ var DocSet = db.define('DocSets', {
 	score: Sequelize.INTEGER
 });
 
-DocSet.hasMany(DocElement);
-
-DocSet.sync();
-
 module.exports = DocSet;

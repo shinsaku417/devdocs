@@ -10,8 +10,4 @@ var Example = db.define('Examples', {
 	score: Sequelize.INTEGER
 });
 
-Example.belongsTo(User);
-
-Example.sync();
-
 module.exports = Example;

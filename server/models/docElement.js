@@ -12,9 +12,4 @@ var DocElement = db.define('DocElements', {
   score: Sequelize.INTEGER
 });
 
-DocElement.hasMany(Question);
-DocElement.hasMany(Example);
-
-DocElement.sync();
-
 module.exports = DocElement;

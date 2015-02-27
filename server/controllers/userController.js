@@ -1,10 +1,9 @@
-var User = require('./userModel.js');
-var Membership = require('../db/relationshipModel.js');
+var User = require('../models/user.js');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('../jwtAuth.js');
 
 module.exports = {
-  parseUserUrl: function (req, res, next, userID) {
+  load: function (req, res, next, userID) {
     User.find(userID).then(function (user) {
       if(!user) {
        res.status(404).send('No user with ID ' + userID + ' in database');
@@ -15,26 +14,33 @@ module.exports = {
     });
   },
 
-  // findUser: function (req, res, usernameOrEmail, callback) {
-  //   User.findOne({where: {email: email}})
-  //   .then(function (user) {
-  //     if (!user) {
-  //       res.status(404).send('No user with email ' + email + ' in database');
-  //     } else {
-  //       callback(user);
-  //     }
-  //   });
-  // },
+  get: function (req, res, next) {
 
-  signup: function (req, res, next) {
+  },
+
+  edit: function (req, res, next) {
+
+  },
+
+  update: function (req, res, next) {
+
+  },
+
+  deactivate: function (req, res, next) {
+
+  },
+
+  signup: function (req, res) {
     // check to see if user already exists
     var username = req.body.username;
     var email = req.body.email
-    User.find({ where:
-      $or: [
-        { email: email },
-        { username: username }
-      ]
+    User.find({
+      where: {
+        $or: [
+          { email: email },
+          { username: username }
+        ]
+      }
     }).then(function(user) {
         if(user) {
             res.status(401).send('Username or email already exists in the DB');
@@ -55,36 +61,35 @@ module.exports = {
                 });
             });
         }
-      })
-      .catch(function (error) {
-        next(error);
       });
   },
 
   signin: function(req, res) {
-    User.find({ where:
-      $or: [
-        { email: req.body.usernameOrEmail },
-        { username: req.body.usernameOrEmail }
-      ]
+    User.find({
+      where: {
+        $or: [
+          { email: req.body.usernameOrEmail },
+          { username: req.body.usernameOrEmail }
+        ]
+      }
     }).then(function(user){
-        if(user){
-          bcrypt.compare(req.body.password, user.password, function(err, result){
-            if(result){
-              // return jwt
-              console.log('signed in!');
-              var token = jwt.createToken(user.username);
-              res.status(200).json({token: token});
-            } else {
-              console.log('Login incorrect');
-              res.status(401).send('Login incorrect');
-            }
-          });
-        } else {
-          console.log('no account found with that username or email');
-          res.status(401).send('No account found with that username or email');
-        }
-      })
+      if(user){
+        bcrypt.compare(req.body.password, user.password, function(err, result){
+          if(result){
+            // return jwt
+            console.log('signed in!');
+            var token = jwt.createToken(user.username);
+            res.status(200).json({token: token});
+          } else {
+            console.log('Login incorrect');
+            res.status(401).send('Login incorrect');
+          }
+        });
+      } else {
+        console.log('no account found with that username or email');
+        res.status(401).send('No account found with that username or email');
+      }
+    });
   }
 
 };

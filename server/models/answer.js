@@ -10,8 +10,4 @@ var Answer = db.define('Answers', {
 	score: Sequelize.INTEGER
 });
 
-Answer.belongsTo(User);
-
-Answer.sync();
-
 module.exports = Answer;

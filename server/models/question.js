@@ -5,7 +5,7 @@ var Answer = require('./answer.js');
 
 var Question = db.define('Questions', {
 	title: {
-		Sequelize.STRING,
+		type: Sequelize.STRING,
 		unique: true,
 		allowNull: false
 	},
@@ -15,11 +15,5 @@ var Question = db.define('Questions', {
 	},
 	score: Sequelize.INTEGER
 });
-
-Question.hasMany(Answer);
-Question.belongsTo(User);
-
-
-Question.sync();
 
 module.exports = Question;
