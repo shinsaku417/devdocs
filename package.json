@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "async": "^0.9.0",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.4.3",
     "cors": "^2.5.3",
     "es6-promise": "^2.0.1",
@@ -33,12 +34,14 @@
     "jwt-simple": "^0.2.0",
     "mongoose": "^3.8.23",
     "morgan": "^1.1.1",
+    "mysql": "^2.5.5",
     "node-bing-api": "^0.1.7",
     "object-assign": "^2.0.0",
     "passport": "^0.2.0",
     "react": "^0.12.2",
     "reactify": "^1.0.0",
     "request": "^2.36.0",
+    "sequelize": "^2.0.3",
     "superagent": "^0.21.0",
     "underscore": "^1.7.0"
   }
