@@ -11,8 +11,8 @@ module.exports = function (app) {
 
   app.post('/signup', userController.signup); // Create
   app.get('/:user', userController.get); // view profile
-  app.get('/:user/edit', [jwt.decodeToken, userController.edit]); // get the edit profile/settings page
-  app.put('/:user', [jwt.decodeToken, userController.update]); // update profile/settings with edits
-  app.delete('/:user', [jwt.decodeToken, userController.deactivate]); // deactivate a user. anonymize his activity if requested
+  app.get('/:user/edit', [jwt.decodeToken, userController.authorize, userController.edit]); // get the edit profile/settings page
+  app.put('/:user', [jwt.decodeToken, userController.authorize, userController.update]); // update profile/settings with edits
+  app.delete('/:user', [jwt.decodeToken, userController.authorize, userController.deactivate]); // deactivate a user. anonymize his activity if requested
 
 };

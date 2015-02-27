@@ -5,30 +5,42 @@ var jwt = require('../jwtAuth.js');
 module.exports = {
   load: function (req, res, next, userID) {
     User.find(userID).then(function (user) {
-      if(!user) {
-       res.status(404).send('No user with ID ' + userID + ' in database');
-      } else {
+      if(user) {
         req.user = user;
         next();
+      } else {
+       res.status(404).send('User ' + userID + ' not found');
       }
     });
   },
 
-  get: function (req, res, next) {
-
+  get: function (req, res) {
+    res.status(200).send(req.user); //TODO mask private settings for get; leave them in for edit...?
   },
 
-  edit: function (req, res, next) {
-
+  edit: function (req, res) {
+    res.status(200).send(req.user);
   },
 
-  update: function (req, res, next) {
-
+  update: function (req, res) {
+    req.user.update(req.body).then(function(result) {
+      //TODO branch on result instnaceof Sequelize.ValidationError 
+      res.status(200).send(result);
+    });
   },
 
-  deactivate: function (req, res, next) {
-
+  deactivate: function (req, res) {
+    req.user.destroy().then(function() {
+      res.status(200).send('User deactivated')
+    });
   },
+
+  authorized: function(req,res) {
+    req.authedUser.username === req.user.username 
+    next();
+    else 
+      res.status(401).send('Unauthorized')
+  }
 
   signup: function (req, res) {
     // check to see if user already exists

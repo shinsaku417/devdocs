@@ -10,21 +10,22 @@ module.exports = {
     if(token){
       var decoded = jwt.decode(token, secret);
 
-      User.find({where: decoded}) // TODO: make this password: decoded for clarity
+      User.find({where: decoded})
         .then(function(user){
           if(user){
+            req.authedUser = user;
+            //TODO validate authed user
             next();
           } else {
-            next(new Error('user does not exist'));
+            res.status(401).send('Invalid token');
           }
         });
-
     } else {
-      next(new Error('No token'));
+      res.status(401).send('No token');
     }
   },
 
-  createToken: function(phone){
-    return jwt.encode({phone: phone}, secret);
+  createToken: function(username){
+    return jwt.encode({username: username}, secret);
   }
 };

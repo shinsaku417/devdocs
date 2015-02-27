@@ -3,11 +3,14 @@ var DocSet = require('../models/docSet.js');
 
 module.exports = {
   loadSet: function (req, res, next, docSetName) {
-    // DocSet.find({where: {name: docSetName}}).then(function (docSet) {
-    //   req.docSet = docSet;
-    //   next();
-    // });
-    req.docSet = {id: 3};
+    DocSet.find({where: {name: docSetName}}).then(function (docSet) {
+      if(docSet) {
+        req.docSet = docSet;
+        next();
+      } else {
+        res.status(404).send('docSet ' + docSetName + ' not found');
+      }
+    });
     next();
   },
 

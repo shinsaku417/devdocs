@@ -3,33 +3,45 @@ var Answer = require('../models/answer.js');
 module.exports = {
   load: function (req, res, next, answerID) {
     Answer.find(answerID).then(function (answer) {
-      req.answer = answer;
-      next();
+      if(answer) {
+        req.answer = answer;
+        next();
+      } else {
+        res.status(404).send('Answer ' + answerID + ' not found');
+      }
+    });
+  },
+ 
+  create: function (req, res) {
+    Answer.create(req.body).then(function(result) {
+      //TODO branch on result instanceof Sequelize.ValidaitonError
+      res.status(200).send(result);
     });
   },
 
-  create: function (req, res, next) {
-
+  get: function (req, res) {
+    res.status(200).send(req.answer); //TODO mask private settings for get; leave them in for edit...?
   },
 
-  get: function (req, res, next) {
-
+  edit: function (req, res) {
+    res.status(200).send(req.answer);
   },
 
-  edit: function (req, res, next) {
-
+  update: function (req, res) {
+    req.answer.update(req.body).then(function(result) {
+      //TODO branch on result instnaceof Sequelize.ValidationError 
+      res.status(200).send(result);
+    });
   },
 
-  update: function (req, res, next) {
-
+  delete: function (req, res) {
+    req.answer.destroy().then(function() {
+      res.status(200).send('Answer deleted')
+    });
   },
 
-  delete: function (req, res, next) {
-
-  },
-
-  vote: function (req, res, next) {
-
+  vote: function (req, res) {
+    //TODO !
   }
   
 };

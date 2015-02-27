@@ -26,20 +26,19 @@ module.exports = function (app, express) {
   app.use('/api/examples/', exampleRouter);
   app.use('/api/questions/', questionRouter);
 
-
-  app.all('*', function(req, res, next) {
-    res.status(404).send('Huh?\n');
-  });
-
   // inject our routers into their respective route files
   require('./routers/userRouter.js')(userRouter);
   require('./routers/docsRouter.js')(docsRouter);
-  require('./routers/answerRouter.js')(userRouter);
+  require('./routers/answerRouter.js')(answerRouter);
   require('./routers/exampleRouter.js')(exampleRouter);
   require('./routers/questionRouter.js')(questionRouter);
 
   // app.get('/', function(req, res) {
   //   res.sendFile(path.resolve(__dirname + '/../client/index.html'));
   // });
+
+  app.all('*', function(req, res, next) {
+    res.status(404).send('Huh?\n');
+  });
 
 };

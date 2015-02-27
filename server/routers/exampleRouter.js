@@ -10,9 +10,9 @@ module.exports = function (app) {
 
   app.get('/:example', exampleController.get);
   app.post('/', [jwt.decodeToken, exampleController.create]);
-  app.get('/:example/edit', [jwt.decodeToken, exampleController.edit]);
-  app.put('/:example', [jwt.decodeToken, exampleController.update]);
-  app.delete('/:example', [jwt.decodeToken, exampleController.delete]);
+  app.get('/:example/edit', [jwt.decodeToken, exampleController.authorize, exampleController.edit]);
+  app.put('/:example', [jwt.decodeToken, exampleController.authorize, exampleController.update]);
+  app.delete('/:example', [jwt.decodeToken, exampleController.authorize, exampleController.delete]);
 
   app.post('/:example/vote', [jwt.decodeToken, exampleController.vote]);
 
