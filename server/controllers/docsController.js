@@ -1,5 +1,8 @@
 var DocElement = require('../models/docElement.js');
 var DocSet = require('../models/docSet.js');
+var Example = require('../models/example.js');
+var Question = require('../models/question.js');
+var Answer = require('../models/answer.js');
 
 module.exports = {
   loadSet: function (req, res, next, docSetName) {
@@ -24,11 +27,11 @@ module.exports = {
     });
   },
 
-  getSetExamples: function (req, res, next) {
+  getSetExamples: function (req, res) {
 
   },
 
-  getElementExamples: function (req, res, next) {
+  getElementExamples: function (req, res) {
     Example.findAll({where: {
       DocElementId: req.docElement.id,
     }}).then(function(examples) {
@@ -36,27 +39,34 @@ module.exports = {
     });
   },
 
-  getSetQuestions: function (req, res, next) {
+  getSetQuestions: function (req, res) {
 
   },
 
-  getElementQuestions: function (req, res, next) {
+  getElementQuestions: function (req, res) {
+    Questions.findAll({
+      where: {
+        DocElementId: req.docElement.id,
+      },
+      include: [ Answer ],
+    }).then(function(questions) {
+      res.status(200).send(questions);
+    });
+  },
+
+  getSetAnswers: function (req, res) {
 
   },
 
-  getSetAnswers: function (req, res, next) {
+  getElementAnswers: function (req, res) {
 
   },
 
-  getElementAnswers: function (req, res, next) {
+  voteSet: function (req, res) {
 
   },
 
-  voteSet: function (req, res, next) {
-
-  },
-
-  voteElement: function (req, res, next) {
+  voteElement: function (req, res) {
 
   }
 };
