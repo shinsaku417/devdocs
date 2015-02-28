@@ -1,3 +1,5 @@
+var utils = require('../utils/utils');
+
 var LibraryChild = React.createClass({
   getInitialState: function() {
     return {
@@ -19,15 +21,21 @@ var LibraryChild = React.createClass({
       });
     }
   },
+  loadGrandChildHTML: function(event) {
+    var method = event.target.className;
+    var libraryName = this.props.parent;
+    utils.selectMethod(method);
+    utils.getLibraryHTML('http://localhost:3000/docs/' + libraryName + '/index.html');
+  },
   render: function() {
+    var context = this;
     var name = this.props.data.name;
     var grandChildClass = this.state.grandChildClass;
     var libraryGrandChildren = this.props.grandChildren.map(function(grandChild) {
       if (grandChild.type === name) {
-        var path = 'http://maxcdn-docs.devdocs.io/underscore/' + grandChild.path.split('#')[0] + '.html#' + grandChild.path.split('#')[1];
         return (
           <ul className={grandChildClass}>
-            <a href={path}>{grandChild.name}</a>
+            <span className={grandChild.path.split('#')[1]} onClick={context.loadGrandChildHTML}>{grandChild.name}</span>
           </ul>
         );
       }

@@ -24,7 +24,7 @@ var App = React.createClass({
     var context = this;
     libraries.forEach(function(library, index) {
       $.ajax({
-        url: 'http://localhost:3000/index.json',
+        url: 'http://localhost:3000/docs/' + library + '/index.json',
         dataType: 'json',
         success: function(data) {
           console.log('successfully fetched data for library ', library);
@@ -49,9 +49,17 @@ var App = React.createClass({
   },
 
   render: function(){
+    AppStore.setLibraryData(this.state.libraryData);
+    var docInfo = {
+      libraryData: this.state.libraryData,
+      html: this.state.html,
+      selectedLibrary: this.state.library,
+      selectedMethod: this.state.method
+    }
     return (
       <div className="app">
         <Sidebar libraryData={this.state.libraryData} />
+        <Documentation docInfo={docInfo} />
         <Examples />
       </div>
     );

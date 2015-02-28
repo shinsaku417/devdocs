@@ -10,6 +10,20 @@ var ServerActions = {
     });
   },
 
+  dispatchSelectedLibrary: function(libraryName) {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.SELECTED_LIBRARY,
+      libraryName: libraryName
+    });
+  },
+
+  dispatchSelectedMethod: function(methodName) {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.SELECTED_METHOD,
+      methodName: methodName
+    });
+  },
+
   dispatchNewStackInfo: function(stackInfo){
     AppDispatcher.handleViewAction({
       actionType: Constants.STACK_DATA_RETRIEVED,

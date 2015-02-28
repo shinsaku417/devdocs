@@ -3,12 +3,20 @@ var request = require('superagent');
 
 var utils = {
 
-  getLibraryHTML: function(libraryName){
+  getLibraryHTML: function(url){
     request
-      .get('http://localhost:3000/' + libraryName)
+      .get(url)
       .end(function(err, res){
-        ServerActions.dispatchNewLibrary(res.body);
+        ServerActions.dispatchNewLibrary(res.text);
       });
+  },
+
+  selectLibrary: function(libraryName) {
+    ServerActions.dispatchSelectedLibrary(libraryName);
+  },
+
+  selectMethod: function(methodName) {
+    ServerActions.dispatchSelectedMethod(methodName);
   },
 
   getStackInfo: function(libraryName, methodName){
@@ -41,4 +49,3 @@ var utils = {
 };
 
 module.exports = utils;
-
