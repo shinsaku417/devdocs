@@ -1,4 +1,6 @@
-var utils = require('../utils/utils');
+var ServerActions = require('../actions/serverActions');
+var request = require('superagent');
+var actions = require('../actions/actions');
 
 var LibraryChild = React.createClass({
   getInitialState: function() {
@@ -21,11 +23,19 @@ var LibraryChild = React.createClass({
       });
     }
   },
-  loadGrandChildHTML: function(event) {
-    var method = event.target.className;
+  renderChildHTML: function() {
+    var childName = this.props.data.name;
     var libraryName = this.props.parent;
-    utils.selectMethod(method);
-    utils.getLibraryHTML('http://localhost:3000/docs/' + libraryName + '/index.html');
+    actions.selectChild('http://localhost:3000/docs/' + libraryName + '/' + childName + '.html', libraryName);
+    actions.selectMethod(libraryName, '');
+  },
+  renderGrandChildHTML: function(event) {
+    var method = event.target.className.split('#')[1] || event.target.className;
+    var path = event.target.className;
+    var childName = this.props.data.name;
+    var libraryName = this.props.parent;
+    actions.selectGrandChild('http://localhost:3000/docs/' + libraryName + '/' + path + '.html', libraryName, childName);
+    actions.selectMethod(libraryName, method);
   },
   render: function() {
     var context = this;
@@ -35,7 +45,7 @@ var LibraryChild = React.createClass({
       if (grandChild.type === name) {
         return (
           <ul className={grandChildClass}>
-            <span className={grandChild.path.split('#')[1]} onClick={context.loadGrandChildHTML}>{grandChild.name}</span>
+            <span className={grandChild.path} onClick={context.renderGrandChildHTML}>{grandChild.name}</span>
           </ul>
         );
       }
@@ -43,7 +53,7 @@ var LibraryChild = React.createClass({
     return (
       <div className={this.props.childClass}>
         <button onClick={this.expandGrandChildren}>{this.state.buttonState}</button>
-        {this.props.data.name}
+        <span onClick={this.renderChildHTML}>{this.props.data.name}</span>
         {libraryGrandChildren}
       </div>
     );

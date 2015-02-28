@@ -6,7 +6,7 @@ require('./models/'); // set up all the sequel models
 var app = express();
 
 // configure our server with all the middleware and and routing
-require('./middleware.js')(app, express); 
+require('./middleware.js')(app, express);
 
 app.listen(port);
 console.log('Server listening on ' + port);

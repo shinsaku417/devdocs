@@ -1,5 +1,5 @@
 var LibraryChild = require('./LibraryChild');
-var utils = require('../utils/utils');
+var actions = require('../actions/actions');
 
 var Library = React.createClass({
   getInitialState: function() {
@@ -22,16 +22,14 @@ var Library = React.createClass({
     }
   },
   renderHTML: function() {
-    utils.getLibraryHTML('http://localhost:3000/docs/' + this.props.library.name + '/index.html');
-    utils.selectLibrary(this.props.library.name);
-    utils.selectMethod('');
+    actions.selectLibrary('http://localhost:3000/docs/' + this.props.library.name + '/index.html', this.props.library.name);
+    actions.selectMethod(this.props.library.name, '');
   },
   render: function() {
     var types = this.props.library.data.types;
     var entries = this.props.library.data.entries;
     var parent = this.props.library.name;
     var childClass = this.state.childClass;
-    var path = 'http://maxcdn-docs.devdocs.io/' + this.props.library.name + '/index.html';
     var libraryChildren = types.map(function(type) {
       var child = {
         name: type.name,
@@ -47,7 +45,7 @@ var Library = React.createClass({
     return (
       <div className="library">
         <button onClick={this.expandChildren}>{this.state.buttonState}</button>
-        <span onClick={this.renderHTML}>{this.props.library.name}</span>
+        <span onClick={this.renderHTML}>{this.props.library}</span>
         {libraryChildren}
       </div>
     );
