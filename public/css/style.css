@@ -12,6 +12,10 @@
   border: 1px solid purple;
 }
 
+.hidden {
+  display: none;
+}
+
 .sidebar {
   border: 1px solid green;
   width: 15%;

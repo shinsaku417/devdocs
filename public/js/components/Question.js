@@ -1,15 +1,18 @@
+// var cx = require('react/lib/cx');
+
 var Question = React.createClass({
 
   render: function(){
-    var answerNodes = []
-    for (var answer in this.props.answers){
-      answerNodes.push(<div className="answer">{answer.body}</div>)
+    console.log(this.props.answers);
+    var answerNodes = [];
+    for (var i=0; i<this.props.answers.length; i++) {
+      answerNodes.push(<div className="answer" dangerouslySetInnerHTML={{__html: this.props.answers[i].body}}></div>);
     }
     return (
       <div className="stack">
       <h1 className="title">{this.props.title}</h1>
-        <div className="question hidden">{this.props.body}</div>
-        <div className="answers hidden">{this.props.answers}</div>
+        <div className="question" dangerouslySetInnerHTML={{__html: this.props.body}}></div>
+        <div className="answers">{answerNodes}</div>
       </div>
     );
   }
@@ -17,3 +20,9 @@ var Question = React.createClass({
 });
 
 module.exports = Question;
+
+    // var answerNodes = this.props.answers.map(function(answer){
+    //   return (
+    //     <div className="answer" dangerouslySetInnerHTML={{__html: answer.body}}></div>
+    //   )
+    // });
