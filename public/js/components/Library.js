@@ -22,8 +22,9 @@ var Library = React.createClass({
     }
   },
   renderHTML: function() {
-    utils.getLibraryHTML('underscore');
-    utils.selectLibrary('backbone');
+    utils.getLibraryHTML('http://localhost:3000/docs/' + this.props.library.name + '/index.html');
+    utils.selectLibrary(this.props.library.name);
+    utils.selectMethod('');
   },
   render: function() {
     var types = this.props.library.data.types;

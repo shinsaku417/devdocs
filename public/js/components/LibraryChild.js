@@ -22,10 +22,10 @@ var LibraryChild = React.createClass({
     }
   },
   loadGrandChildHTML: function(event) {
-    var method = event.target.innerHTML;
+    var method = event.target.className;
     var libraryName = this.props.parent;
     utils.selectMethod(method);
-    utils.getLibraryHTML('http://localhost:3000/backbone.html')
+    utils.getLibraryHTML('http://localhost:3000/docs/' + libraryName + '/index.html');
   },
   render: function() {
     var context = this;
@@ -35,7 +35,7 @@ var LibraryChild = React.createClass({
       if (grandChild.type === name) {
         return (
           <ul className={grandChildClass}>
-            <span onClick={context.loadGrandChildHTML}>{grandChild.path.split('#')[1]}</span>
+            <span className={grandChild.path.split('#')[1]} onClick={context.loadGrandChildHTML}>{grandChild.name}</span>
           </ul>
         );
       }

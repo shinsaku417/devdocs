@@ -24,11 +24,7 @@ var App = React.createClass({
     var context = this;
     libraries.forEach(function(library, index) {
       $.ajax({
-<<<<<<< HEAD
-        url: 'http://localhost:3000/index.json',
-=======
-        url: 'http://localhost:3000/backbone.json',
->>>>>>> (feat) added clck event for grandchildren
+        url: 'http://localhost:3000/docs/' + library + '/index.json',
         dataType: 'json',
         success: function(data) {
           console.log('successfully fetched data for library ', library);
@@ -63,8 +59,8 @@ var App = React.createClass({
     return (
       <div className="app">
         <Sidebar libraryData={this.state.libraryData} />
-        <Examples />
         <Documentation docInfo={docInfo} />
+        <Examples />
       </div>
     );
   },

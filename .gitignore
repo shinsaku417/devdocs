@@ -17,3 +17,4 @@ server/libraries/supportedLibraries/*
 .elasticbeanstalk/.*
 
 public/js/bundle.js
+public/docs/*
