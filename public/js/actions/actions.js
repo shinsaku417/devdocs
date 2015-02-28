@@ -9,7 +9,7 @@ var Actions = {
       actionType: Constants.SELECTED_LIBRARY,
       text: libraryName
     });
-    Utils.getLibraryHTML(libraryName);
+    // Utils.getLibraryHTML(libraryName);
   },
 
   selectMethod: function(libraryName, methodName) {

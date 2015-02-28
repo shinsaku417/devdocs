@@ -21,9 +21,8 @@ var utils = {
 
   getStackInfo: function(libraryName, methodName){
     request
-      .get('http://localhost:3000/api/methods/' + libraryName + '/' + methodName)
+      .get('http://localhost:3000/react/' + libraryName + '/' + methodName)
       .end(function(err, res){
-        console.dir(res.body.topQuestions);
         ServerActions.dispatchNewStackInfo(res.body.topQuestions);
       });
   },

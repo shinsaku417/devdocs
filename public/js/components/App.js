@@ -4,13 +4,8 @@ var Resources = require('./Resources');
 var AppStore = require('../store/AppStore');
 var ExampleBox = require('./ExampleBox');
 
-// var data = ['underscore', 'backbone', 'node'];
-// var library = 'iefhqeifweifh';
-// var method = '';
 
 var App = React.createClass({
-
-  // getAppState: function(){},
 
   getInitialState: function() {
     return AppStore.getSelection();
@@ -60,7 +55,7 @@ var App = React.createClass({
       <div className="app">
         <Sidebar libraryData={this.state.libraryData} />
         <Documentation docInfo={docInfo} />
-        <ExampleBox library="underscorejs" method="reduce" />
+        <Resources method={this.state.method} library={this.state.library} />
       </div>
     );
   },
@@ -72,5 +67,4 @@ var App = React.createClass({
 });
 
 module.exports = App;
-        // <Documentation library={this.state.library} methods={this.state.methods}/>
-        // <Resources method={this.state.method}/>
+
