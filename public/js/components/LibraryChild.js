@@ -1,3 +1,5 @@
+var utils = require('../utils/utils');
+
 var LibraryChild = React.createClass({
   getInitialState: function() {
     return {
@@ -19,15 +21,21 @@ var LibraryChild = React.createClass({
       });
     }
   },
+  loadGrandChildHTML: function(event) {
+    var method = event.target.innerHTML;
+    var libraryName = this.props.parent;
+    utils.selectMethod(method);
+    utils.getLibraryHTML('http://localhost:3000/backbone.html')
+  },
   render: function() {
+    var context = this;
     var name = this.props.data.name;
     var grandChildClass = this.state.grandChildClass;
     var libraryGrandChildren = this.props.grandChildren.map(function(grandChild) {
       if (grandChild.type === name) {
-        var path = 'http://maxcdn-docs.devdocs.io/underscore/' + grandChild.path.split('#')[0] + '.html#' + grandChild.path.split('#')[1];
         return (
           <ul className={grandChildClass}>
-            <a href={path}>{grandChild.name}</a>
+            <span onClick={context.loadGrandChildHTML}>{grandChild.path.split('#')[1]}</span>
           </ul>
         );
       }

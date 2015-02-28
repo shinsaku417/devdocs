@@ -1,4 +1,5 @@
 var LibraryChild = require('./LibraryChild');
+var utils = require('../utils/utils');
 
 var Library = React.createClass({
   getInitialState: function() {
@@ -19,6 +20,10 @@ var Library = React.createClass({
         childClass: 'child hidden'
       });
     }
+  },
+  renderHTML: function() {
+    utils.getLibraryHTML('underscore');
+    utils.selectLibrary('backbone');
   },
   render: function() {
     var types = this.props.library.data.types;
@@ -41,7 +46,7 @@ var Library = React.createClass({
     return (
       <div className="library">
         <button onClick={this.expandChildren}>{this.state.buttonState}</button>
-        <a href={path}>{this.props.library.name}</a>
+        <span onClick={this.renderHTML}>{this.props.library.name}</span>
         {libraryChildren}
       </div>
     );

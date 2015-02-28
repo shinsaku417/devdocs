@@ -37,8 +37,8 @@ module.exports = function (app, express) {
   //   res.sendFile(path.resolve(__dirname + '/../client/index.html'));
   // });
 
-  app.all('*', function(req, res, next) {
-    res.status(404).send('Huh?\n');
-  });
+  // app.all('*', function(req, res, next) {
+  //   res.status(404).send('Huh?\n');
+  // });
 
 };
