@@ -12,7 +12,7 @@ var Library = React.createClass({
       this.setState({
         buttonState: '-'
       });
-      actions.expandChildren('http://localhost:3000/docs/' + this.props.library + '/index.json', this.props.library);
+      actions.expandChildren(this.props.library);
     } else {
       this.setState({
         buttonState: '+'
@@ -21,7 +21,7 @@ var Library = React.createClass({
     }
   },
   renderHTML: function() {
-    actions.selectLibrary('http://localhost:3000/docs/' + this.props.library + '/index.html', this.props.library);
+    actions.selectLibrary(this.props.library);
     actions.selectMethod(this.props.library.name, '');
   },
   render: function() {
@@ -30,7 +30,7 @@ var Library = React.createClass({
       var childrenData = this.props.libraryData[name];
       var children = childrenData.types.map(function(child) {
         return (
-          <ul>
+          <ul className='libraryChildren'>
             <LibraryChild name={child.name} libraryData={childrenData} parent={name} />
           </ul>
         );

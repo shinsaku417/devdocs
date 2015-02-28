@@ -1,19 +1,21 @@
 var ServerActions = require('../actions/serverActions');
 var request = require('superagent');
 
+var host = 'http://localhost:3000/docs/'
+
 var utils = {
 
-  getLibraryHTML: function(url){
+  getLibraryHTML: function(libraryName){
     request
-      .get(url)
+      .get(host + libraryName + '/index.html')
       .end(function(err, res){
         ServerActions.dispatchNewLibrary(res.text);
       });
   },
 
-  getChildHTML: function(url) {
+  getChildHTML: function(libraryName, childName) {
     request
-      .get(url)
+      .get(host + libraryName + '/' + childName + '.html')
       .end(function(err, res){
         if (res.error) {
           ServerActions.dispatchNewLibrary('Use index.json to generate HTML page here');
@@ -23,19 +25,17 @@ var utils = {
       });
   },
 
-  getGrandChildHTML: function(url, libraryName, childName) {
+  getGrandChildHTML: function(libraryName, childName, grandChildPath) {
     request
-      .get(url)
+      .get(host + libraryName + '/' +  grandChildPath + '.html')
       .end(function(err, res){
         if (res.error) {
-          url = 'http://localhost:3000/docs/' + libraryName + '/' + childName + '.html'
           request
-            .get(url)
+            .get(host + libraryName + '/' + childName + '.html')
             .end(function(err, res) {
               if (res.error) {
-                url = 'http://localhost:3000/docs/' + libraryName + '/index.html';
                 request
-                  .get(url)
+                  .get(host + libraryName + '/index.html')
                   .end(function(err, res) {
                     ServerActions.dispatchNewLibrary(res.text);
                   });
@@ -49,9 +49,9 @@ var utils = {
       });
   },
 
-  expandChildren: function(url, libraryName) {
+  expandChildren: function(libraryName) {
     request
-      .get(url)
+      .get(host + libraryName + '/index.json')
       .end(function(err, res) {
         ServerActions.dispatchExpandChildren(JSON.parse(res.text), libraryName);
       });

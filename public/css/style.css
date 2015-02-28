@@ -6,6 +6,8 @@
   border: 1px solid orange;
   width: 55%;
   float: left;
+  height: 100%;
+  overflow: scroll;
 }
 
 .examples {
@@ -20,10 +22,21 @@
   border: 1px solid green;
   width: 15%;
   float: left;
+  height: 100%;
+  overflow: scroll;
 }
 
 .libraryList {
   border: 1px solid red;
+  padding: 10;
+}
+
+.libraryChildren {
+  padding-left: 15;
+}
+
+.libraryGrandChild {
+  padding-left: 15;
 }
 
 .resources {

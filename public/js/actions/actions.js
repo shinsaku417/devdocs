@@ -4,32 +4,32 @@ var Constants = require('../constants/constants')
 
 var Actions = {
 
-  selectLibrary: function(url, libraryName) {
+  selectLibrary: function(libraryName) {
     AppDispatcher.handleViewAction({
       actionType: Constants.SELECTED_LIBRARY,
       text: libraryName
     });
-    Utils.getLibraryHTML(url);
+    Utils.getLibraryHTML(libraryName);
   },
 
-  selectChild: function(url, libraryName) {
+  selectChild: function(libraryName, childName) {
     AppDispatcher.handleViewAction({
       actionType: Constants.SELECTED_LIBRARY,
       text: libraryName
     });
-    Utils.getChildHTML(url);
+    Utils.getChildHTML(libraryName, childName);
   },
 
-  selectGrandChild: function(url, libraryName, childName) {
+  selectGrandChild: function(libraryName, childName, grandChildPath) {
     AppDispatcher.handleViewAction({
       actionType: Constants.SELECTED_LIBRARY,
       text: libraryName
     });
-    Utils.getGrandChildHTML(url, libraryName, childName);
+    Utils.getGrandChildHTML(libraryName, childName, grandChildPath);
   },
 
-  expandChildren: function(url, libraryName) {
-    Utils.expandChildren(url, libraryName);
+  expandChildren: function(libraryName) {
+    Utils.expandChildren(libraryName);
   },
 
   expandGrandChildren: function(libraryName, childName) {
