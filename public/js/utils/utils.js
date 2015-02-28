@@ -11,12 +11,42 @@ var utils = {
       });
   },
 
-  selectLibrary: function(libraryName) {
-    ServerActions.dispatchSelectedLibrary(libraryName);
+  getChildHTML: function(url) {
+    request
+      .get(url)
+      .end(function(err, res){
+        if (res.error) {
+          ServerActions.dispatchNewLibrary('Use index.json to generate HTML page here');
+        } else {
+          ServerActions.dispatchNewLibrary(res.text);
+        }
+      });
   },
 
-  selectMethod: function(methodName) {
-    ServerActions.dispatchSelectedMethod(methodName);
+  getGrandChildHTML: function(url, libraryName, childName) {
+    request
+      .get(url)
+      .end(function(err, res){
+        if (res.error) {
+          url = 'http://localhost:3000/docs/' + libraryName + '/' + childName + '.html'
+          request
+            .get(url)
+            .end(function(err, res) {
+              if (res.error) {
+                url = 'http://localhost:3000/docs/' + libraryName + '/index.html';
+                request
+                  .get(url)
+                  .end(function(err, res) {
+                    ServerActions.dispatchNewLibrary(res.text);
+                  });
+              } else {
+                ServerActions.dispatchNewLibrary(res.text);
+              }
+            });
+        } else {
+          ServerActions.dispatchNewLibrary(res.text);
+        }
+      });
   },
 
   getStackInfo: function(libraryName, methodName){
