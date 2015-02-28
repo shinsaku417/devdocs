@@ -1,5 +1,5 @@
 var express = require('express');
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 
 require('./models/'); // set up all the sequel models
 
