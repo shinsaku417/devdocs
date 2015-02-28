@@ -18,7 +18,7 @@ var Documentation = React.createClass({
       }
     }
     if (this.props.docInfo.selectedMethod) {    
-      window.location.href = "http://localhost:3000/#" + this.props.docInfo.selectedMethod;
+      window.location.href = "http://localhost:8080/#" + this.props.docInfo.selectedMethod;
     }
 
     // make object that contains key for all methods
