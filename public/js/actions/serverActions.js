@@ -24,6 +24,14 @@ var ServerActions = {
     });
   },
 
+  dispatchExpandChildren: function(libraryData, libraryName) {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.EXPAND_CHILDREN,
+      libraryData: libraryData,
+      libraryName: libraryName
+    });
+  },
+
   dispatchNewStackInfo: function(stackInfo){
     AppDispatcher.handleViewAction({
       actionType: Constants.STACK_DATA_RETRIEVED,

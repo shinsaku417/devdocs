@@ -13,29 +13,22 @@ var App = React.createClass({
 
   componentDidMount: function() {
     AppStore.addChangeListener(this._onChange);
-    var libraryData = [];
-    var libraries = this.state.libraries;
-    var len = libraries.length;
     var context = this;
-    libraries.forEach(function(library, index) {
-      $.ajax({
-        url: 'http://localhost:3000/docs/' + library + '/index.json',
-        dataType: 'json',
-        success: function(data) {
-          console.log('successfully fetched data for library ', library);
-          libraryData.push({
-            name: library,
-            data: data
-          });
+    var libraries = [];
+    var libraryData = [];
+    var count = 0;
+    var limit = 62;
+    $.ajax({
+      url: 'http://localhost:3000/docs/docs.json',
+      dataType: 'json',
+      success: function(data) {
+        data.forEach(function(library) {
+          libraries.push(library.slug);
           context.setState({
-            libraries: libraries,
-            libraryData: libraryData
+            libraries: libraries
           });
-        },
-        error: function(xhr, status, err) {
-          console.error('error getting data for library ', library);
-        }
-      });
+        });
+      }
     });
   },
 
@@ -45,15 +38,20 @@ var App = React.createClass({
 
   render: function(){
     AppStore.setLibraryData(this.state.libraryData);
+    AppStore.setLibraries(this.state.libraries);
+    var sidebarInfo = {
+      libraries: this.state.libraries,
+      libraryData: this.state.libraryData
+    };
     var docInfo = {
       libraryData: this.state.libraryData,
       html: this.state.html,
       selectedLibrary: this.state.library,
       selectedMethod: this.state.method
-    }
+    };
     return (
       <div className="app">
-        <Sidebar libraryData={this.state.libraryData} />
+        <Sidebar sidebarInfo={sidebarInfo} />
         <Documentation docInfo={docInfo} />
         <Resources method={this.state.method} library={this.state.library} />
       </div>
@@ -67,4 +65,3 @@ var App = React.createClass({
 });
 
 module.exports = App;
-
