@@ -49,6 +49,14 @@ var utils = {
       });
   },
 
+  expandChildren: function(url, libraryName) {
+    request
+      .get(url)
+      .end(function(err, res) {
+        ServerActions.dispatchExpandChildren(JSON.parse(res.text), libraryName);
+      });
+  },
+
   getStackInfo: function(libraryName, methodName){
     request
       .get('http://localhost:3000/react/' + libraryName + '/' + methodName)

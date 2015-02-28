@@ -28,6 +28,33 @@ var Actions = {
     Utils.getGrandChildHTML(url, libraryName, childName);
   },
 
+  expandChildren: function(url, libraryName) {
+    Utils.expandChildren(url, libraryName);
+  },
+
+  expandGrandChildren: function(libraryName, childName) {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.EXPAND_GRANDCHILDREN,
+      library: libraryName,
+      child: childName
+    });
+  },
+
+  shrinkChildren: function(libraryName){
+    AppDispatcher.handleViewAction({
+      actionType: Constants.SHRINK_CHILDREN,
+      library: libraryName
+    });
+  },
+
+  shrinkGrandChildren: function(libraryName, childName) {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.SHRINK_GRANDCHILDREN,
+      library: libraryName,
+      child: childName
+    });
+  },
+
   selectMethod: function(libraryName, methodName) {
     AppDispatcher.handleViewAction({
       actionType: Constants.SELECTED_METHOD,

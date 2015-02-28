@@ -6,25 +6,23 @@ var LibraryChild = React.createClass({
   getInitialState: function() {
     return {
       buttonState: '+',
-      grandChildClass: 'grandchild hidden'
     };
   },
   expandGrandChildren: function() {
-    console.log('expanding grandchildren');
-    if (this.state.grandChildClass === 'grandchild hidden') {
+    if (this.state.buttonState === '+') {
       this.setState({
-        buttonState: '-',
-        grandChildClass: 'grandchild'
+        buttonState: '-'
       });
+      actions.expandGrandChildren(this.props.parent, this.props.name);
     } else {
       this.setState({
-        buttonState: '+',
-        grandChildClass: 'grandchild hidden'
+        buttonState: '+'
       });
+      actions.shrinkGrandChildren(this.props.parent, this.props.name);
     }
   },
   renderChildHTML: function() {
-    var childName = this.props.data.name;
+    var childName = this.props.name;
     var libraryName = this.props.parent;
     actions.selectChild('http://localhost:3000/docs/' + libraryName + '/' + childName + '.html', libraryName);
     actions.selectMethod(libraryName, '');
@@ -32,29 +30,33 @@ var LibraryChild = React.createClass({
   renderGrandChildHTML: function(event) {
     var method = event.target.className.split('#')[1] || event.target.className;
     var path = event.target.className;
-    var childName = this.props.data.name;
+    var childName = this.props.name;
     var libraryName = this.props.parent;
     actions.selectGrandChild('http://localhost:3000/docs/' + libraryName + '/' + path + '.html', libraryName, childName);
     actions.selectMethod(libraryName, method);
   },
   render: function() {
     var context = this;
-    var name = this.props.data.name;
-    var grandChildClass = this.state.grandChildClass;
-    var libraryGrandChildren = this.props.grandChildren.map(function(grandChild) {
-      if (grandChild.type === name) {
+    var grandChildren;
+    var name = this.props.name;
+    if (this.props.libraryData.expandGrandChildren[name]) {
+      var match = [];
+      this.props.libraryData.entries.map(function(entry) {
+        if (entry.type === name) {
+          match.push([entry.name, entry.path]);
+        }
+      });
+      grandChildren = match.map(function(grandChild) {
         return (
-          <ul className={grandChildClass}>
-            <span className={grandChild.path} onClick={context.renderGrandChildHTML}>{grandChild.name}</span>
-          </ul>
+          <ul className={grandChild[1]} onClick={context.renderGrandChildHTML}>{grandChild[0]}</ul>
         );
-      }
-    });
+      });
+    }
     return (
-      <div className={this.props.childClass}>
+      <div>
         <button onClick={this.expandGrandChildren}>{this.state.buttonState}</button>
-        <span onClick={this.renderChildHTML}>{this.props.data.name}</span>
-        {libraryGrandChildren}
+        <span onClick={this.renderChildHTML}>{this.props.name}</span>
+        {grandChildren}
       </div>
     );
   }

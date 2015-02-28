@@ -28,36 +28,8 @@ var App = React.createClass({
             libraries: libraries
           });
         });
-        // libraries = ['angular', 'backbone', 'underscore', 'node'];
-        // context.setState({
-        //   libraries: libraries
-        // });
-        libraries.forEach(function(library, index) {
-          if (index < limit) {
-            $.ajax({
-              url: 'http://localhost:3000/docs/' + library + '/index.json',
-              dataType: 'json',
-              success: function(data) {
-                count++;
-                console.log('successfully fetched data for library ', library);
-                libraryData.push({
-                  name: library,
-                  data: data
-                });
-                if (count === 62) {
-                  context.setState({
-                    libraryData: libraryData
-                  });
-                }
-              },
-              error: function(xhr, status, err) {
-                console.error('error getting data for library ', library);
-              }
-            });
-          }
-        });
       }
-    })
+    });
   },
 
   componentWillUnmount: function() {
@@ -66,6 +38,7 @@ var App = React.createClass({
 
   render: function(){
     AppStore.setLibraryData(this.state.libraryData);
+    AppStore.setLibraries(this.state.libraries);
     var sidebarInfo = {
       libraries: this.state.libraries,
       libraryData: this.state.libraryData
