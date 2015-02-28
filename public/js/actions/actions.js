@@ -19,6 +19,10 @@ var Actions = {
     });
     Utils.getStackInfo(libraryName, methodName);
     Utils.getExamples(libraryName, methodName);
+  },
+
+  createExample: function(libraryName, methodName, text){
+    Utils.createExample(libraryName, methodName, text);
   }
 
 }
