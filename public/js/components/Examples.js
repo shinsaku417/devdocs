@@ -1,10 +1,12 @@
 var ExampleStore = require('../store/ExampleStore');
+var ExampleList = require('./ExampleList');
+var ExampleForm = require('./ExampleForm');
 
 var Examples = React.createClass({
 
   getInitialState: function() {
-    return {items: [{
-      code: 'CLICK ON A METHOD TO SEE EXAMPLES'
+    return {examples: [{
+      text: 'CLICK ON A METHOD TO SEE EXAMPLES'
     }]}
   },
 
@@ -17,14 +19,15 @@ var Examples = React.createClass({
   },
 
   render: function(){
-    var exampleNodes = this.state.items.map(function(example){
+    var exampleNodes = this.state.examples.map(function(example){
       return (
-        <div>{example.code}</div>
+        <ExampleList text={example.text} />
       );
     });
     return (
       <div className="examples">
-      <h1>CODE EXAMPLES</h1>
+      <h1>EXAMPLES</h1>
+      <ExampleForm />
         {exampleNodes}
       </div>
     );

@@ -22,9 +22,19 @@ var utils = {
 
   getExamples: function(libraryName, methodName){
     request
-      .get('http://localhost:3000/flockdocs/' + libraryName + '/' + methodName)
+      .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
       .end(function(err, res){
-        ServerActions.dispatchNewExamples(res.body.docHelp);
+        console.log(examples);
+        ServerActions.dispatchNewExamples(res.body.examples);
+      });
+  },
+
+  createExample: function(libraryName, methodName, text){
+    request
+      .post('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
+      .send(text)
+      .end(function(err, res){
+        ServerActions.dispatchCreatedExample(res.body.example);
       });
   }
 

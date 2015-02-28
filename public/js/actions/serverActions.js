@@ -22,6 +22,13 @@ var ServerActions = {
       actionType: Constants.EXAMPLES_RETRIEVED,
       data: examples
     });
+  },
+
+  dispatchCreatedExample: function(example){
+    AppDispatcher.handleViewAction({
+      actionType: Constants.EXAMPLE_CREATED,
+      data: example
+    });
   }
 };
 

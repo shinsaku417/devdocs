@@ -9,7 +9,7 @@ var CHANGE_EVENT = 'change';
 var _examples = {};
 
 var setExamples = function(exampleData) {
-  _examples = JSON.parse(exampleData);
+  _examples = {examples: JSON.parse(exampleData)};
 }
 
 var ExampleStore = assign({}, EventEmitter.prototype, {
@@ -39,6 +39,11 @@ AppDispatcher.register(function(action) {
       console.log('ExampleStore heard: ' + action.action.actionType);
       setExamples(action.action.data);
       ExampleStore.emitChange();
+      break;
+
+    case Constants.EXAMPLE_CREATED:
+      console.log('ExampleStore heard: ' + action.action.actionType);
+      console.log(actionType.action.data);
       break;
     }
 
