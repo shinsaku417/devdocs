@@ -2,8 +2,8 @@ var ExampleForm = React.createClass({
   submitExample: function(e){
     e.preventDefault();
     var text = this.refs.text.getDOMNode().value.trim();
+    this.props.onExampleSubmit(text);
     this.refs.text.getDOMNode().value = '';
-    // call submit action with text
   },
 
   render: function() {
