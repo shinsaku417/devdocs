@@ -1,8 +1,13 @@
 var ExampleStore = require('../store/ExampleStore');
 var ExampleList = require('./ExampleList');
 var ExampleForm = require('./ExampleForm');
+var Actions = require('../actions/actions');
 
-var Examples = React.createClass({
+var ExampleBox = React.createClass({
+
+  handleExampleSubmit: function(text){
+    Actions.createExample(this.props.library, this.props.method, text);
+  },
 
   getInitialState: function() {
     return {examples: [{
@@ -27,7 +32,7 @@ var Examples = React.createClass({
     return (
       <div className="examples">
       <h1>EXAMPLES</h1>
-      <ExampleForm />
+      <ExampleForm onExampleSubmit={this.handleExampleSubmit} />
         {exampleNodes}
       </div>
     );
@@ -39,4 +44,4 @@ var Examples = React.createClass({
 
 });
 
-module.exports = Examples;
+module.exports = ExampleBox;

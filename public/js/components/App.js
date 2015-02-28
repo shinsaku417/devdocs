@@ -2,7 +2,7 @@ var Sidebar = require('./Sidebar');
 var Documentation = require('./Documentation');
 var Resources = require('./Resources');
 var AppStore = require('../store/AppStore');
-var Examples = require('./Examples');
+var ExampleBox = require('./ExampleBox');
 
 // var data = ['underscore', 'backbone', 'node'];
 // var library = 'iefhqeifweifh';
@@ -60,7 +60,7 @@ var App = React.createClass({
       <div className="app">
         <Sidebar libraryData={this.state.libraryData} />
         <Documentation docInfo={docInfo} />
-        <Examples />
+        <ExampleBox library="underscorejs" method="reduce" />
       </div>
     );
   },
