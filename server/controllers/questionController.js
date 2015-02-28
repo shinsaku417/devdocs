@@ -13,7 +13,7 @@ module.exports = {
   },
 
   authorize: function (req, res, next) {
-    if (req.authedUser.id === req.question.UserID) {
+    if (req.authedUser.id === req.question.UserId) {
       next();
     }
     else {

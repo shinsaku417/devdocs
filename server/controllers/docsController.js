@@ -17,10 +17,22 @@ module.exports = {
   loadElement: function (req, res, next, docElementName) {
     DocElement.find({where: {
       name: docElementName,
-      DocSetID: req.docSet.id
+      DocSetId: req.docSet.id
     }}).then(function(docElement) {
       req.docElement = docElement;
       next();
+    });
+  },
+
+  getSetExamples: function (req, res, next) {
+
+  },
+
+  getElementExamples: function (req, res, next) {
+    Example.findAll({where: {
+      DocElementId: req.docElement.id,
+    }}).then(function(examples) {
+      res.status(200).send(examples);
     });
   },
 
