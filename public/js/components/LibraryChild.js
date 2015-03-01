@@ -3,6 +3,9 @@ var request = require('superagent');
 var actions = require('../actions/actions');
 var addons = require('react-addons');
 var cx = addons.classSet;
+var mui = require('material-ui');
+var RaisedButton = mui.RaisedButton;
+
 
 var LibraryChild = React.createClass({
   getInitialState: function() {
@@ -60,7 +63,7 @@ var LibraryChild = React.createClass({
     }
     return (
       <div>
-        <button onClick={this.expandGrandChildren}>{this.state.buttonState}</button>
+        <RaisedButton onClick={this.expandGrandChildren} buttonState={this.state.buttonState} />
         <span onClick={this.renderChildHTML}>{this.props.name}</span>
         {grandChildren}
       </div>
