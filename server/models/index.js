@@ -14,6 +14,25 @@ var UserAnswerVotes = require('./userAnswerVotes.js');
 var UserQuestionVotes = require('./userQuestionVotes.js');
 var UserExampleVotes = require('./userExampleVotes.js');
 
+//sync everything up with the DB
+Answer.sync().then(function() {
+  return DocSet.sync();  
+}).then(function() {
+  return DocElement.sync();
+}).then(function() {
+  return User.sync();
+}).then(function() {
+  return Question.sync();  
+}).then(function() {
+  return Example.sync();
+}).then(function(){
+  return UserAnswerVotes.sync();  
+}).then(function() {
+  return UserExampleVotes.sync();  
+}).then(function() {
+  return UserQuestionVotes.sync();
+});
+
 //define relationships
 Answer.belongsTo(User);
 
@@ -34,15 +53,22 @@ Question.belongsTo(User);
 Example.belongsTo(User);
 
 //sync everything up with the DB
-Answer.sync();
-DocSet.sync();
-DocElement.sync();
-User.sync();
-Question.sync();
-Example.sync();
-
-UserAnswerVotes.sync();
-UserExampleVotes.sync();
-UserQuestionVotes.sync();
+Answer.sync().then(function() {
+  return DocSet.sync();  
+}).then(function() {
+  return DocElement.sync();
+}).then(function() {
+  return User.sync();
+}).then(function() {
+  return Question.sync();  
+}).then(function() {
+  return Example.sync();
+}).then(function(){
+  return UserAnswerVotes.sync();  
+}).then(function() {
+  return UserExampleVotes.sync();  
+}).then(function() {
+  return UserQuestionVotes.sync();
+});
 
 module.exports = db;

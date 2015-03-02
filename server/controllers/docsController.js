@@ -7,6 +7,7 @@ var Answer = require('../models/answer.js');
 module.exports = {
   loadSet: function (req, res, next, docSetName) {
     DocSet.find({where: {name: docSetName}}).then(function (docSet) {
+      console.log(docset);
       if(docSet) {
         req.docSet = docSet;
         next();
