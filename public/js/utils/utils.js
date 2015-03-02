@@ -37,10 +37,14 @@ var utils = {
   },
 
   createExample: function(libraryName, methodName, text){
+    console.log(libraryName);
+    console.log(methodName);
+    console.log(text);
     request
       .post('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
       .send(text)
       .end(function(err, res){
+        console.log(res.body);
         ServerActions.dispatchCreatedExample(res.body.example);
       });
   }

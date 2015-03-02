@@ -24,6 +24,8 @@ var ExampleBox = React.createClass({
   },
 
   render: function(){
+    console.log(this.props.library);
+    console.log(this.props.method);
     var exampleNodes = this.state.examples.map(function(example){
       return (
         <ExampleList text={example.text} />
@@ -31,8 +33,8 @@ var ExampleBox = React.createClass({
     });
     return (
       <div className="examples">
-      <h1>EXAMPLES</h1>
-      <ExampleForm onExampleSubmit={this.handleExampleSubmit} />
+        <h3>EXAMPLES</h3>
+        <ExampleForm onExampleSubmit={this.handleExampleSubmit} />
         {exampleNodes}
       </div>
     );

@@ -1,5 +1,5 @@
 var StackOverflow = require('./StackOverflow');
-var Examples = require('./ExampleBox');
+var ExampleBox = require('./ExampleBox');
 
 var Resources = React.createClass({
   render: function(){
@@ -7,7 +7,7 @@ var Resources = React.createClass({
       <div className="resources">
         <h1>{this.props.method}</h1>
         <StackOverflow />
-        <ExampleBox />
+        <ExampleBox library={this.props.library} method={this.props.method} />
       </div>
     );
   }
