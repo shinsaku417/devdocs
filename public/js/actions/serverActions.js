@@ -10,13 +10,6 @@ var ServerActions = {
     });
   },
 
-  dispatchSelectedLibrary: function(libraryName) {
-    AppDispatcher.handleViewAction({
-      actionType: Constants.SELECTED_LIBRARY,
-      libraryName: libraryName
-    });
-  },
-
   dispatchSelectedMethod: function(methodName) {
     AppDispatcher.handleViewAction({
       actionType: Constants.SELECTED_METHOD,
@@ -28,7 +21,15 @@ var ServerActions = {
     AppDispatcher.handleViewAction({
       actionType: Constants.EXPAND_CHILDREN,
       libraryData: libraryData,
-      libraryName: libraryName
+      library: libraryName
+    });
+  },
+
+  dispatchConstructHTML: function(libraryName, childName) {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.CONSTRUCT_HTML,
+      library: libraryName,
+      child: childName
     });
   },
 

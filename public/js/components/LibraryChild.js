@@ -1,5 +1,3 @@
-var ServerActions = require('../actions/serverActions');
-var request = require('superagent');
 var actions = require('../actions/actions');
 var addons = require('react-addons');
 var cx = addons.classSet;
@@ -27,11 +25,14 @@ var LibraryChild = React.createClass({
     var libraryName = this.props.parent;
     var childName = this.props.name;
     actions.selectChild(libraryName, childName);
-    actions.selectMethod(libraryName, '');
   },
   renderGrandChildHTML: function(event) {
-    var method = event.target.className.split('#')[1].split(' ')[0] || event.target.className.split(' ')[0];
-    var path = event.target.className;
+    if (event.target.className.split('#')[1]) {
+      var method = event.target.className.split('#')[1].split(' ')[0];
+    } else {
+      var method = event.target.className.split(' ')[0];
+    }
+    var path = event.target.className.split(' ')[0];
     var childName = this.props.name;
     var libraryName = this.props.parent;
     actions.selectGrandChild(libraryName, childName, path);

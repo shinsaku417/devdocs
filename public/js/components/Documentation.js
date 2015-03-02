@@ -7,48 +7,43 @@ var Documentation = React.createClass({
   // this is called everytime rendering happens
   componentDidUpdate: function() {
     var context = this;
-    // this is selected library
-    var libraryName = this.props.docInfo.selectedLibrary;
-    // use correct data for selected library by iterating through the libraryData
-    // which contains all library datas, and use the data with the same name
-    for (var i = 0; i < this.props.docInfo.libraryData.length; i++) {
-      if (this.props.docInfo.libraryData[i].name === libraryName) {
-        var libraryData = this.props.docInfo.libraryData[i].data;
-        break;
-      }
-    }
-    if (this.props.docInfo.selectedMethod) {    
+    if (this.props.docInfo.selectedMethod) {
       window.location.href = "http://localhost:3000/#" + this.props.docInfo.selectedMethod;
     }
-
-    // make object that contains key for all methods
-    // var methods = {};
-    // for (var i = 0; i < libraryData.entries.length; i++) {
-    //   methods[libraryData.entries[i].path.split('#')[1]] = true;
-    // }
-
-    // wrap every p element with method id with div of classes flockdocs and
-    // method name
-    // $('p').each(function() {
-    //   if (methods.hasOwnProperty($(this)[0].id)) {
-    //     var wrapper = $('<div/>', {
-    //       class: 'flockdocs ' + $(this)[0].id
-    //     });
-    //     $(this).wrap(wrapper);
-    //   }
-    // });
-    //
-    // $('.flockdocs').each(function() {
-    //   $(this).click(function() {
-    //     var methodName = $(this)[0].className.split(' ')[1];
-    //     context.clickMethod(methodName);
-    //   });
-    // });
   },
   render: function() {
-    return (
-      <div className="documentation" dangerouslySetInnerHTML={{__html: this.props.docInfo.html}}></div>
-    );
+    var library = this.props.docInfo.selectedLibrary;
+    var child = this.props.docInfo.selectedChild;
+    if (this.props.docInfo.libraryData[library]) {
+      if (this.props.docInfo.libraryData[library].construct[child]) {
+        var context = this;
+        var data = this.props.docInfo.libraryData[library];
+        console.log('data: ', data);
+        var methods = [];
+        var grandChildNodes =　data.entries.map(function(method) {
+          if (method.type === child) {
+            return (
+              <ul>{method.name}</ul>
+            );
+          }
+        });
+        console.log(grandChildNodes);
+        return (
+          <div className="documentation">
+            <h2>{child}</h2>
+            {grandChildNodes}
+          </div>
+        );
+      } else {
+        return (
+          <div className="documentation" dangerouslySetInnerHTML={{__html: this.props.docInfo.html}}></div>
+        );
+      }
+    } else {
+      return (
+        <div className="documentation" dangerouslySetInnerHTML={{__html: this.props.docInfo.html}}></div>
+      );
+    }
   }
 });
 

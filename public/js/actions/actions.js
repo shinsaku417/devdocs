@@ -14,17 +14,14 @@ var Actions = {
 
   selectChild: function(libraryName, childName) {
     AppDispatcher.handleViewAction({
-      actionType: Constants.SELECTED_LIBRARY,
-      text: libraryName
+      actionType: Constants.SELECTED_CHILD,
+      library: libraryName,
+      child: childName
     });
     Utils.getChildHTML(libraryName, childName);
   },
 
   selectGrandChild: function(libraryName, childName, grandChildPath) {
-    AppDispatcher.handleViewAction({
-      actionType: Constants.SELECTED_LIBRARY,
-      text: libraryName
-    });
     Utils.getGrandChildHTML(libraryName, childName, grandChildPath);
   },
 

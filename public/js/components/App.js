@@ -47,6 +47,7 @@ var App = React.createClass({
       libraryData: this.state.libraryData,
       html: this.state.html,
       selectedLibrary: this.state.library,
+      selectedChild: this.state.child,
       selectedMethod: this.state.method
     };
     return (

@@ -18,7 +18,7 @@ var utils = {
       .get(host + libraryName + '/' + childName + '.html')
       .end(function(err, res){
         if (res.error) {
-          ServerActions.dispatchNewLibrary('Use index.json to generate HTML page here');
+          ServerActions.dispatchConstructHTML(libraryName, childName);
         } else {
           ServerActions.dispatchNewLibrary(res.text);
         }

@@ -17,12 +17,20 @@ var _selection = {
 
 var changeLibrary = function(libraryName) {
   _selection['library'] = libraryName;
+  _selection['child'] = '';
   _selection['method'] = '';
 };
+
+var changeChild = function(libraryName, childName) {
+  _selection['library'] = libraryName;
+  _selection['child'] = childName;
+  _selection['method'] = '';
+}
 
 var changeMethod = function(methodName) {
   _selection['method'] = methodName;
 };
+
 
 var changeHTML = function(html) {
   _selection.html = html;
@@ -31,6 +39,7 @@ var changeHTML = function(html) {
 var changeLibraryData = function(libraryName, libraryData) {
   _selection.libraryData[libraryName] = libraryData;
   _selection.libraryData[libraryName].expandGrandChildren = {};
+  _selection.libraryData[libraryName].construct = {};
 };
 
 var changeLibraryFlag = function(libraryName, child, flag) {
@@ -39,6 +48,10 @@ var changeLibraryFlag = function(libraryName, child, flag) {
 
 var shrinkLibrary = function(libraryName) {
   delete _selection.libraryData[libraryName];
+};
+
+var changeConstructFlag = function(libraryName, child) {
+  _selection.libraryData[libraryName].construct[child] = true;
 }
 
 var AppStore = assign({}, EventEmitter.prototype, {
@@ -85,6 +98,14 @@ AppDispatcher.register(function(action) {
       AppStore.emitChange();
       break;
 
+    case Constants.SELECTED_CHILD:
+      console.log('store heard: ' + Constants.SELECTED_CHILD);
+      library = action.action.library.trim();
+      child = action.action.child.trim();
+      changeChild(library, child);
+      AppStore.emitChange();
+      break;
+
     case Constants.SELECTED_METHOD:
       console.log('store heard: ' + Constants.SELECTED_METHOD);
       text = action.action.text.trim();
@@ -95,8 +116,8 @@ AppDispatcher.register(function(action) {
     case Constants.EXPAND_CHILDREN:
       console.log('store heard: ' + Constants.EXPAND_CHILDREN);
       libraryData = action.action.libraryData;
-      libraryName = action.action.libraryName;
-      changeLibraryData(libraryName, libraryData);
+      library = action.action.library;
+      changeLibraryData(library, libraryData);
       AppStore.emitChange();
       break;
 
@@ -120,6 +141,14 @@ AppDispatcher.register(function(action) {
       library = action.action.library.trim();
       child = action.action.child.trim();
       changeLibraryFlag(library, child, false);
+      AppStore.emitChange();
+      break;
+
+    case Constants.CONSTRUCT_HTML:
+      console.log('store heard: ' + Constants.CONSTRUCT_HTML);
+      library = action.action.library.trim();
+      child = action.action.child.trim();
+      changeConstructFlag(library, child);
       AppStore.emitChange();
       break;
   }
