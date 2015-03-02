@@ -8,6 +8,7 @@ var Resources = React.createClass({
         <h1>{this.props.method}</h1>
         <StackOverflow />
         <ExampleBox />
+        <QA />
       </div>
     );
   }
