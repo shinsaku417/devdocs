@@ -73,6 +73,16 @@ var utils = {
       });
   },
 
+  getQuestions: function(libraryName, methodName){
+    request
+      .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/questions')
+      .end(function(err, res){
+        console.log("ERIC THIS IS WHAT GETTTING BACK FROM QUESTIONS AJAX CALL:");
+        console.dir(req.body);
+        ServerActions.dispatchNewQuestions(res.body);
+      });
+  },
+
   createExample: function(libraryName, methodName, text){
     console.log(libraryName);
     console.log(methodName);

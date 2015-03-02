@@ -47,6 +47,13 @@ var ServerActions = {
     });
   },
 
+  dispatchNewQuestions: function(questions){
+    AppDispatcher.handleViewAction({
+      actionType: Constants.QUESTIONS_RETRIEVED,
+      data: questions
+    });
+  },
+
   dispatchCreatedExample: function(example){
     AppDispatcher.handleViewAction({
       actionType: Constants.EXAMPLE_CREATED,
