@@ -3,7 +3,7 @@ var QAList = React.createClass({
   selection: null,
 
   select: function(questionID) {
-    this.selection = quesitonID;
+    this.selection = questionID;
   },
 
   deselect: function() {

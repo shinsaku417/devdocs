@@ -62,6 +62,7 @@ var Actions = {
     });
     Utils.getStackInfo(libraryName, methodName);
     Utils.getExamples(libraryName, methodName);
+    Utils.getQA(libraryName, methodName);
   },
 
   createExample: function(libraryName, methodName, text){
