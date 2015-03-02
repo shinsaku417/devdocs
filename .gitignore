@@ -21,3 +21,4 @@ server/libraries/supportedLibraries/*
 public/js/bundle.js
 public/docs/*
 Gemfile.lock
+config.ru

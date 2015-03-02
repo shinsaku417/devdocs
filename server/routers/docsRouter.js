@@ -1,4 +1,5 @@
 var docsController = require('../controllers/docsController.js');
+var exampleController = require('../controllers/exampleController.js');
 var jwt = require('../jwtAuth.js');
 
 
@@ -19,5 +20,8 @@ module.exports = function (app) {
 
   app.post('/:docSet/vote', [jwt.decodeToken, docsController.voteSet]);
   app.post('/:docSet/:docElement/vote', [jwt.decodeToken, docsController.voteElement]);
+
+  app.get('/:docSet/:docElement/examples', docsController.getElementExamples);
+  app.post('/:docSet/:docElement/examples', exampleController.create);
 
 };
