@@ -15,7 +15,7 @@ var Documentation = React.createClass({
     // add scrolltoggle to all p elements with id
     $('p').each(function() {
       var id = $(this).attr('id');
-      if (id) {
+      if (id && id.indexOf('$') < 0) {
         var cb = function() {
           if (cache !== id) {
             cache = id;

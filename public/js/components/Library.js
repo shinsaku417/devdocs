@@ -22,7 +22,6 @@ var Library = React.createClass({
   },
   renderHTML: function() {
     actions.selectLibrary(this.props.library);
-    actions.selectMethod(this.props.library.name, '');
   },
   render: function() {
     var name = this.props.library;

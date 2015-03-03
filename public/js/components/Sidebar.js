@@ -2,6 +2,7 @@ var Library = require('./Library')
 
 var Sidebar = React.createClass({
   render: function(){
+    console.log('rendering');
     var context = this;
     var libraryNodes = this.props.sidebarInfo.libraries.map(function(library){
       return (

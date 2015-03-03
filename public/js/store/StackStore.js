@@ -8,8 +8,9 @@ var CHANGE_EVENT = 'change';
 
 var _stackData = {};
 
-var setStackData = function(stackData) {
+var setStackData = function(stackData, methodName) {
   _stackData.questions = stackData;
+  _stackData.method = methodName;
 }
 
 var StackStore = assign({}, EventEmitter.prototype, {
@@ -37,7 +38,7 @@ AppDispatcher.register(function(action) {
   switch(action.action.actionType) {
     case Constants.STACK_DATA_RETRIEVED:
       console.log(action.action.data);
-      setStackData(action.action.data);
+      setStackData(action.action.data, action.action.methodName);
       StackStore.emitChange();
       break;
   }

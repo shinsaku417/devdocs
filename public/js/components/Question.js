@@ -17,8 +17,10 @@ var Question = React.createClass({
 
   render: function(){
     var answerNodes = [];
-    for (var i=0; i<this.props.answers.length; i++) {
-      answerNodes.push(<div className="answer" dangerouslySetInnerHTML={{__html: this.props.answers[i].body}}></div>);
+    if (this.props.answers) {
+      for (var i=0; i<this.props.answers.length; i++) {
+        answerNodes.push(<div className="answer" dangerouslySetInnerHTML={{__html: this.props.answers[i].body}}></div>);
+      }
     }
     return (
       <div className="stack">
