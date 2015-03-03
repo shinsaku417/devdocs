@@ -1,12 +1,24 @@
-var Library = require('./Library')
+var SidebarStore = require('../store/SidebarStore');
+var Library = require('./Library');
 
 var Sidebar = React.createClass({
+  getInitialState: function() {
+    return SidebarStore.getSidebarData();
+  },
+
+  componentDidMount: function() {
+    SidebarStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    SidebarStore.removeChangeListener(this._onChange);
+  },
+
   render: function(){
-    console.log('rendering');
     var context = this;
-    var libraryNodes = this.props.sidebarInfo.libraries.map(function(library){
+    var libraryNodes = this.props.libraries.map(function(library){
       return (
-        <Library library={library} libraryData={context.props.sidebarInfo.libraryData} />
+        <Library library={library} libraryData={context.state.libraryData} />
       );
     });
     return (
@@ -17,6 +29,10 @@ var Sidebar = React.createClass({
         </ul>
       </div>
     );
+  },
+
+  _onChange: function() {
+    this.setState(SidebarStore.getSidebarData());
   }
 });
 

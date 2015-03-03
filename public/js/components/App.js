@@ -42,22 +42,12 @@ var App = React.createClass({
   },
 
   render: function(){
-    AppStore.setLibraryData(this.state.libraryData);
     AppStore.setLibraries(this.state.libraries);
-    var sidebarInfo = {
-      libraries: this.state.libraries,
-      libraryData: this.state.libraryData
-    };
-    var docInfo = {
-      libraryData: this.state.libraryData,
-      html: this.state.html,
-      selectedLibrary: this.state.library,
-      selectedMethod: this.state.method
-    };
     return (
       <div className="app">
-        <Sidebar sidebarInfo={sidebarInfo} />
-        <Documentation docInfo={docInfo} />
+        <Sidebar libraries={this.state.libraries} />
+        <Documentation library={this.state.library} method={this.state.method} />
+        <Resources library={this.state.library} method={this.state.method} />
       </div>
     );
   },
