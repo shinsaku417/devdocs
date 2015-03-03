@@ -59,7 +59,7 @@ var utils = {
 
   getStackInfo: function(libraryName, methodName){
     request
-      .get('http://localhost:3000/react/' + libraryName + '/' + methodName)
+      .get('http://localhost:8080/react/' + libraryName + '/' + methodName)
       .end(function(err, res){
         ServerActions.dispatchNewStackInfo(res.body.topQuestions);
       });

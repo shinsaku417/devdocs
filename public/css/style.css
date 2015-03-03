@@ -1,6 +1,14 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .app {
   border: 1px solid black;
 }
+
+/*.answer {
+  background-color: #CCFFCC;
+}*/
 
 .documentation {
   border: 1px solid orange;
@@ -15,6 +23,10 @@
 }
 
 .hidden {
+  display: none;
+}
+
+.ignored {
   display: none;
 }
 
@@ -39,12 +51,22 @@
   padding-left: 15;
 }
 
+.question {
+  background-color: #FFF8DC;
+}
+
 .resources {
   border: 1px solid blue;
   width: 25%;
   float: left;
 }
 
-.stack {
+.stackOverFlow {
   border: 1px solid yellow;
+  height: 50%;
+  overflow: scroll;
+}
+
+.title:hover {
+  background-color: #CCFFCC;
 }
