@@ -64,6 +64,11 @@ var Actions = {
     Utils.getExamples(libraryName, methodName);
   },
 
+  scrollMethod: function(libraryName, methodName) {
+    Utils.getStackInfo(libraryName, methodName);
+    Utils.getExamples(libraryName, methodName);
+  },
+
   createExample: function(libraryName, methodName, text){
     Utils.createExample(libraryName, methodName, text);
   }
