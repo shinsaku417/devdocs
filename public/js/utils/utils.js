@@ -69,8 +69,7 @@ var utils = {
     request
       .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
       .end(function(err, res){
-        console.log(examples);
-        ServerActions.dispatchNewExamples(res.body.examples);
+        ServerActions.dispatchNewExamples(res.body);
       });
   },
 
@@ -80,7 +79,7 @@ var utils = {
     console.log(text);
     request
       .post('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
-      .send(text)
+      .send({text: text})
       .end(function(err, res){
         console.log(res.body);
         ServerActions.dispatchCreatedExample(res.body.example);

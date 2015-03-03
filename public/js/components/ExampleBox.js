@@ -24,8 +24,6 @@ var ExampleBox = React.createClass({
   },
 
   render: function(){
-    console.log(this.props.library);
-    console.log(this.props.method);
     var exampleNodes = this.state.examples.map(function(example){
       return (
         <ExampleList text={example.text} />
