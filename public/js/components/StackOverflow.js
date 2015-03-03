@@ -7,7 +7,7 @@ var StackOverflow = React.createClass({
     return {questions: [{
       title: '',
       body: 'CLICK ON A METHOD TO SEE STACK OVERFLOW CONTENT',
-      answers: ''
+      answers: [{body: '<p> Nothing to select </p>'}]
     }]}
   },
 

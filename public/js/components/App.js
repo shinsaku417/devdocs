@@ -20,11 +20,9 @@ var App = React.createClass({
 
   componentDidMount: function() {
     AppStore.addChangeListener(this._onChange);
+    console.log('looking for libs');
     var context = this;
     var libraries = [];
-    var libraryData = [];
-    var count = 0;
-    var limit = 62;
     $.ajax({
       url: 'http://localhost:3000/docs/docs.json',
       dataType: 'json',
@@ -60,6 +58,7 @@ var App = React.createClass({
       <div className="app">
         <Sidebar sidebarInfo={sidebarInfo} />
         <Documentation docInfo={docInfo} />
+        <Resources library={this.state.library} method={this.state.method} />
       </div>
     );
   },

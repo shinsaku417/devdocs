@@ -6,6 +6,10 @@ body {
   border: 1px solid black;
 }
 
+/*.answer {
+  background-color: #CCFFCC;
+}*/
+
 .documentation {
   border: 1px solid orange;
   width: 55%;
@@ -19,6 +23,10 @@ body {
 }
 
 .hidden {
+  display: none;
+}
+
+.ignored {
   display: none;
 }
 
@@ -43,12 +51,22 @@ body {
   padding-left: 15;
 }
 
+.question {
+  background-color: #FFF8DC;
+}
+
 .resources {
   border: 1px solid blue;
   width: 25%;
   float: left;
 }
 
-.stack {
+.stackOverFlow {
   border: 1px solid yellow;
+  height: 50%;
+  overflow: scroll;
+}
+
+.title:hover {
+  background-color: #CCFFCC;
 }
