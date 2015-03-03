@@ -53,6 +53,7 @@ var App = React.createClass({
       <div className="app">
         <Sidebar sidebarInfo={sidebarInfo} />
         <Documentation docInfo={docInfo} />
+        <Resources library={this.state.library} method={this.state.method} />
       </div>
     );
   },

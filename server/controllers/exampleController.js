@@ -22,8 +22,11 @@ module.exports = {
   },
 
   create: function (req, res) {
-    console.log(req.body)
-    Example.create(req.body).then(function(result) {
+    var example = {
+      text: req.body.text,
+      DocElementId: req.docElement.id
+    };
+    Example.create(example).then(function(result) {
       //TODO branch on result instanceof Sequelize.ValidaitonError
       res.status(200).send(result);
     });
