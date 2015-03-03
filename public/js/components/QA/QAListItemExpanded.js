@@ -1,3 +1,7 @@
+var Question = require('./Question');
+var AnswerList = require('./AnswerList');
+var NewAnswerForm = require('./NewAnswerForm');
+
 var QAListItemExpanded = React.createClass({
   render: function(){
     return (
@@ -10,5 +14,7 @@ var QAListItemExpanded = React.createClass({
     );
   }
 });
+
+// <NewAnswerForm />
 
 module.exports = QAListItemExpanded;

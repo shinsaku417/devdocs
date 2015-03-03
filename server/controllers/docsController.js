@@ -21,8 +21,12 @@ module.exports = {
       name: docElementName,
       DocSetId: req.docSet.id
     }}).then(function(docElement) {
-      req.docElement = docElement;
-      next();
+      if(docElement) {
+        req.docElement = docElement;
+        next();
+      } else {
+        res.status(404).send('docElement ' + docElementName + ' not found in docSet ' + req.docSet.name);
+      }
     });
   },
 
@@ -43,7 +47,7 @@ module.exports = {
   },
 
   getElementQuestions: function (req, res) {
-    Questions.findAll({
+    Question.findAll({
       where: {
         DocElementId: req.docElement.id,
       },

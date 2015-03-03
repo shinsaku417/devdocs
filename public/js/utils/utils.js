@@ -27,16 +27,16 @@ var utils = {
 
   getGrandChildHTML: function(libraryName, childName, grandChildPath) {
     request
-      .get(host + libraryName + '/' +  grandChildPath + '.html')
-      .end(function(err, res){
-        if (res.error) {
-          request
-            .get(host + libraryName + '/' + childName + '.html')
-            .end(function(err, res) {
-              if (res.error) {
-                request
-                  .get(host + libraryName + '/index.html')
-                  .end(function(err, res) {
+        .get(host + libraryName + '/' +  grandChildPath + '.html')
+        .end(function(err, res){
+          if (res.error) {
+            request
+              .get(host + libraryName + '/' + childName + '.html')
+              .end(function(err, res) {
+                if (res.error) {
+                  request
+                    .get(host + libraryName + '/index.html')
+                    .end(function(err, res) {
                     ServerActions.dispatchNewLibrary(res.text);
                   });
               } else {
@@ -90,6 +90,21 @@ var utils = {
     request
       .post('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
       .send({text: text})
+      .end(function(err, res){
+        console.log(res.body);
+        ServerActions.dispatchCreatedExample(res.body.example);
+      });
+  },
+
+  createQuestion: function(docElementID, title, text){
+    request
+      .post('http://localhost:3000/api/questions')
+      .send({
+        title: title,
+        text: text,
+        UserId: 1, //TODO
+        DocElementId: docElementID
+      })
       .end(function(err, res){
         console.log(res.body);
         ServerActions.dispatchCreatedExample(res.body.example);

@@ -13,7 +13,11 @@ var Question = db.define('Questions', {
 		type: Sequelize.TEXT,
 		allowNull: false
 	},
-	score: Sequelize.INTEGER
+	score: {
+		type: Sequelize.INTEGER,
+		defaultValue: 0,
+		allowNull: false
+	}
 });
 
 module.exports = Question;

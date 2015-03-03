@@ -1,10 +1,12 @@
+var Answer = require('./Answer');
+
 var AnswerList = React.createClass({
   render: function() {
     return (
       <div className="AnswerList">
         <ul>
           {this.renderListItems()}
-        <ul>
+        </ul>
       </div>
     );
   },

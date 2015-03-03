@@ -1,3 +1,6 @@
+var QAListItemCollapsed = require('./QAListItemCollapsed');
+var QAListItemExpanded = require('./QAListItemExpanded');
+
 var QAList = React.createClass({
 
   selection: null,
@@ -8,7 +11,7 @@ var QAList = React.createClass({
 
   deselect: function() {
     this.selection = null;
-  }
+  },
 
   render: function() {
     return(
@@ -21,10 +24,10 @@ var QAList = React.createClass({
   },
 
   renderListItems: function() {
-    return this.props.data.questions.map(function(question) {
+    return this.props.questions.map(function(question) {
       if(question.id !== this.selection) {
         return (
-          <QAListItemCollapsed  question={question} parent={this} />\
+          <QAListItemCollapsed question={question} parent={this} />
         );
       } else {
         return (
