@@ -6,9 +6,9 @@ body {
   border: 1px solid black;
 }
 
-/*.answer {
-  background-color: #CCFFCC;
-}*/
+.answer {
+  padding: 10px;
+}
 
 .documentation {
   border: 1px solid orange;
@@ -16,6 +16,18 @@ body {
   float: left;
   height: 100%;
   overflow: scroll;
+}
+
+input {
+  transition: all 2s ease;
+  height: 15px;
+  width: 50%;
+}
+
+input.entering {
+  transition: all 2s ease;
+  height: 150px;
+  width: 90%;
 }
 
 .examples {
@@ -53,6 +65,7 @@ body {
 
 .question {
   background-color: #FFF8DC;
+  padding: 10px;
 }
 
 .resources {

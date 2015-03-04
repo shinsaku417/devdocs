@@ -11,7 +11,6 @@ var Question = React.createClass({
   },
 
   select: function() {
-    console.log('question selected');
     this.setState({ignored: !this.state.ignored});
   },
 
@@ -24,10 +23,10 @@ var Question = React.createClass({
     }
     return (
       <div className="stack">
-      <h1 className="title question" onClick={this.select}>{this.props.title}</h1>
+      <h4 className="title question" onClick={this.select}>Question: {this.props.title}</h4>
         <div className={cx({"ignored": this.state.ignored, "question": true})} dangerouslySetInnerHTML={{__html: this.props.body}}></div>
         <div className={cx({"ignored": this.state.ignored})}>
-          <h3>ANSWERS</h3>
+          <h4>ANSWERS</h4>
           {answerNodes}
         </div>
         <hr></hr>
