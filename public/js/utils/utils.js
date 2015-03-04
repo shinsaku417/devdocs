@@ -82,10 +82,20 @@ var utils = {
       });
   },
 
-  createExample: function(libraryName, methodName, text){
+  createExample: function(docSetName, docElementName, text){
+    console.log('library', docSetName);
+    console.log('method', docElementName);
+    console.log('text', text);
+    console.log('token', sessionStorage.token);
     request
-      .post('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
-      .send({text: text})
+      .post('http://localhost:3000/api/examples')
+      .set('x-access-token', sessionStorage.token)
+      .send({
+        text: text,
+        docSetName: docSetName,
+        docElementName: docElementName,
+        UserId: 1
+      })
       .end(function(err, res){
         console.log(res.body);
         ServerActions.dispatchCreatedExample(res.body.example);
