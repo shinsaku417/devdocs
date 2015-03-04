@@ -22,3 +22,5 @@ public/js/bundle.js
 public/docs/*
 Gemfile.lock
 config.ru
+.editorconfig
+.jshintrc
