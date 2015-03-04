@@ -10,9 +10,11 @@ var ExampleBox = React.createClass({
   },
 
   getInitialState: function() {
-    return {examples: [{
-      text: 'CLICK ON A METHOD TO SEE EXAMPLES'
-    }]}
+    return {
+      examples: [{
+        text: 'CLICK ON A METHOD TO SEE EXAMPLES'
+      }] 
+    }
   },
 
   componentDidMount: function() {
@@ -41,7 +43,7 @@ var ExampleBox = React.createClass({
   _onChange: function() {
     this.setState(ExampleStore.getExamples());
   }
-
+  
 });
 
 module.exports = ExampleBox;
