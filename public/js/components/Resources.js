@@ -1,5 +1,5 @@
 var StackOverflow = require('./StackOverflow');
-var ExampleBox = require('./ExampleBox');
+var ExampleBox = require('./Examples/ExampleBox');
 var QA = require('./QA/QA.js');
 
 var Resources = React.createClass({

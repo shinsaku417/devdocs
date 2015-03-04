@@ -1,7 +1,7 @@
-var ExampleStore = require('../store/ExampleStore');
+var ExampleStore = require('../../store/ExampleStore');
 var ExampleList = require('./ExampleList');
 var ExampleForm = require('./ExampleForm');
-var Actions = require('../actions/actions');
+var Actions = require('../../actions/actions');
 
 var ExampleBox = React.createClass({
 
