@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- '0.10'
+deploy:
+  provider: elasticbeanstalk
+  region: us-west-2
+  app: CrowdDocs
+  env: crowddocs
+  bucket_name: elasticbeanstalk-us-west-2-895877759690
+  access_key_id: AKIAJK7RTO3GJMBRO5AA
+  secret_access_key:
+    secure: EbMXO5oFvtUvEbAOBeVDm5jsss5TVxwJtJhJf9yD8JMJ+G/rEskkowfusB8aqhJf+m7A46i02Vxu7URjPbqbmbc23eT/lzoNypvVl+VGArilyVdZNFBzvktTNRopOx19waSWukReDJL8B6PqfrntVyWEs/bAcSjmE071EXnRu8c=
