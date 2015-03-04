@@ -62,7 +62,7 @@ var Actions = {
     });
     Utils.getStackInfo(libraryName, methodName);
     Utils.getExamples(libraryName, methodName);
-    Utils.getQA(libraryName, methodName);
+    Utils.getQuestions(libraryName, methodName);
   },
 
   scrollMethod: function(libraryName, methodName) {

@@ -63,7 +63,7 @@ module.exports = {
   getElementQuestions: function (req, res) {
     Question.findAll({
       where: {
-        DocElementId: req.docElement.id,
+        DocElementId: req.docElement.id
       },
       include: [ Answer ],
     }).then(function(questions) {
