@@ -12,7 +12,7 @@ var QA = React.createClass({
       questions: [{
         title: 'yuh',
         body: 'CLICK ON A METHOD TO SEE EXAMPLES',
-        answers: []
+        Answers: []
       }]
     };
   },

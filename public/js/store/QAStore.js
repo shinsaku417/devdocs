@@ -42,11 +42,8 @@ AppDispatcher.register(function(action) {
     case Constants.QUESTIONS_RETRIEVED:
       console.log('QAStore heard: ' + action.action.actionType);
       console.dir(action);
-      console.log('settting quesitons');
       setQuestions(action.action.data);
-      console.log('settting quesitons');
       QAStore.emitChange();
-      console.log('settting quesitons');
       break;
 
     case Constants.QUESTION_CREATED:

@@ -97,7 +97,7 @@ var utils = {
       });
   },
 
-  createQuestion: function(docElementId, title, text) {
+  createQuestion: function(docSetName, docElementName, title, text) {
     request
       .post('http://localhost:3000/api/questions')
       .set('x-access-token', sessionStorage.token)
@@ -105,7 +105,8 @@ var utils = {
         title: title,
         text: text,
         UserId: 3, //TODO
-        DocElementId: 58
+        docSetName: docSetName,
+        docElementName: docElementName
       })
       .end(function(err, res){
         console.log(sessionStorage.token);
