@@ -6,17 +6,18 @@ var Constants = require('../constants/constants')
 
 var CHANGE_EVENT = 'change';
 
-var _stackData = {};
+var _docData = {
+  html: ''
+};
 
-var setStackData = function(stackData, methodName) {
-  _stackData.questions = stackData;
-  _stackData.method = methodName;
-}
+var changeHTML = function(html) {
+  _docData.html = html;
+};
 
-var StackStore = assign({}, EventEmitter.prototype, {
+var DocStore = assign({}, EventEmitter.prototype, {
 
-  getStackData: function(){
-    return _stackData;
+  getDocData: function(){
+    return _docData;
   },
 
   emitChange: function() {
@@ -36,12 +37,13 @@ var StackStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
 
   switch(action.action.actionType) {
-    case Constants.STACK_DATA_RETRIEVED:
-      console.log(action.action.data);
-      setStackData(action.action.data, action.action.methodName);
-      StackStore.emitChange();
+    case Constants.LIBRARY_RETRIEVED:
+      console.log('store heard: ' + Constants.LIBRARY_RETRIEVED);
+      text = action.action.html.trim();
+      changeHTML(text);
+      DocStore.emitChange();
       break;
   }
 });
 
-module.exports = StackStore;
+module.exports = DocStore;

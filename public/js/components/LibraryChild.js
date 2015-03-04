@@ -33,7 +33,12 @@ var LibraryChild = React.createClass({
     actions.selectMethod(libraryName, '');
   },
   renderGrandChildHTML: function(event) {
-    var method = event.target.className.split('#')[1].split(' ')[0] || event.target.className.split(' ')[0];
+    if (event.target.className.split('#')[1]) {
+      var method = event.target.className.split('#')[1].split(' ')[0];
+    } else {
+      console.log(event.target.className.split(' '));
+      var method = event.target.className.split(' ')[0];
+    }
     var path = event.target.className;
     var childName = this.props.name;
     var libraryName = this.props.parent;

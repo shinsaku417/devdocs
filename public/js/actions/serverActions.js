@@ -32,10 +32,11 @@ var ServerActions = {
     });
   },
 
-  dispatchNewStackInfo: function(stackInfo){
+  dispatchNewStackInfo: function(stackInfo, methodName){
     AppDispatcher.handleViewAction({
       actionType: Constants.STACK_DATA_RETRIEVED,
-      data: stackInfo
+      data: stackInfo,
+      methodName: methodName
     });
   },
 
