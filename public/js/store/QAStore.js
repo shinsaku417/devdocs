@@ -41,7 +41,6 @@ AppDispatcher.register(function(action) {
   switch(action.action.actionType) {
     case Constants.QUESTIONS_RETRIEVED:
       console.log('QAStore heard: ' + action.action.actionType);
-      console.dir(action);
       setQuestions(action.action.data);
       QAStore.emitChange();
       break;
