@@ -5,7 +5,7 @@ var host = 'http://localhost:3000/docs/'
 
 var utils = {
 
-  getLibraryHTML: function(libraryName){
+  getLibraryHTML: function(libraryName) {
     request
       .get(host + libraryName + '/index.html')
       .end(function(err, res){
@@ -27,16 +27,16 @@ var utils = {
 
   getGrandChildHTML: function(libraryName, childName, grandChildPath) {
     request
-      .get(host + libraryName + '/' +  grandChildPath + '.html')
-      .end(function(err, res){
-        if (res.error) {
-          request
-            .get(host + libraryName + '/' + childName + '.html')
-            .end(function(err, res) {
-              if (res.error) {
-                request
-                  .get(host + libraryName + '/index.html')
-                  .end(function(err, res) {
+        .get(host + libraryName + '/' +  grandChildPath + '.html')
+        .end(function(err, res){
+          if (res.error) {
+            request
+              .get(host + libraryName + '/' + childName + '.html')
+              .end(function(err, res) {
+                if (res.error) {
+                  request
+                    .get(host + libraryName + '/index.html')
+                    .end(function(err, res) {
                     ServerActions.dispatchNewLibrary(res.text);
                   });
               } else {
@@ -57,7 +57,7 @@ var utils = {
       });
   },
 
-  getStackInfo: function(libraryName, methodName){
+  getStackInfo: function(libraryName, methodName) {
     request
       .get('http://localhost:8080/react/' + 'Underscore.js' + '/' + methodName)
       .end(function(err, res){
@@ -65,18 +65,26 @@ var utils = {
       });
   },
 
-  getExamples: function(libraryName, methodName){
+  getExamples: function(libraryName, methodName) {
     request
       .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
       .end(function(err, res){
+        console.log('we here!');
         ServerActions.dispatchNewExamples(res.body);
       });
   },
 
+  getQuestions: function(libraryName, methodName) {
+    request
+      .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/questions')
+      .end(function(err, res){
+        console.log("ERIC THIS IS WHAT GETTTING BACK FROM QUESTIONS AJAX CALL:");
+        console.dir(res.body);
+        ServerActions.dispatchNewQuestions(res.body);
+      });
+  },
+
   createExample: function(libraryName, methodName, text){
-    console.log(libraryName);
-    console.log(methodName);
-    console.log(text);
     request
       .post('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
       .send({text: text})
@@ -84,7 +92,42 @@ var utils = {
         console.log(res.body);
         ServerActions.dispatchCreatedExample(res.body.example);
       });
+  },
+
+  createQuestion: function(docSetName, docElementName, title, text) {
+    request
+      .post('http://localhost:3000/api/questions')
+      .set('x-access-token', sessionStorage.token)
+      .send({
+        title: title,
+        text: text,
+        UserId: 3, //TODO
+        docSetName: docSetName,
+        docElementName: docElementName
+      })
+      .end(function(err, res){
+        console.log(sessionStorage.token);
+        console.log(res.body);
+        ServerActions.dispatchCreatedQuestion(res.body);
+      });
+  },
+
+  signIn: function(usernameOrEmail, password) {
+    request
+      .post('http://localhost:3000/api/users/signin')
+      .send({
+        usernameOrEmail: 'guest',
+        password: 'pass'
+      })
+      .end(function(err, res){
+        if(err) {
+          console.log(err);
+        }
+        console.log(res.body);
+        ServerActions.dispatchSignIn(res.body);
+      });
   }
+
 
 };
 

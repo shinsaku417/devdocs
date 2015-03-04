@@ -1,3 +1,6 @@
+var QuestionHeader = require('./QuestionHeader');
+var QuestionBody = require('./QuestionBody');
+
 var Question = React.createClass({
   render: function(){
     return (

@@ -21,8 +21,26 @@ module.exports = {
       name: docElementName,
       DocSetId: req.docSet.id
     }}).then(function(docElement) {
-      req.docElement = docElement;
-      next();
+      if(docElement) {
+        req.docElement = docElement;
+        next();
+      } else {
+        res.status(404).send('docElement ' + docElementName + ' not found in docSet ' + req.docSet.name);
+      }
+    });
+  },
+
+  getDocElements: function(req, res) {
+    DocElement.findAll().then(function(docElements) {
+      // DocSet.findAll().then(function(docSets) {
+        res.status(200).send(docElements);
+      // });
+    });
+  },
+
+  getDocSets: function(req, res) {
+    DocSet.findAll().then(function(docSets) {
+      res.status(200).send(docSets);
     });
   },
 
@@ -43,9 +61,9 @@ module.exports = {
   },
 
   getElementQuestions: function (req, res) {
-    Questions.findAll({
+    Question.findAll({
       where: {
-        DocElementId: req.docElement.id,
+        DocElementId: req.docElement.id
       },
       include: [ Answer ],
     }).then(function(questions) {

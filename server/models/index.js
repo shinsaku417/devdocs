@@ -15,14 +15,14 @@ var UserQuestionVotes = require('./userQuestionVotes.js');
 var UserExampleVotes = require('./userExampleVotes.js');
 
 //sync everything up with the DB
-Answer.sync().then(function() {
-  return DocSet.sync();  
-}).then(function() {
+DocSet.sync().then(function() {
   return DocElement.sync();
 }).then(function() {
   return User.sync();
 }).then(function() {
   return Question.sync();  
+}).then(function() {
+  return Answer.sync();
 }).then(function() {
   return Example.sync();
 }).then(function(){
@@ -39,7 +39,7 @@ Answer.belongsTo(User);
 DocElement.hasMany(Question);
 DocElement.hasMany(Example);
 
-DocSet.hasMany(DocElement);
+// DocSet.hasMany(DocElement);
 
 User.hasMany(Question);
 User.hasMany(Answer);
@@ -53,14 +53,14 @@ Question.belongsTo(User);
 Example.belongsTo(User);
 
 //sync everything up with the DB
-Answer.sync().then(function() {
-  return DocSet.sync();  
-}).then(function() {
+DocSet.sync().then(function() {
   return DocElement.sync();
 }).then(function() {
   return User.sync();
 }).then(function() {
   return Question.sync();  
+}).then(function() {
+  return Answer.sync();
 }).then(function() {
   return Example.sync();
 }).then(function(){

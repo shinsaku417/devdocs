@@ -62,6 +62,7 @@ var Actions = {
     });
     Utils.getStackInfo(libraryName, methodName);
     Utils.getExamples(libraryName, methodName);
+    Utils.getQuestions(libraryName, methodName);
   },
 
   scrollMethod: function(libraryName, methodName) {
@@ -69,8 +70,16 @@ var Actions = {
     // Utils.getExamples(libraryName, methodName);
   },
 
-  createExample: function(libraryName, methodName, text){
+  createExample: function(libraryName, methodName, text) {
     Utils.createExample(libraryName, methodName, text);
+  },
+
+  createQuestion: function(docSet, docElement, title, text) {
+    Utils.createQuestion(docSet, docElement, title, text);
+  },
+
+  signIn: function(usernameOrEmail, password) {
+    Utils.signIn(usernameOrEmail, password);
   }
 
 }

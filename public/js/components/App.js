@@ -35,6 +35,19 @@ var App = React.createClass({
         });
       }
     });
+
+    // $.ajax({
+    //   url: 'http://localhost:3000/api/docs/docElements',
+    //   dataType: 'json',
+    //   success: function(data) {
+    //     data.forEach(function(library) {
+    //       libraries.push(library.slug);
+    //       context.setState({
+    //         libraries: libraries
+    //       });
+    //     });
+    //   }
+    // });
   },
 
   componentWillUnmount: function() {

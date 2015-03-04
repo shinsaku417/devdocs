@@ -1,3 +1,6 @@
+var AnswerHeader = require('./AnswerHeader');
+var AnswerBody = require('./AnswerBody');
+
 var Answer = React.createClass({
   render: function(){
     return (

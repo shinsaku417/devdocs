@@ -6,16 +6,20 @@ var Constants = require('../constants/constants')
 
 var CHANGE_EVENT = 'change';
 
-var _ = {};
+var _data = {questions: []};
 
-var ExampleStore = assign({}, EventEmitter.prototype, {
+var setQuestions = function(questions) {
+  _data.questions = questions;
+};
 
-  var setExamples = function(exampleData) {
-    _examples = {examples: JSON.parse(exampleData)};
-  },
+var addQuestion = function (question) {
+  _data.questions.push(question);
+};
 
-  getExamples: function(){
-    return _examples;
+var QAStore = assign({}, EventEmitter.prototype, {
+
+  getQuestions: function(){
+    return _data;
   },
 
   emitChange: function() {
@@ -35,18 +39,20 @@ var ExampleStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
 
   switch(action.action.actionType) {
-    case Constants.EXAMPLES_RETRIEVED:
-      console.log('ExampleStore heard: ' + action.action.actionType);
-      setExamples(action.action.data);
-      ExampleStore.emitChange();
+    case Constants.QUESTIONS_RETRIEVED:
+      console.log('QAStore heard: ' + action.action.actionType);
+      setQuestions(action.action.data);
+      QAStore.emitChange();
       break;
 
-    case Constants.EXAMPLE_CREATED:
-      console.log('ExampleStore heard: ' + action.action.actionType);
-      console.log(actionType.action.data);
+    case Constants.QUESTION_CREATED:
+      console.log('QAStore heard: ' + action.action.actionType);
+      console.dir(action.action);
+      addQuestion(action.action.data)
+      QAStore.emitChange();
       break;
     }
 
 });
 
-module.exports = ExampleStore;
+module.exports = QAStore;

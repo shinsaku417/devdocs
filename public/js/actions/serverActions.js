@@ -47,10 +47,31 @@ var ServerActions = {
     });
   },
 
+  dispatchNewQuestions: function(questions){
+    AppDispatcher.handleViewAction({
+      actionType: Constants.QUESTIONS_RETRIEVED,
+      data: questions
+    });
+  },
+
   dispatchCreatedExample: function(example){
     AppDispatcher.handleViewAction({
       actionType: Constants.EXAMPLE_CREATED,
       data: example
+    });
+  },
+
+  dispatchCreatedQuestion: function(question){
+    AppDispatcher.handleViewAction({
+      actionType: Constants.QUESTION_CREATED,
+      data: question
+    });
+  },
+
+  dispatchSignIn: function(token){
+    AppDispatcher.handleViewAction({
+      actionType: Constants.SIGN_IN,
+      data: token
     });
   }
 };

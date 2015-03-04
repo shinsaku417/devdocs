@@ -2,7 +2,7 @@ var User = require('../models/user.js');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('../jwtAuth.js');
 
-module.exports = {
+var UserController = module.exports = {
   load: function (req, res, next, userID) {
     User.find(userID).then(function (user) {
       if(user) {
@@ -44,6 +44,11 @@ module.exports = {
     });
   },
 
+  createAndSendToken: function(user, res) {
+    var token = jwt.createToken(user.username);
+    res.status(201).json({token: token});
+  },
+
   signup: function (req, res) {
     // check to see if user already exists
     var username = req.body.username;
@@ -57,7 +62,8 @@ module.exports = {
       }
     }).then(function(user) {
         if(user) {
-            res.status(401).send('Username or email already exists in the DB');
+          console.log('The user had already been created; user signed in.');
+          UserController.createAndSendToken(user,res);
         } else {
           var user = User.build(req.body);
             bcrypt.hash(user.password, null, null, function(err, hash) {
@@ -69,8 +75,7 @@ module.exports = {
                     res.status(404).send('Error');
                   } else {
                     console.log('The user was successfully created.');
-                    var token = jwt.createToken(user.username);
-                    res.status(201).json({token: token});
+                    UserController.createAndSendToken(user,res);
                   }
                 });
             });

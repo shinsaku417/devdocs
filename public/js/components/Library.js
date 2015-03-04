@@ -1,6 +1,8 @@
 var LibraryChild = require('./LibraryChild');
 var actions = require('../actions/actions');
 
+actions.signIn();
+
 var Library = React.createClass({
   getInitialState: function() {
     return {

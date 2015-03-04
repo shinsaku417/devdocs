@@ -12,6 +12,9 @@ module.exports = function (app) {
 
   // app.get('/:docSet', docsController.getSet); // no real useful information to put here for end users...
   // app.get('/:docSet/:docElement', docsController.getElement); // no real useful information to put here for end users...
+
+  app.get('/docElements/', docsController.getDocElements);
+
   app.get('/:docSet/questions', docsController.getSetQuestions);
   app.get('/:docSet/:docElement/questions/', docsController.getElementQuestions);
 
