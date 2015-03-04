@@ -6,16 +6,20 @@ var Constants = require('../constants/constants')
 
 var CHANGE_EVENT = 'change';
 
-var _questions = {};
+var _data = {questions: []};
 
 var setQuestions = function(questions) {
-  _questions = JSON.parse(questions);
-}
+  _data.questions = questions;
+};
+
+var addQuestion = function (question) {
+  _data.questions.push(question);
+};
 
 var QAStore = assign({}, EventEmitter.prototype, {
 
   getQuestions: function(){
-    return _questions;
+    return _data;
   },
 
   emitChange: function() {
@@ -37,13 +41,19 @@ AppDispatcher.register(function(action) {
   switch(action.action.actionType) {
     case Constants.QUESTIONS_RETRIEVED:
       console.log('QAStore heard: ' + action.action.actionType);
+      console.dir(action);
+      console.log('settting quesitons');
       setQuestions(action.action.data);
+      console.log('settting quesitons');
       QAStore.emitChange();
+      console.log('settting quesitons');
       break;
 
     case Constants.QUESTION_CREATED:
       console.log('QAStore heard: ' + action.action.actionType);
-      console.log(actionType.action.data);
+      console.dir(action.action);
+      addQuestion(action.action.data)
+      QAStore.emitChange();
       break;
     }
 

@@ -13,6 +13,8 @@ var _selection = {
   libraries: []
 };
 
+var _authToken;
+
 var changeLibrary = function(libraryName) {
   _selection['library'] = libraryName;
   _selection['method'] = '';
@@ -34,6 +36,15 @@ var AppStore = assign({}, EventEmitter.prototype, {
 
   setLibraryData: function(libraryData) {
     _selection.libraryData = libraryData;
+  },
+
+  setAuthToken: function(token) {
+    _authToken = token;
+    sessionStorage.token = token;
+  },
+
+  getAuthToken: function() {
+    return _authToken;
   },
 
   emitChange: function() {
@@ -63,6 +74,12 @@ AppDispatcher.register(function(action) {
       console.log('store heard: ' + Constants.SELECTED_METHOD);
       text = action.action.text.trim();
       changeMethod(text);
+      AppStore.emitChange();
+      break;
+
+    case Constants.SIGN_IN:
+      console.log('store heard: ' + Constants.SIGN_IN);
+      AppStore.setAuthToken(action.action.data.token);
       AppStore.emitChange();
       break;
   }

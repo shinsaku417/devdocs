@@ -29,8 +29,8 @@ var QA = React.createClass({
     QAStore.removeChangeListener(this._onChange);
   },
 
-  handleQuestionSubmit: function(text){
-    Actions.createQuestion(this.props.docSet, this.props.docElement, "how you do the reduce??", text);
+  handleQuestionSubmit: function(title, text){
+    Actions.createQuestion(this.props.docSet, this.props.docElement, title, text);
   },
 
   render: function(){

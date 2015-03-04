@@ -59,6 +59,20 @@ var ServerActions = {
       actionType: Constants.EXAMPLE_CREATED,
       data: example
     });
+  },
+
+  dispatchCreatedQuestion: function(question){
+    AppDispatcher.handleViewAction({
+      actionType: Constants.QUESTION_CREATED,
+      data: question
+    });
+  },
+
+  dispatchSignIn: function(token){
+    AppDispatcher.handleViewAction({
+      actionType: Constants.SIGN_IN,
+      data: token
+    });
   }
 };
 

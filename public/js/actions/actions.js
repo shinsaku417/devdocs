@@ -75,7 +75,11 @@ var Actions = {
   },
 
   createQuestion: function(docSet, docElement, title, text) {
-    Utils.createQuestion(docSet, docElement, title, text);
+    Utils.createQuestion(docElement, title, text);
+  },
+
+  signIn: function(usernameOrEmail, password) {
+    Utils.signIn(usernameOrEmail, password);
   }
 
 }

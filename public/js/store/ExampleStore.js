@@ -37,8 +37,9 @@ AppDispatcher.register(function(action) {
   switch(action.action.actionType) {
     case Constants.EXAMPLES_RETRIEVED:
       console.log('ExampleStore heard: ' + action.action.actionType);
-      setExamples(action.action.data);
-      ExampleStore.emitChange();
+      console.dir(action);
+        setExamples(action.action.data);
+        ExampleStore.emitChange();
       break;
 
     case Constants.EXAMPLE_CREATED:

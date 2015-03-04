@@ -30,6 +30,20 @@ module.exports = {
     });
   },
 
+  getDocElements: function(req, res) {
+    DocElement.findAll().then(function(docElements) {
+      // DocSet.findAll().then(function(docSets) {
+        res.status(200).send(docElements);
+      // });
+    });
+  },
+
+  getDocSets: function(req, res) {
+    DocSet.findAll().then(function(docSets) {
+      res.status(200).send(docSets);
+    });
+  },
+
   getSetExamples: function (req, res) {
 
   },
