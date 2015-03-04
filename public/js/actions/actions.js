@@ -74,12 +74,12 @@ var Actions = {
     Utils.createExample(libraryName, methodName, text);
   },
 
-  createQuestion: function(questionId, text) {
-    Utils.createQuestion(questionId, text);
+  createQuestion: function(docSet, docElement, title, text) {
+    Utils.createQuestion(docSet, docElement, title, text);
   },
 
-  createAnswer: function(docSet, docElement, title, text) {
-    Utils.createAnswer(docSet, docElement, title, text);
+  createAnswer: function(questionId, text) {
+    Utils.createAnswer(questionId, text);
   },
 
   signIn: function(usernameOrEmail, password) {
