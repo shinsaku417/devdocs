@@ -19,6 +19,8 @@ var Documentation = React.createClass({
     // this is selected library
     if (this.props.method) {
       window.location.href = "http://localhost:3000/#" + this.props.method;
+    } else {
+      $('.documentation').scrollTop(0);
     }
 
     // add scrolltoggle to all p elements with id
