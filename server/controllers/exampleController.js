@@ -1,4 +1,6 @@
 var Example = require('../models/example.js');
+var DocSet = require('../models/docSet.js');
+var DocElement = require('../models/docElement.js');
 
 module.exports = {
   load: function (req, res, next, exampleID) {
@@ -22,13 +24,28 @@ module.exports = {
   },
 
   create: function (req, res) {
-    var example = {
-      text: req.body.text,
-      DocElementId: req.docElement.id
-    };
-    Example.create(example).then(function(result) {
-      //TODO branch on result instanceof Sequelize.ValidaitonError
-      res.status(200).send(result);
+    console.log(req.body);
+    DocSet.findOne({
+      where: {
+        name: req.body.docSetName
+      }
+    }).then(function(docSet){
+      return DocElement.findOne({
+        where: {
+          DocSetId: docSet.id,
+          name: req.body.docElementName
+        }
+      });
+    }).then(function(docElement){
+      var example = {
+        text: req.body.text,
+        DocElementId: docElement.id,
+        UserId: req.body.UserId
+      };
+      Example.create(example).then(function(result) {
+        //TODO branch on result instanceof Sequelize.ValidationError
+        res.status(200).send(result);
+      });
     });
   },
 
