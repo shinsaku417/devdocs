@@ -6,7 +6,6 @@ var del = require('del');
 // Load plugins
 var $ = require('gulp-load-plugins')();
 var browserify = require('browserify');
-var watchify = require('watchify');
 var reactify = require('reactify');
 // var less = require('gulp-less');
 var livereload = require('gulp-livereload');
