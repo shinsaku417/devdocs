@@ -26,9 +26,6 @@ var QAList = React.createClass({
   },
 
   renderListItems: function() {
-    console.log("HOLY MOTHER SHIT!");
-    console.dir(this.props.questions);
-    console.log(this.selection);
     return this.props.questions.map(function(question) {
       if(question.id !== this.selection) {
         return (

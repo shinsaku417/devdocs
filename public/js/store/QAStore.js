@@ -1,7 +1,8 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
-var Constants = require('../constants/constants')
+var Constants = require('../constants/constants');
+var _ = require('underscore');
 
 
 var CHANGE_EVENT = 'change';
@@ -14,6 +15,12 @@ var setQuestions = function(questions) {
 
 var addQuestion = function (question) {
   _data.questions.push(question);
+};
+
+var addAnswer = function (answer) {
+  _.find(_data.questions, function(question) {
+    return (question.id === answer.QuestionId);
+  }).Answers. push(answer);
 };
 
 var QAStore = assign({}, EventEmitter.prototype, {
@@ -47,11 +54,18 @@ AppDispatcher.register(function(action) {
 
     case Constants.QUESTION_CREATED:
       console.log('QAStore heard: ' + action.action.actionType);
-      console.dir(action.action);
       addQuestion(action.action.data)
       QAStore.emitChange();
       break;
+
+    case Constants.ANSWER_CREATED:
+      console.log('QAStore heard: ' + action.action.actionType);
+      console.dir(action);
+      addAnswer(action.action.data)
+      QAStore.emitChange();
+      break;
     }
+
 
 });
 

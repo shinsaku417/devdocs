@@ -68,6 +68,13 @@ var ServerActions = {
     });
   },
 
+  dispatchCreatedAnswer: function(answer){
+    AppDispatcher.handleViewAction({
+      actionType: Constants.ANSWER_CREATED,
+      data: answer
+    });
+  },
+
   dispatchSignIn: function(token){
     AppDispatcher.handleViewAction({
       actionType: Constants.SIGN_IN,

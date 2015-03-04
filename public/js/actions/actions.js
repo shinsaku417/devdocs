@@ -78,6 +78,10 @@ var Actions = {
     Utils.createQuestion(docSet, docElement, title, text);
   },
 
+  createAnswer: function(questionId, text) {
+    Utils.createAnswer(questionId, text);
+  },
+
   signIn: function(usernameOrEmail, password) {
     Utils.signIn(usernameOrEmail, password);
   }

@@ -78,8 +78,6 @@ var utils = {
     request
       .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/questions')
       .end(function(err, res){
-        console.log("ERIC THIS IS WHAT GETTTING BACK FROM QUESTIONS AJAX CALL:");
-        console.dir(res.body);
         ServerActions.dispatchNewQuestions(res.body);
       });
   },
@@ -109,6 +107,22 @@ var utils = {
         console.log(sessionStorage.token);
         console.log(res.body);
         ServerActions.dispatchCreatedQuestion(res.body);
+      });
+  },
+
+  createAnswer: function(questionId, text) {
+    request
+      .post('http://localhost:3000/api/answers')
+      .set('x-access-token', sessionStorage.token)
+      .send({
+        text: text,
+        UserId: 3, //TODO
+        QuestionId: questionId
+      })
+      .end(function(err, res){
+        console.log(sessionStorage.token);
+        console.log(res.body);
+        ServerActions.dispatchCreatedAnswer(res.body);
       });
   },
 
