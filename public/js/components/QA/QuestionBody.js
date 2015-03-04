@@ -2,7 +2,7 @@ var QuestionBody = React.createClass({
   render: function(){
     return (
       <div className="QuestionBody">
-        {this.props.question.body}
+        {this.props.question.text}
       </div>
     );
   }

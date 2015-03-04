@@ -1,4 +1,4 @@
-var QuestionForm = React.createClass({
+var NewQuestionForm = React.createClass({
   submitQuestion: function(e){
     e.preventDefault();
     var text = this.refs.text.getDOMNode().value.trim();
@@ -10,7 +10,7 @@ var QuestionForm = React.createClass({
 
   render: function() {
     return(
-      <form className="questionForm" onSubmit={this.submitQuestion}>
+      <form className="newQuestionForm" onSubmit={this.submitQuestion}>
         Title: <input type="text" placeholder="Title" ref="title" />
         Text: <input type="text" placeholder="Body" ref="text" />
         <input type="submit" value="Post" />
@@ -19,4 +19,4 @@ var QuestionForm = React.createClass({
   }
 })
 
-module.exports = QuestionForm;
+module.exports = NewQuestionForm;
