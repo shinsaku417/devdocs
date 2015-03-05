@@ -8,5 +8,5 @@ deploy:
   env: crowddocs
   bucket_name: elasticbeanstalk-us-west-2-895877759690
   access_key_id: AKIAJK7RTO3GJMBRO5AA
-  secret_access_key:
-    secure: "eqSsZgl/MdZX1PeoqOhmWXQRhL7e7Wp28Cd/fzGOXSOQVV3XRZC6FEt/hcYV9/R0IrfXdVnhK3yKybeahBRWhA+i2zYaXsFg/zpXZjI3CtS36Lw8fDFVWZWW+yd6HnyZnwnnZTIaFj2sM7RqAnrPe6mT9BGiYlSPChQqyWm1AS4="
+  secret-access-key:
+    secure: eZVf4BlDtZLXi3XMHrqV23deNCKkA0uAWhH3tnyBlY+Hu+ZwJH/JJSI8xuhlfdLJmyxWnLyM8h7nj50cNwajqvGqK9ye62XA6sLWZYGNJnnJBERXs1BdKwn8VgPzeuTKvPaAIGrDWUBd9FVkwVqp76V/x2RuCCEMUyrJ9aVxyTM=
