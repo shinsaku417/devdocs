@@ -10,18 +10,18 @@ var RaisedButton = mui.RaisedButton;
 var LibraryChild = React.createClass({
   getInitialState: function() {
     return {
-      buttonState: '+',
+      buttonState: 'glyphicon-triangle-right',
     };
   },
   expandGrandChildren: function() {
-    if (this.state.buttonState === '+') {
+    if (this.state.buttonState === 'glyphicon-triangle-right') {
       this.setState({
-        buttonState: '-'
+        buttonState: 'glyphicon-triangle-bottom'
       });
       actions.expandGrandChildren(this.props.parent, this.props.name);
     } else {
       this.setState({
-        buttonState: '+'
+        buttonState: 'glyphicon-triangle-right'
       });
       actions.shrinkGrandChildren(this.props.parent, this.props.name);
     }
@@ -36,7 +36,6 @@ var LibraryChild = React.createClass({
     if (event.target.className.split('#')[1]) {
       var method = event.target.className.split('#')[1].split(' ')[0];
     } else {
-      console.log(event.target.className.split(' '));
       var method = event.target.className.split(' ')[0];
     }
     var path = event.target.className;
@@ -66,10 +65,18 @@ var LibraryChild = React.createClass({
         );
       });
     }
+
+    var buttonObj = {};
+    buttonObj[this.state.buttonState] = true;
+    buttonObj.glyphicon = true;
+    buttonObj.expand = true;
+    var buttonClasses = cx(buttonObj);
+
     return (
       <div>
-        <RaisedButton onClick={this.expandGrandChildren} buttonState={this.state.buttonState} />
+        <span className={buttonClasses} aria-hidden="true" onClick={this.expandGrandChildren}></span>
         <span onClick={this.renderChildHTML}>{this.props.name}</span>
+        <li className="divider"></li>
         {grandChildren}
       </div>
     );

@@ -1,21 +1,23 @@
 var LibraryChild = require('./LibraryChild');
 var actions = require('../actions/actions');
+var addons = require('react-addons');
+var cx = addons.classSet;
 
 var Library = React.createClass({
   getInitialState: function() {
     return {
-      buttonState: '+',
+      buttonState: 'glyphicon-triangle-right',
     };
   },
   expandChildren: function() {
-    if (this.state.buttonState === '+') {
+    if (this.state.buttonState === 'glyphicon-triangle-right') {
       this.setState({
-        buttonState: '-'
+        buttonState: 'glyphicon-triangle-bottom'
       });
       actions.expandChildren(this.props.library);
     } else {
       this.setState({
-        buttonState: '+'
+        buttonState: 'glyphicon-triangle-right'
       });
       actions.shrinkChildren(this.props.library);
     }
@@ -25,7 +27,7 @@ var Library = React.createClass({
   },
   render: function() {
     var name = this.props.library;
-    if (this.props.libraryData[name]) {
+    if (this.props.libraryData[name] && this.props.libraryData[name].expandChildren) {
       var childrenData = this.props.libraryData[name];
       var children = childrenData.types.map(function(child) {
         return (
@@ -35,11 +37,19 @@ var Library = React.createClass({
         );
       });
     }
+
+    var buttonObj = {};
+    buttonObj[this.state.buttonState] = true;
+    buttonObj.glyphicon = true;
+    buttonObj.expand = true;
+    var buttonClasses = cx(buttonObj);
+
     return (
       <div className="library">
-        <button onClick={this.expandChildren}>{this.state.buttonState}</button>
-        <span onClick={this.renderHTML}>{this.props.library}</span>
-        {children}
+          <span className={buttonClasses} aria-hidden="true" onClick={this.expandChildren}></span>
+          <span onClick={this.renderHTML}>{this.props.library}</span>
+          <li className="divider"></li>
+          {children}
       </div>
     );
   }
