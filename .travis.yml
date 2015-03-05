@@ -13,4 +13,4 @@ deploy:
 before_install:
   - npm install -g gulp
 script:
-  - gulp
+  - gulp build
