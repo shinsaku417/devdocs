@@ -38,6 +38,12 @@ var Documentation = React.createClass({
         });
       }
     });
+
+    $('pre').each(function() {
+      $(this).addClass('prettyprint');
+    });
+
+    $('.documentation').append('<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>');
   },
 
   render: function() {
