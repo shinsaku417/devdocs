@@ -61,7 +61,7 @@ var LibraryChild = React.createClass({
         classObj.libraryGrandChild = true;
         var classes = cx(classObj);
         return (
-          <ul className={classes} onClick={context.renderGrandChildHTML}>{grandChild[0]}<li className="divider"></li></ul>
+          <ul className={classes} onClick={context.renderGrandChildHTML}>{grandChild[0]}</ul>
         );
       });
     }
