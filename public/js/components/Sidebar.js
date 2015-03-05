@@ -23,7 +23,7 @@ var Sidebar = React.createClass({
     });
     return (
       <div className="sidebar">
-        <h1>Libraries</h1>
+        <h4>Libraries</h4>
         <ul className="LibraryList">
           {libraryNodes}
         </ul>

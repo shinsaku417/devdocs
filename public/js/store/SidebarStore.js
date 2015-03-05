@@ -12,6 +12,7 @@ var _sidebarData = {
 
 var changeLibraryData = function(libraryName, libraryData) {
   _sidebarData.libraryData[libraryName] = libraryData;
+  _sidebarData.libraryData[libraryName].expandChildren = true;
   _sidebarData.libraryData[libraryName].expandGrandChildren = {};
 };
 
@@ -20,7 +21,7 @@ var changeLibraryFlag = function(libraryName, child, flag) {
 };
 
 var shrinkLibrary = function(libraryName) {
-  delete _sidebarData.libraryData[libraryName];
+  _sidebarData.libraryData[libraryName].expandChildren = false;
 }
 
 var SidebarStore = assign({}, EventEmitter.prototype, {
