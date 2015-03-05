@@ -40,8 +40,7 @@ input.entering {
 }
 
 .examples {
-  border: 1px solid purple;
-  height: 30%;
+  overflow: scroll;
 }
 
 .hidden {
@@ -77,7 +76,7 @@ input.entering {
 }
 
 .QA {
-  height: 30%;
+  overflow: scroll;
 }
 
 .question {
@@ -89,6 +88,7 @@ input.entering {
   border: 1px solid blue;
   width: 25%;
   float: left;
+  height: 100%;
 }
 
 .sidebar {
@@ -100,8 +100,6 @@ input.entering {
 }
 
 .stackOverFlow {
-  border: 1px solid yellow;
-  height: 30%;
   overflow: scroll;
 }
 

@@ -36,11 +36,15 @@ var QA = React.createClass({
 
   render: function(){
     return (
-      <div classname="QA">
+      <div className="panel panel-default QA">
         <QAHeader />
-        {this.renderAuthRequired()}
-        <NewQuestionForm onQuestionSubmit={this.handleQuestionSubmit} />
-        <QAList questions={this.state.questions} />
+        <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div className="panel-body">
+            {this.renderAuthRequired()}
+            <NewQuestionForm onQuestionSubmit={this.handleQuestionSubmit} />
+            <QAList questions={this.state.questions} />
+          </div>
+        </div>
       </div>
     );
   },
