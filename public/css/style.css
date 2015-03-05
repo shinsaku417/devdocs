@@ -18,6 +18,10 @@ body {
   overflow: scroll;
 }
 
+.expand {
+  margin-right: 10px;
+}
+
 input {
   transition: all 2s ease;
   height: 15px;
@@ -50,17 +54,23 @@ input.entering {
   overflow: scroll;
 }
 
+.library {
+  margin-top: 5px;
+}
+
 .libraryList {
   border: 1px solid red;
   padding: 10;
 }
 
 .libraryChildren {
-  padding-left: 15;
+  padding-left: 15px;
+  margin-top: 5px;
 }
 
 .libraryGrandChild {
-  padding-left: 15;
+  padding-left: 15px;
+  margin-top: 5px;
 }
 
 .question {
