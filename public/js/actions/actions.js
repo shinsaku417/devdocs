@@ -67,7 +67,8 @@ var Actions = {
 
   scrollMethod: function(libraryName, methodName) {
     Utils.getStackInfo(libraryName, methodName);
-    // Utils.getExamples(libraryName, methodName);
+    Utils.getExamples(libraryName, methodName);
+    Utils.getQuestions(libraryName, methodName);
   },
 
   createExample: function(libraryName, methodName, text) {

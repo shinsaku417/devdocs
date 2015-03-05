@@ -11,8 +11,8 @@ var QA = React.createClass({
     // return QAStore.getData(); //start async loading (prefetching) of data?
     return {
       questions: [{
-        title: 'yuh',
-        body: 'CLICK ON A METHOD TO SEE EXAMPLES',
+        title: '',
+        body: 'CLICK ON A METHOD TO SEE QUESTIONS AND ANSWERS',
         Answers: []
       }]
     };
@@ -31,7 +31,7 @@ var QA = React.createClass({
   },
 
   handleQuestionSubmit: function(title, text){
-    Actions.createQuestion(this.props.docSet, this.props.docElement, title, text);
+    Actions.createQuestion(this.props.docSet, this.state.method, title, text);
   },
 
   render: function(){
@@ -41,7 +41,6 @@ var QA = React.createClass({
         <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
           <div className="panel-body">
             {this.renderAuthRequired()}
-            <NewQuestionForm onQuestionSubmit={this.handleQuestionSubmit} />
             <QAList questions={this.state.questions} />
           </div>
         </div>

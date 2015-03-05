@@ -1,11 +1,12 @@
 var cx = require('react/lib/cx');
+var Actions = require('../../actions/actions');
 
 var ExampleForm = React.createClass({
 
   submitExample: function(e){
     e.preventDefault();
     var text = this.refs.text.getDOMNode().value.trim();
-    this.props.onExampleSubmit(text);
+    Actions.createExample(this.props.library, this.props.method, text);
     this.refs.text.getDOMNode().value = '';
   },
 
@@ -22,7 +23,7 @@ var ExampleForm = React.createClass({
   render: function() {
     return(
       <form className="exampleForm" onSubmit={this.submitExample}>
-        <input type="text" placeholder="Create your own code example!" ref="text" className={cx({"entering": this.state.entering})} onClick={this.expand} />
+        <textarea type="text" placeholder="Create your own code example!" ref="text" className={cx({"entering": this.state.entering})} onClick={this.expand}></textarea>
         <input type="submit" value="Post" />
       </form>
     );

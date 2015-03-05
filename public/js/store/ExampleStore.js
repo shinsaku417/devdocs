@@ -7,9 +7,17 @@ var Constants = require('../constants/constants')
 var CHANGE_EVENT = 'change';
 
 var _examples = {};
+_examples.examples = [];
 
-var setExamples = function(exampleData) {
-  _examples = {examples: exampleData};
+var setExamples = function(exampleData, methodName) {
+  if (methodName) {
+    _examples.method = methodName;
+  }
+  _examples.examples = exampleData;
+}
+
+var addExample = function(example) {
+  _examples.examples.push(example);
 }
 
 var ExampleStore = assign({}, EventEmitter.prototype, {
@@ -36,14 +44,13 @@ AppDispatcher.register(function(action) {
 
   switch(action.action.actionType) {
     case Constants.EXAMPLES_RETRIEVED:
-      console.log('ExampleStore heard: ' + action.action.actionType);
-      console.dir(action);
-        setExamples(action.action.data);
-        ExampleStore.emitChange();
+      setExamples(action.action.data, action.action.methodName);
+      ExampleStore.emitChange();
       break;
 
     case Constants.EXAMPLE_CREATED:
-      console.log('ExampleStore heard: ' + action.action.actionType);
+      addExample(action.action.data);
+      ExampleStore.emitChange();
       break;
     }
 
