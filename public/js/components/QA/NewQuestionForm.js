@@ -12,7 +12,7 @@ var NewQuestionForm = React.createClass({
     return(
       <form className="newQuestionForm" onSubmit={this.submitQuestion}>
         Title: <input type="text" placeholder="Title" ref="title" />
-        Text: <input type="text" placeholder="Body" ref="text" />
+        Body: <input type="text" placeholder="Body" ref="text" />
         <input type="submit" value="Post" />
       </form>
     );

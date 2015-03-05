@@ -3,6 +3,7 @@ var QAHeader = require('./QAHeader');
 var QAList = require('./QAList');
 var NewQuestionForm = require('./NewQuestionForm');
 var Actions = require('../../actions/actions.js');
+var Authentication = require('../Auth/Authentication.js');
 
 var QA = React.createClass({
 
@@ -38,9 +39,21 @@ var QA = React.createClass({
       <div classname="QA">
         <QAHeader />
         <QAList questions={this.state.questions} />
-        <NewQuestionForm onQuestionSubmit={this.handleQuestionSubmit} />
+        {this.renderAuthRequired()}
       </div>
     );
+  },
+
+  renderAuthRequired: function() {
+    if(!sessionStorage.token) {
+      return (
+        <Authentication />
+      );
+    } else {
+      return (
+        <NewQuestionForm onQuestionSubmit={this.handleQuestionSubmit} />
+      );
+    }
   },
 
   anyFunctionYouWant: function() {

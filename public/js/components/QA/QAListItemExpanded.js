@@ -2,6 +2,7 @@ var Question = require('./Question');
 var AnswerList = require('./AnswerList');
 var NewAnswerForm = require('./NewAnswerForm');
 var Actions = require('../../actions/actions.js');
+var Authentication = require('../Auth/Authentication.js');
 
 var QAListItemExpanded = React.createClass({
 
@@ -17,13 +18,23 @@ var QAListItemExpanded = React.createClass({
         <li className="QAListItemExpanded">
           <Question question={this.props.question} />
           <AnswerList answers={this.props.question.Answers} />
-          <NewAnswerForm onAnswerSubmit={this.handleAnswerSubmit} />
+          {this.renderAuthRequired()}
         </li>
       </div>
     );
-  }
-});
+  },
 
-// <NewAnswerForm />
+  renderAuthRequired: function() {
+    if(!sessionStorage.token) {
+      return (
+        <Authentication />
+      );
+    } else {
+      return (
+        <NewAnswerForm onAnswerSubmit={this.handleAnswerSubmit} />
+      );
+    }
+  },
+});
 
 module.exports = QAListItemExpanded;

@@ -75,10 +75,10 @@ var ServerActions = {
     });
   },
 
-  dispatchSignIn: function(token){
+  dispatchSignIn: function(authData){
     AppDispatcher.handleViewAction({
       actionType: Constants.SIGN_IN,
-      data: token
+      data: authData
     });
   }
 };
