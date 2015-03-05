@@ -48,7 +48,7 @@ var Library = React.createClass({
       <div className="library">
           <span className={buttonClasses} aria-hidden="true" onClick={this.expandChildren}></span>
           <span onClick={this.renderHTML}>{this.props.library}</span>
-          <li className="divider"></li>
+          <hr />
           {children}
       </div>
     );
