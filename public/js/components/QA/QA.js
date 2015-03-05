@@ -38,8 +38,9 @@ var QA = React.createClass({
     return (
       <div classname="QA">
         <QAHeader />
-        <QAList questions={this.state.questions} />
         {this.renderAuthRequired()}
+        <NewQuestionForm onQuestionSubmit={this.handleQuestionSubmit} />
+        <QAList questions={this.state.questions} />
       </div>
     );
   },
