@@ -38,13 +38,14 @@ var AppStore = assign({}, EventEmitter.prototype, {
     _selection.libraryData = libraryData;
   },
 
-  setAuthToken: function(token) {
-    _authToken = token;
-    sessionStorage.token = token;
+  storeAuthData: function(authData) {
+    sessionStorage.token = authData.token;
+    sessionStorage.username = authData.username;
+    sessionStorage.userId = authData.userId;
   },
 
   getAuthToken: function() {
-    return _authToken;
+    return sessionStorage.get('token');
   },
 
   emitChange: function() {
@@ -52,11 +53,11 @@ var AppStore = assign({}, EventEmitter.prototype, {
   },
 
   addChangeListener: function(callback){
-    this.on(CHANGE_EVENT, callback)
+    this.on(CHANGE_EVENT, callback);
   },
 
   removeChangeListerner: function(callback){
-    this.removeListener(CHANGE_EVENT, callback)
+    this.removeListener(CHANGE_EVENT, callback);
   }
 
 });
@@ -79,7 +80,7 @@ AppDispatcher.register(function(action) {
 
     case Constants.SIGN_IN:
       console.log('store heard: ' + Constants.SIGN_IN);
-      AppStore.setAuthToken(action.action.data.token);
+      AppStore.storeAuthData(action.action.data);
       AppStore.emitChange();
       break;
   }

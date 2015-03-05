@@ -84,7 +84,11 @@ var Actions = {
 
   signIn: function(usernameOrEmail, password) {
     Utils.signIn(usernameOrEmail, password);
-  }
+  },
+
+  signUp: function(username, email, password) {
+    Utils.signUp(username, email, password);
+  },
 
 }
 

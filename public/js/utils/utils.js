@@ -109,7 +109,7 @@ var utils = {
       .send({
         title: title,
         text: text,
-        UserId: 3, //TODO
+        UserId: sessionStorage.userId, //TODO
         docSetName: docSetName,
         docElementName: docElementName
       })
@@ -126,7 +126,7 @@ var utils = {
       .set('x-access-token', sessionStorage.token)
       .send({
         text: text,
-        UserId: 3, //TODO
+        UserId: sessionStorage.userId, //TODO
         QuestionId: questionId
       })
       .end(function(err, res){
@@ -140,14 +140,31 @@ var utils = {
     request
       .post('http://localhost:3000/api/users/signin')
       .send({
-        usernameOrEmail: 'guest',
-        password: 'pass'
+        usernameOrEmail: usernameOrEmail,
+        password: password
       })
       .end(function(err, res){
         if(err) {
           console.log(err);
         }
         console.log(res.body);
+        ServerActions.dispatchSignIn(res.body);
+      });
+  },
+
+  signUp: function(username, email, password) {
+    request
+      .post('http://localhost:3000/api/users/signup')
+      .send({
+        username: username,
+        email: email,
+        password: password
+      })
+      .end(function(err, res){
+        if(err) {
+          console.log(err);
+        }
+        console.dir(res.body);
         ServerActions.dispatchSignIn(res.body);
       });
   }

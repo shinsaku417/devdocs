@@ -44,9 +44,15 @@ var UserController = module.exports = {
     });
   },
 
-  createAndSendToken: function(user, res) {
+  createAndSendAuthData: function(user, res) {
     var token = jwt.createToken(user.username);
-    res.status(201).json({token: token});
+    var authData = {
+      token: token,
+      username: user.username,
+      userId: user.id
+    };
+
+    res.status(200).json(authData);
   },
 
   signup: function (req, res) {
@@ -62,8 +68,8 @@ var UserController = module.exports = {
       }
     }).then(function(user) {
         if(user) {
-          console.log('The user had already been created; user signed in.');
-          UserController.createAndSendToken(user,res);
+          console.log('The user had already been created; user now signed in.');
+          UserController.createAndSendAuthData(user,res);
         } else {
           var user = User.build(req.body);
             bcrypt.hash(user.password, null, null, function(err, hash) {
@@ -75,7 +81,7 @@ var UserController = module.exports = {
                     res.status(404).send('Error');
                   } else {
                     console.log('The user was successfully created.');
-                    UserController.createAndSendToken(user,res);
+                    UserController.createAndSendAuthData(user,res);
                   }
                 });
             });
@@ -97,8 +103,7 @@ var UserController = module.exports = {
           if(result){
             // return jwt
             console.log('signed in!');
-            var token = jwt.createToken(user.username);
-            res.status(200).json({token: token});
+            UserController.createAndSendAuthData(user, res);
           } else {
             console.log('Login incorrect');
             res.status(401).send('Login incorrect');
