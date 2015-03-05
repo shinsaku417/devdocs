@@ -22,6 +22,5 @@ $(document).ready(function() {
   $('.collapse').on('hide.bs.collapse', function() {
     $(this).attr('style', '');
   });
-
   
 });

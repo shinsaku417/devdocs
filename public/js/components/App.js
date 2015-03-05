@@ -58,6 +58,17 @@ var App = React.createClass({
     AppStore.setLibraries(this.state.libraries);
     return (
       <div className="app cf">
+        <div className="navbar-fixed">
+          <nav>
+          <div className="nav-wrapper">
+              <ul className="left hide-on-med-and-down">
+                <li>CROWD DOCS</li>
+                <li>{this.state.library}</li>
+                <li>{this.state.method}</li>
+              </ul>
+              </div>
+          </nav>
+        </div>  
         <Sidebar libraries={this.state.libraries} />
         <Documentation library={this.state.library} method={this.state.method} />
         <Resources library={this.state.library} method={this.state.method} />
