@@ -12,7 +12,7 @@ body {
 
 .documentation {
   border: 1px solid orange;
-  width: 55%;
+  width: 58%;
   float: left;
   height: 100%;
   overflow: scroll;
@@ -32,6 +32,7 @@ input.entering {
 
 .examples {
   border: 1px solid purple;
+  height: 30%;
 }
 
 .hidden {
@@ -40,14 +41,6 @@ input.entering {
 
 .ignored {
   display: none;
-}
-
-.sidebar {
-  border: 1px solid green;
-  width: 15%;
-  float: left;
-  height: 100%;
-  overflow: scroll;
 }
 
 .libraryList {
@@ -63,6 +56,15 @@ input.entering {
   padding-left: 15;
 }
 
+.method {
+  height: 50px;
+  /*position: absolute;*/
+}
+
+.QA {
+  height: 30%;
+}
+
 .question {
   background-color: #FFF8DC;
   padding: 10px;
@@ -74,12 +76,47 @@ input.entering {
   float: left;
 }
 
+.sidebar {
+  border: 1px solid green;
+  width: 15%;
+  float: left;
+  height: 100%;
+  overflow: scroll;
+}
+
 .stackOverFlow {
   border: 1px solid yellow;
-  height: 50%;
+  height: 30%;
   overflow: scroll;
 }
 
 .title:hover {
   background-color: #CCFFCC;
+}
+
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
 }

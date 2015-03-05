@@ -57,7 +57,7 @@ var App = React.createClass({
   render: function(){
     AppStore.setLibraries(this.state.libraries);
     return (
-      <div className="app">
+      <div className="app cf">
         <Sidebar libraries={this.state.libraries} />
         <Documentation library={this.state.library} method={this.state.method} />
         <Resources library={this.state.library} method={this.state.method} />

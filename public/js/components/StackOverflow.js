@@ -27,7 +27,7 @@ var StackOverflow = React.createClass({
     });
     return (
       <div className="StackOverflow">
-        <h1>{this.state.method}</h1>
+        <h3>STACK OVERFLOW</h3>
         {stackQAs}
       </div>
     );
