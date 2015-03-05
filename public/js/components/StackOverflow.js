@@ -26,9 +26,19 @@ var StackOverflow = React.createClass({
       );
     });
     return (
-      <div className="StackOverflow">
-        <h3>STACK OVERFLOW</h3>
-        {stackQAs}
+      <div className="panel panel-default stackOverflow">
+        <div className="panel-heading" role="tab" id="headingOne">
+          <h4 className="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Stack Overflow
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div className="panel-body">
+            {stackQAs}
+          </div>
+        </div>
       </div>
     );
   },

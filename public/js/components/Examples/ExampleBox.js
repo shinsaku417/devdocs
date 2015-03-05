@@ -34,10 +34,20 @@ var ExampleBox = React.createClass({
       );
     });
     return (
-      <div className="examples">
-        <h3>EXAMPLES</h3>
-        <ExampleForm onExampleSubmit={this.handleExampleSubmit} />
-        {exampleNodes}
+      <div className="panel panel-default examples">
+        <div className="panel-heading" role="tab" id="headingThree">
+          <h4 className="panel-title">
+            <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Examples
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div className="panel-body">
+            <ExampleForm onExampleSubmit={this.handleExampleSubmit} />
+            {exampleNodes}
+          </div>
+        </div>
       </div>
     );
   }, 
