@@ -1,7 +1,7 @@
 # 2014-12-thesis #
 
 ## TEAM ##
-Shin Uesugi
 Mike DeLucco  
+Shin Uesugi
 Eric Schmidt  
 Yondy Kang  
