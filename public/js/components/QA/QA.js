@@ -14,7 +14,8 @@ var QA = React.createClass({
         title: '',
         body: 'CLICK ON A METHOD TO SEE QUESTIONS AND ANSWERS',
         Answers: []
-      }]
+      }],
+      isAuthenticating: false
     };
   },
 
@@ -30,28 +31,53 @@ var QA = React.createClass({
     QAStore.removeChangeListener(this._onChange);
   },
 
+  authenticate: function() {
+    this.setState({
+      isAuthenticating: true
+    });
+  },
+
+  back: function() {
+    Actions.finishAuthenticate();
+  },
+
   handleQuestionSubmit: function(title, text){
     Actions.createQuestion(this.props.docSet, this.state.method, title, text);
   },
 
   render: function(){
-    return (
-      <div className="panel panel-default QA">
-        <QAHeader />
-        <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-          <div className="panel-body">
-            {this.renderAuthRequired()}
-            <QAList questions={this.state.questions} />
+    console.log('authenticating: ', this.state.isAuthenticating);
+    if (this.state.isAuthenticating) {
+      return (
+        <div className="panel panel-default QA">
+          <QAHeader />
+          <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div className="panel-body">
+              <Authentication />
+              <button onClick={this.back}>Back to Q&A</button>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="panel panel-default QA">
+          <QAHeader />
+          <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div className="panel-body">
+              {this.renderAuthRequired()}
+              <QAList questions={this.state.questions} />
+            </div>
+          </div>
+        </div>
+      );
+    }
   },
 
   renderAuthRequired: function() {
     if(!sessionStorage.token) {
       return (
-        <Authentication />
+        <button onClick={this.authenticate}>Login to Ask Questions</button>
       );
     } else {
       return (

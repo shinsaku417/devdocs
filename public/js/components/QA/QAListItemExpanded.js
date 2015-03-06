@@ -10,6 +10,10 @@ var QAListItemExpanded = React.createClass({
     Actions.createAnswer(this.props.question.id, text);
   },
 
+  authenticate: function() {
+    Actions.authenticate();
+  },
+
   render: function(){
     console.log('QA LIST EXPANDED!!');
     console.dir(this.props.question);
@@ -27,7 +31,7 @@ var QAListItemExpanded = React.createClass({
   renderAuthRequired: function() {
     if(!sessionStorage.token) {
       return (
-        <Authentication />
+        <button onClick={this.authenticate}>Login to Answer</button>
       );
     } else {
       return (

@@ -25,6 +25,7 @@ var ServerActions = {
   },
 
   dispatchExpandChildren: function(libraryData, libraryName) {
+    console.log('dispatching');
     AppDispatcher.handleViewAction({
       actionType: Constants.EXPAND_CHILDREN,
       libraryData: libraryData,
@@ -82,6 +83,10 @@ var ServerActions = {
     AppDispatcher.handleViewAction({
       actionType: Constants.SIGN_IN,
       data: authData
+    });
+
+    AppDispatcher.handleViewAction({
+      actionType: Constants.AUTH_FINISHED,
     });
   }
 };
