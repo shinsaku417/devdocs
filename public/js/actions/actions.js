@@ -91,6 +91,18 @@ var Actions = {
     Utils.signUp(username, email, password);
   },
 
+  authenticate: function() {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.IS_AUTHENTICATING
+    });
+  },
+
+  finishAuthenticate: function() {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.AUTH_FINISHED
+    });
+  }
+
 }
 
 module.exports = Actions

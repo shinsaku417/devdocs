@@ -24,6 +24,14 @@ var addAnswer = function (answer) {
   }).Answers. push(answer);
 };
 
+var authenticate = function() {
+  _data.isAuthenticating = true;
+}
+
+var finishAuth = function() {
+  _data.isAuthenticating = false;
+}
+
 var QAStore = assign({}, EventEmitter.prototype, {
 
   getQuestions: function(){
@@ -65,8 +73,19 @@ AppDispatcher.register(function(action) {
       addAnswer(action.action.data)
       QAStore.emitChange();
       break;
-    }
 
+    case Constants.IS_AUTHENTICATING:
+      console.log('QAStore heard: ' + action.action.actionType);
+      authenticate();
+      QAStore.emitChange();
+      break;
+
+    case Constants.AUTH_FINISHED:
+      console.log('QAStore heard: ' + action.action.actionType);
+      finishAuth();
+      QAStore.emitChange();
+      break;
+    }
 
 });
 
