@@ -37,7 +37,6 @@ AppDispatcher.register(function(action) {
 
   switch(action.action.actionType) {
     case Constants.STACK_DATA_RETRIEVED:
-      console.log(action.action.data);
       setStackData(action.action.data, action.action.methodName);
       StackStore.emitChange();
       break;

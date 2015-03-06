@@ -25,7 +25,6 @@ var ServerActions = {
   },
 
   dispatchExpandChildren: function(libraryData, libraryName) {
-    console.log('dispatching');
     AppDispatcher.handleViewAction({
       actionType: Constants.EXPAND_CHILDREN,
       libraryData: libraryData,
@@ -42,7 +41,6 @@ var ServerActions = {
   },
 
   dispatchNewExamples: function(examples, methodName){
-    console.log('dispatching examples');
     AppDispatcher.handleViewAction({
       actionType: Constants.EXAMPLES_RETRIEVED,
       data: examples,

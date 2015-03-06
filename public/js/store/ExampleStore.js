@@ -20,6 +20,14 @@ var addExample = function(example) {
   _examples.examples.push(example);
 }
 
+var authenticate = function() {
+  _examples.isAuthenticating = true;
+}
+
+var finishAuth = function() {
+  _examples.isAuthenticating = false;
+}
+
 var ExampleStore = assign({}, EventEmitter.prototype, {
 
   getExamples: function(){
@@ -52,7 +60,18 @@ AppDispatcher.register(function(action) {
       addExample(action.action.data);
       ExampleStore.emitChange();
       break;
-    }
+
+    case Constants.IS_AUTHENTICATING:
+      authenticate();
+      ExampleStore.emitChange();
+      break;
+
+    case Constants.AUTH_FINISHED:
+      finishAuth();
+      ExampleStore.emitChange();
+      break;
+     
+  }
 
 });
 

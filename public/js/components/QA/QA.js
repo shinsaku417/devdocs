@@ -46,7 +46,6 @@ var QA = React.createClass({
   },
 
   render: function(){
-    console.log('authenticating: ', this.state.isAuthenticating);
     if (this.state.isAuthenticating) {
       return (
         <div className="panel panel-default QA">

@@ -32,7 +32,6 @@ var Documentation = React.createClass({
         var cb = function() {
           if (cache !== id) {
             cache = id;
-            console.log("Element has been reached: " + id);
             actions.scrollMethod(context.props.library, id);
           }
         }
