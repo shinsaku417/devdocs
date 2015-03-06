@@ -2,6 +2,7 @@ var ServerActions = require('../actions/serverActions');
 var request = require('superagent');
 
 var host = 'http://localhost:3000/docs/'
+var stackServer = 'http://flockdocs-dev.elasticbeanstalk.com'
 
 var utils = {
 
@@ -59,7 +60,7 @@ var utils = {
 
   getStackInfo: function(libraryName, methodName) {
     request
-      .get('http://flockdocs-dev.elasticbeanstalk.com/react/' + 'Underscore.js' + '/' + methodName)
+      .get('http://localhost:8080/react/' + 'Underscore.js' + '/' + methodName)
       .end(function(err, res){
         ServerActions.dispatchNewStackInfo(res.body.topQuestions, methodName);
       });
@@ -69,7 +70,6 @@ var utils = {
     request
       .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
       .end(function(err, res){
-        console.log('we here examples!' + methodName);
         ServerActions.dispatchNewExamples(res.body, methodName);
       });
   },
@@ -78,15 +78,11 @@ var utils = {
     request
       .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/questions')
       .end(function(err, res){
-        console.log('we here questions!');
         ServerActions.dispatchNewQuestions(res.body, methodName);
       });
   },
 
   createExample: function(docSetName, docElementName, text){
-    console.log('library', docSetName);
-    console.log('method', docElementName);
-    console.log('text', text);
     request
       .post('http://localhost:3000/api/examples')
       .set('x-access-token', sessionStorage.token)
@@ -97,7 +93,6 @@ var utils = {
         UserId: 1
       })
       .end(function(err, res){
-        console.log(res.body);
         ServerActions.dispatchCreatedExample(res.body);
       });
   },
@@ -114,8 +109,6 @@ var utils = {
         docElementName: docElementName
       })
       .end(function(err, res){
-        console.log(sessionStorage.token);
-        console.log(res.body);
         ServerActions.dispatchCreatedQuestion(res.body);
       });
   },
@@ -130,8 +123,6 @@ var utils = {
         QuestionId: questionId
       })
       .end(function(err, res){
-        console.log(sessionStorage.token);
-        console.log(res.body);
         ServerActions.dispatchCreatedAnswer(res.body);
       });
   },
@@ -147,7 +138,6 @@ var utils = {
         if(err) {
           console.log(err);
         }
-        console.log(res.body);
         ServerActions.dispatchSignIn(res.body);
       });
   },
@@ -164,7 +154,6 @@ var utils = {
         if(err) {
           console.log(err);
         }
-        console.dir(res.body);
         ServerActions.dispatchSignIn(res.body);
       });
   }

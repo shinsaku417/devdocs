@@ -28,13 +28,13 @@ hr {
   margin-bottom: 3px;
 }
 
-input {
+textarea {
   transition: all 2s ease;
-  height: 15px;
+  height: 30px;
   width: 50%;
 }
 
-input.entering {
+textarea.entering {
   transition: all 2s ease;
   height: 150px;
   width: 90%;

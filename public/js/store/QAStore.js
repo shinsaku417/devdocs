@@ -56,36 +56,31 @@ AppDispatcher.register(function(action) {
 
   switch(action.action.actionType) {
     case Constants.QUESTIONS_RETRIEVED:
-      console.log('QAStore heard: ' + action.action.actionType);
       setQuestions(action.action.data, action.action.methodName);
       QAStore.emitChange();
       break;
 
     case Constants.QUESTION_CREATED:
-      console.log('QAStore heard: ' + action.action.actionType);
       addQuestion(action.action.data)
       QAStore.emitChange();
       break;
 
     case Constants.ANSWER_CREATED:
-      console.log('QAStore heard: ' + action.action.actionType);
-      console.dir(action);
       addAnswer(action.action.data)
       QAStore.emitChange();
       break;
 
     case Constants.IS_AUTHENTICATING:
-      console.log('QAStore heard: ' + action.action.actionType);
       authenticate();
       QAStore.emitChange();
       break;
 
     case Constants.AUTH_FINISHED:
-      console.log('QAStore heard: ' + action.action.actionType);
       finishAuth();
       QAStore.emitChange();
       break;
-    }
+    
+  }
 
 });
 

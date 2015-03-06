@@ -33,7 +33,7 @@ var QAList = React.createClass({
         );
       } else {
         return (
-          <QAListItemExpanded question={question} parent={this}/>
+          <QAListItemExpanded question={question} parent={this} />
         );
       }
     }.bind(this));

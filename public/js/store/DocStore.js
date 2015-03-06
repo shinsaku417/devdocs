@@ -38,7 +38,6 @@ AppDispatcher.register(function(action) {
 
   switch(action.action.actionType) {
     case Constants.LIBRARY_RETRIEVED:
-      console.log('store heard: ' + Constants.LIBRARY_RETRIEVED);
       text = action.action.html.trim();
       changeHTML(text);
       DocStore.emitChange();
