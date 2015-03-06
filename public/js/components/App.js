@@ -1,3 +1,4 @@
+var Navbar = require('./Navbar')
 var Sidebar = require('./Sidebar');
 var Documentation = require('./Documentation');
 var Resources = require('./Resources');
@@ -46,6 +47,7 @@ var App = React.createClass({
     AppStore.setLibraries(this.state.libraries);
     return (
       <div className="app cf"> 
+        <Navbar />
         <Sidebar libraries={this.state.libraries} />
         <Documentation library={this.state.library} method={this.state.method} />
         <Resources library={this.state.library} method={this.state.method} />
