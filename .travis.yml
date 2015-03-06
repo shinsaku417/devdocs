@@ -3,14 +3,14 @@ node_js:
 - '0.10'
 deploy:
   provider: elasticbeanstalk
-  region: us-west-2
-  app: CrowdDocs
+  region: us-west-1
+  app: crowddocs
   env: crowddocs
-  bucket_name: elasticbeanstalk-us-west-2-895877759690
-  access_key_id: AKIAJK7RTO3GJMBRO5AA
+  bucket_name: elasticbeanstalk-us-west-1-466767965687
+  access_key_id: AKIAISVLRNMPMOXMBKKQ
   secret-access-key:
-    secure: eZVf4BlDtZLXi3XMHrqV23deNCKkA0uAWhH3tnyBlY+Hu+ZwJH/JJSI8xuhlfdLJmyxWnLyM8h7nj50cNwajqvGqK9ye62XA6sLWZYGNJnnJBERXs1BdKwn8VgPzeuTKvPaAIGrDWUBd9FVkwVqp76V/x2RuCCEMUyrJ9aVxyTM=
+    secure: Wm6WEOKH4w0IlU1fkZkOTcPIJust3Eu89j8Dz2Ga9onaSLVsJDuHNG7MjyywtWxx+8HTLH6qJpRS+97KBfKjV/27dWbxaOwGBlmI/bGzc4VPsS+z3sbiR9yWfKXX4YmQV2o0pblbREpDrAOok2TAC6d2JRTzlrB/UG53/iQPM6A=
 before_install:
-  - npm install -g gulp
+- npm install -g gulp
 script:
-  - gulp build
+- gulp build
