@@ -21,7 +21,7 @@ var ExampleBox = React.createClass({
   },
 
   render: function(){
-    var exampleNodes = this.state.examples.map(function(example){
+    var exampleNodes = this.state.examples.reverse().map(function(example){
       return (
         <ExampleList text={example.text} />
       );

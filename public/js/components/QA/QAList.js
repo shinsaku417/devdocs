@@ -26,7 +26,7 @@ var QAList = React.createClass({
   },
 
   renderListItems: function() {
-    return this.props.questions.map(function(question) {
+    return this.props.questions.reverse().map(function(question) {
       if(question.id !== this.selection) {
         return (
           <QAListItemCollapsed question={question} parent={this} />
