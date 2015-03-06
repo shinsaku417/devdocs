@@ -40,17 +40,20 @@ var ServerActions = {
     });
   },
 
-  dispatchNewExamples: function(examples){
+  dispatchNewExamples: function(examples, methodName){
+    console.log('dispatching examples');
     AppDispatcher.handleViewAction({
       actionType: Constants.EXAMPLES_RETRIEVED,
-      data: examples
+      data: examples,
+      methodName: methodName
     });
   },
 
-  dispatchNewQuestions: function(questions){
+  dispatchNewQuestions: function(questions, methodName){
     AppDispatcher.handleViewAction({
       actionType: Constants.QUESTIONS_RETRIEVED,
-      data: questions
+      data: questions,
+      methodName: methodName
     });
   },
 

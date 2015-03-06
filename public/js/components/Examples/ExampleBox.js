@@ -1,17 +1,12 @@
 var ExampleStore = require('../../store/ExampleStore');
 var ExampleList = require('./ExampleList');
 var ExampleForm = require('./ExampleForm');
-var Actions = require('../../actions/actions');
 
 var ExampleBox = React.createClass({
 
-  handleExampleSubmit: function(text){
-    Actions.createExample(this.props.library, this.props.method, text);
-  },
-
   getInitialState: function() {
     return {
-      examples: [{
+      examples:  [{
         text: 'CLICK ON A METHOD TO SEE EXAMPLES'
       }] 
     }
@@ -26,9 +21,7 @@ var ExampleBox = React.createClass({
   },
 
   render: function(){
-    console.log("EXAMPLES THIS.STATE():")
-    console.dir(this.state);
-    var exampleNodes = this.state.examples.map(function(example){
+    var exampleNodes = this.state.examples.reverse().map(function(example){
       return (
         <ExampleList text={example.text} />
       );
@@ -44,7 +37,7 @@ var ExampleBox = React.createClass({
         </div>
         <div id="collapseThree" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
           <div className="panel-body">
-            <ExampleForm onExampleSubmit={this.handleExampleSubmit} />
+            <ExampleForm library={this.props.library} method={this.state.method} />
             {exampleNodes}
           </div>
         </div>

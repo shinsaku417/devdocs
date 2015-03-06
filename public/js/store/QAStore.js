@@ -9,8 +9,9 @@ var CHANGE_EVENT = 'change';
 
 var _data = {questions: []};
 
-var setQuestions = function(questions) {
+var setQuestions = function(questions, methodName) {
   _data.questions = questions;
+  _data.method = methodName;
 };
 
 var addQuestion = function (question) {
@@ -48,7 +49,7 @@ AppDispatcher.register(function(action) {
   switch(action.action.actionType) {
     case Constants.QUESTIONS_RETRIEVED:
       console.log('QAStore heard: ' + action.action.actionType);
-      setQuestions(action.action.data);
+      setQuestions(action.action.data, action.action.methodName);
       QAStore.emitChange();
       break;
 

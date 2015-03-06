@@ -59,7 +59,7 @@ var utils = {
 
   getStackInfo: function(libraryName, methodName) {
     request
-      .get('http://localhost:8080/react/' + 'Underscore.js' + '/' + methodName)
+      .get('http://flockdocs-dev.elasticbeanstalk.com/react/' + 'Underscore.js' + '/' + methodName)
       .end(function(err, res){
         ServerActions.dispatchNewStackInfo(res.body.topQuestions, methodName);
       });
@@ -69,8 +69,8 @@ var utils = {
     request
       .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
       .end(function(err, res){
-        console.log('we here!');
-        ServerActions.dispatchNewExamples(res.body);
+        console.log('we here examples!' + methodName);
+        ServerActions.dispatchNewExamples(res.body, methodName);
       });
   },
 
@@ -78,7 +78,8 @@ var utils = {
     request
       .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/questions')
       .end(function(err, res){
-        ServerActions.dispatchNewQuestions(res.body);
+        console.log('we here questions!');
+        ServerActions.dispatchNewQuestions(res.body, methodName);
       });
   },
 
@@ -86,7 +87,6 @@ var utils = {
     console.log('library', docSetName);
     console.log('method', docElementName);
     console.log('text', text);
-    console.log('token', sessionStorage.token);
     request
       .post('http://localhost:3000/api/examples')
       .set('x-access-token', sessionStorage.token)
@@ -98,7 +98,7 @@ var utils = {
       })
       .end(function(err, res){
         console.log(res.body);
-        ServerActions.dispatchCreatedExample(res.body.example);
+        ServerActions.dispatchCreatedExample(res.body);
       });
   },
 
