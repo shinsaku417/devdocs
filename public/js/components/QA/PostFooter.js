@@ -1,4 +1,7 @@
 var PostFooter = React.createClass({
+
+
+
   renderDate: function() {
     var date = new Date(this.props.post.createdAt);
     return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
@@ -7,7 +10,14 @@ var PostFooter = React.createClass({
   render: function(){
     return (
       <div className="PostFooter">
-        <p className="text-right"><span className="dateTag">{this.renderDate()}</span><span className="userTag">{this.props.post.User.username}</span></p>
+        <span className="pull-left">
+          <span className="glyphicon glyphicon-triangle-bottom"></span>
+          <span className="glyphicon glyphicon-triangle-top"></span>
+        </span>
+        <span className="pull-right">
+          <span className="dateTag">{this.renderDate()}</span>
+          <span className="userTag">{this.props.post.User.username}</span>
+        </span>
       </div>
     );
   }

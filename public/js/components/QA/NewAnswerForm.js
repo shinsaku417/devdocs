@@ -9,6 +9,7 @@ var NewAnswerForm = React.createClass({
   render: function() {
     return(
       <form className="newAnswerForm" onSubmit={this.submitAnswer}> 
+        <hr/> 
         <div className="form-group">
           <textarea rows="3" className="form-control" id="answerInput" ref="answerText" placeholder="Add an answer..." />
         </div>
