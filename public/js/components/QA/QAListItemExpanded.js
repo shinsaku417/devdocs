@@ -1,4 +1,4 @@
-var Question = require('./Question');
+var Post = require('./Post');
 var AnswerList = require('./AnswerList');
 var NewAnswerForm = require('./NewAnswerForm');
 var Actions = require('../../actions/actions.js');
@@ -15,15 +15,11 @@ var QAListItemExpanded = React.createClass({
   },
 
   render: function(){
-    console.log('QA LIST EXPANDED!!');
-    console.dir(this.props.question);
     return (
-      <div>
-        <li className="QAListItemExpanded">
-          <Question question={this.props.question} />
-          <AnswerList answers={this.props.question.Answers} />
-          {this.renderAuthRequired()}
-        </li>
+      <div className="QAListItemExpanded">
+        <Post className="Question" title={this.props.question.title} post={this.props.question} />
+        <AnswerList answers={this.props.question.Answers} />
+        {this.renderAuthRequired()}
       </div>
     );
   },
@@ -31,7 +27,7 @@ var QAListItemExpanded = React.createClass({
   renderAuthRequired: function() {
     if(!sessionStorage.token) {
       return (
-        <button onClick={this.authenticate}>Login to Answer</button>
+        <button className="signInToPost btn btn-info center-block" onClick={this.authenticate}>Sign in to answer</button>
       );
     } else {
       return (

@@ -1,1 +1,0 @@
-AnswerFooter.js

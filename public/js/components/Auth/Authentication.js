@@ -13,17 +13,35 @@ var Authentication = React.createClass({
 
   render: function(){
     return (
-      <div className="Authentication">
-        <ul className="collapsible collapsible-accordion" data-collapsible="accordion">
-          <li className="active">
-            <div className="collapsible-header">Sign Up</div>
-            <div className="collapsible-body"><SignUp onSignUpSubmit={this.handleSignUpSubmit} /></div>
-          </li>
-          <li>
-            <div className="collapsible-header">Sign In</div>
-            <div className="collapsible-body"><SignIn onSignInSubmit={this.handleSignInSubmit} /></div>
-          </li>
-        </ul>
+      <div className="Authentication panel-group" id="authAccordion" role="tablist">
+        <div className="panel panel-default">
+          <div className="panel-heading" role="tab">
+            <h4 className="panel-title">
+              <a data-toggle="collapse" data-parent="#authAccordion" href="#signup" aria-expanded="true">
+                Sign Up
+              </a>
+            </h4>
+          </div>
+          <div id="signup" className="panel-collapse collapse in" role="tabpanel">
+            <div className="panel-body">
+              <SignUp onSignUpSubmit={this.handleSignUpSubmit} />
+            </div>
+          </div>
+        </div>
+        <div className="panel panel-default">
+          <div className="panel-heading" role="tab">
+            <h4 className="panel-title">
+              <a className="collapsed" data-toggle="collapse" data-parent="#authAccordion" href="#signin">
+                Sign In
+              </a>
+            </h4>
+          </div>
+          <div id="signin" className="panel-collapse collapse" role="tabpanel">
+            <div className="panel-body">
+              <SignIn onSignInSubmit={this.handleSignInSubmit} />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

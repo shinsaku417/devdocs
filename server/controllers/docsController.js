@@ -2,6 +2,7 @@ var DocElement = require('../models/docElement.js');
 var DocSet = require('../models/docSet.js');
 var Example = require('../models/example.js');
 var Question = require('../models/question.js');
+var User = require('../models/user.js');
 var Answer = require('../models/answer.js');
 
 module.exports = {
@@ -65,7 +66,7 @@ module.exports = {
       where: {
         DocElementId: req.docElement.id
       },
-      include: [ Answer ],
+      include: [ User, {model: Answer, include: [User]} ],
     }).then(function(questions) {
       res.status(200).send(questions);
     });

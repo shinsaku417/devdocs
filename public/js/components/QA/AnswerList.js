@@ -1,20 +1,20 @@
-var Answer = require('./Answer');
+var Post = require('./Post');
 
 var AnswerList = React.createClass({
   render: function() {
     return (
-      <div className="AnswerList">
-        <ul>
+      <table className="AnswerList table">
+        <tbody>
           {this.renderListItems()}
-        </ul>
-      </div>
+        </tbody>
+      </table>
     );
   },
 
   renderListItems: function() {
     return this.props.answers.map(function(answer) {
         return (
-          <Answer answer={answer} parent={this}/>
+          <Post post={answer} title="Answer" />
         );
     }.bind(this));
   }

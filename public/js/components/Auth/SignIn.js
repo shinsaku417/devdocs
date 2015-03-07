@@ -9,43 +9,41 @@ var SignIn = React.createClass({
 
   render: function() {
     return(
-      <div className="row">
-        <form className="col s12" onSubmit={this.submitSignIn}>
-          <div className="row">
-            <div className="input-field col s12">
-              <i className="mdi-action-account-circle prefix"></i>
-              <input id="usernameOrEmail" ref="usernameOrEmail" type="text" className="validate" />
-              <label for="usernameOrEmail">Username (or Email)</label>
-            </div>
+        <form className="signInForm" onSubmit={this.submitSignIn}> 
+          <div className="form-group">
+            <label for="signInUserOrEmail">Username (or Email)</label>
+            <input type="text" className="form-control" id="signInUserOrEmail" ref="usernameOrEmail" placeholder="Enter username (or email)" />
           </div>
-          <div className="row">
-            <div className="input-field col s12">
-              <i className="mdi-hardware-security prefix"></i>
-              <input id="password" ref="password" type="password" className="validate" />
-              <label for="password">Password</label>
-            </div>
+          <div className="form-group">
+            <label for="signInPassword">Password</label>
+            <input type="password" className="form-control" id="signInPassword" ref="password" placeholder="Password" />
           </div>
-          <button className="btn waves-effect waves-light" type="submit" name="action">Sign In
-            <i className="mdi-content-send right"></i>
-          </button>
+          <button type="submit" className="btn btn-success">Sign In</button>
         </form>
-      </div>
+
+      // <div className="row">
+      //   <form className="col s12" >
+      //     <div className="row">
+      //       <div className="input-field col s12">
+      //         <i className="mdi-action-account-circle prefix"></i>
+      //         <input id="usernameOrEmail" ref="usernameOrEmail" type="text" className="validate" />
+      //         <label for="usernameOrEmail">Username (or Email)</label>
+      //       </div>
+      //     </div>
+      //     <div className="row">
+      //       <div className="input-field col s12">
+      //         <i className="mdi-hardware-security prefix"></i>
+      //         <input id="password" ref="password" type="password" className="validate" />
+      //         <label for="password">Password</label>
+      //       </div>
+      //     </div>
+      //     <button className="btn waves-effect waves-light" type="submit" name="action">Sign In
+      //       <i className="mdi-content-send right"></i>
+      //     </button>
+      //   </form>
+      // </div>
     );
   }
 })
-
-/*<form className="signInForm" onSubmit={this.submitSignIn}>
-        Username (or Email): <input type="text" placeholder="" ref="usernameOrEmail" /><br />
-        Password: <input type="password" placeholder="" />
-        <input type="submit" value="Sign In" />
-      </form>
-
-        <div className="row">
-            <div className="input-field col s12">
-              <i className="mdi-action-account-circle prefix"></i>
-              <input id="email" ref="email" type="email" className="validate">
-              <label for="email">Email</label>
-            </div>
-          </div>*/
 
 module.exports = SignIn;

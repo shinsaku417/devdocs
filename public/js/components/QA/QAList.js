@@ -17,19 +17,26 @@ var QAList = React.createClass({
 
   render: function() {
     return(
-      <div className="QAList">
-        <ul>
+      <table className="QAList table table-hover">
+        <thead>
+          <th className="resourceTableHeader">Recent Questions</th>
+        </thead>
+        <tbody>
           {this.renderListItems()}
-        </ul>
-      </div>
+        </tbody>
+      </table>
     );
   },
 
   renderListItems: function() {
-    return this.props.questions.reverse().map(function(question) {
+    return this.props.questions.map(function(question) {
       if(question.id !== this.selection) {
         return (
-          <QAListItemCollapsed question={question} parent={this} />
+          <tr>
+            <td>
+              <QAListItemCollapsed question={question} parent={this} />
+            </td>
+          </tr>
         );
       } else {
         return (
