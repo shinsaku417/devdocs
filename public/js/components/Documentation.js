@@ -16,6 +16,7 @@ var Documentation = React.createClass({
   },
   // this is called everytime rendering happens
   componentDidUpdate: function() {
+    $('.documentation').off('scroll');
     var context = this;
     var cache;
     // this is selected library
@@ -26,6 +27,7 @@ var Documentation = React.createClass({
     }
 
     // add scrolltoggle to all p elements with id
+    window.scrollSpyCount = 0;
     $('p, h2, h3').each(function() {
       var id = $(this).attr('id');
       if (id && id.indexOf('$') < 0) {
