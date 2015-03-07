@@ -1,10 +1,10 @@
 body {
   font-family: 'Roboto', sans-serif;
-  padding-top: 50px;
+  padding: 51px 0px 3px 0px;
 }
 
 .app {
-  border: 1px solid black;
+  border: 1px solid gray;
 }
 
 .answer {
@@ -12,8 +12,10 @@ body {
 }
 
 .documentation {
-  border: 1px solid orange;
-  width: 58%;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  padding: 10px;
+  width: 60%;
   float: left;
   height: 100%;
   overflow: scroll;
@@ -56,9 +58,12 @@ textarea.entering {
   margin-top: 5px;
 }
 
+.libraryTitle {
+  padding-left: 10px;
+}
+
 .libraryList {
-  border: 1px solid red;
-  padding: 10;
+  padding: 10px;
 }
 
 .libraryChildren {
@@ -76,6 +81,10 @@ textarea.entering {
   /*position: absolute;*/
 }
 
+.panel-group {
+  margin-bottom: 0px;
+}
+
 .QA {
   overflow: scroll;
 }
@@ -86,14 +95,13 @@ textarea.entering {
 }
 
 .resources {
-  border: 1px solid blue;
+  
   width: 25%;
   float: left;
   height: 100%;
 }
 
 .sidebar {
-  border: 1px solid green;
   width: 15%;
   float: left;
   height: 100%;

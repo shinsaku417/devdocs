@@ -11,7 +11,7 @@ $(document).ready(function() {
     var wrapHeight = $('.resources').innerHeight();
     var groupHeight = $('.panel-heading').first().outerHeight();
     var cnt = $('.panel-heading').length;
-    var freeSpace = wrapHeight - cnt * (groupHeight + 5);        
+    var freeSpace = wrapHeight - cnt * (groupHeight + 6);        
     obj.attr('style', 'height: ' + freeSpace + 'px !important')
   };
   recalculateHeight($('.in'));
