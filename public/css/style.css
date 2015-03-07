@@ -11,6 +11,22 @@ body {
   padding: 10px;
 }
 
+
+.dateTag {
+  font-size: x-small;
+  margin-right: 3px;
+}
+
+.userTag {
+  font-size: x-small;
+  color: blue;
+}
+
+.AnswerBody {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
 .documentation {
   border-left: 1px solid gray;
   border-right: 1px solid gray;
@@ -19,10 +35,20 @@ body {
   float: left;
   height: 100%;
   overflow: scroll;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.resourceTableHeader {
+  text-align: center;
 }
 
 .expand {
   margin-right: 10px;
+}
+
+.signInToPost {
+  margin-bottom: 10px;
 }
 
 hr {
@@ -95,7 +121,6 @@ textarea.entering {
 }
 
 .resources {
-  
   width: 25%;
   float: left;
   height: 100%;

@@ -1,1 +1,0 @@
-QuestionFooter.js

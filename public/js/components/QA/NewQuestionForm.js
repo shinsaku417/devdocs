@@ -1,19 +1,24 @@
 var NewQuestionForm = React.createClass({
   submitQuestion: function(e){
     e.preventDefault();
-    var text = this.refs.text.getDOMNode().value.trim();
-    var title = this.refs.title.getDOMNode().value.trim();
-    this.refs.title.getDOMNode().value = '';
-    this.refs.text.getDOMNode().value = '';
+    var title = this.refs.questionTitle.getDOMNode().value.trim();
+    var text = this.refs.questionBody.getDOMNode().value.trim();
+    this.refs.questionTitle.getDOMNode().value = '';
+    this.refs.questionBody.getDOMNode().value = '';
     this.props.onQuestionSubmit(title, text);
   },
 
   render: function() {
     return(
-      <form className="newQuestionForm" onSubmit={this.submitQuestion}>
-        Title: <input type="text" placeholder="Title" ref="title" />
-        Body: <input type="text" placeholder="Body" ref="text" />
-        <input type="submit" value="Post" />
+      <form className="newQuestionForm" onSubmit={this.submitQuestion}> 
+        <div className="form-group">
+          <input type="text" className="form-control" id="questionTitle" ref="questionTitle" placeholder="Title" />
+        </div>
+        <div className="form-group">
+          <label for="questionBody"></label>
+          <textarea className="form-control" id="questionBody" rows="3" ref="questionBody" placeholder="Enter your question here..." />
+        </div>
+        <button type="submit" className="btn btn-primary">Ask</button>
       </form>
     );
   }

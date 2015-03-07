@@ -7,21 +7,30 @@ var _ = require('underscore');
 
 var CHANGE_EVENT = 'change';
 
-var _data = {questions: []};
+var _data = {
+  questions: [],
+  method: null,
+};
 
 var setQuestions = function(questions, methodName) {
-  _data.questions = questions;
+  console.log("HEEER");
+  console.dir(questions);
+  _data.questions = questions.reverse();
   _data.method = methodName;
 };
 
 var addQuestion = function (question) {
-  _data.questions.push(question);
+  _data.questions.unshift(question);
 };
 
 var addAnswer = function (answer) {
-  _.find(_data.questions, function(question) {
+  var question = _.find(_data.questions, function(question) {
     return (question.id === answer.QuestionId);
-  }).Answers. push(answer);
+  });
+
+  console.dir(question);
+  console.dir(answer);
+  question.Answers.push(answer);
 };
 
 var authenticate = function() {
@@ -34,7 +43,7 @@ var finishAuth = function() {
 
 var QAStore = assign({}, EventEmitter.prototype, {
 
-  getQuestions: function(){
+  getState: function(){
     return _data;
   },
 

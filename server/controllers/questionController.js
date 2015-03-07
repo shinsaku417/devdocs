@@ -46,6 +46,7 @@ module.exports = {
         //TODO branch on result instanceof Sequelize.ValidaitonError
         var createdQuestion = result.dataValues;
         createdQuestion.Answers = [];
+        createdQuestion.User = {username: req.authedUser.username}
         res.status(200).send(createdQuestion);
       });
     });

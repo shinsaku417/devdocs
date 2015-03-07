@@ -10,17 +10,14 @@ var QA = React.createClass({
   getInitialState: function() {
     // return QAStore.getData(); //start async loading (prefetching) of data?
     return {
-      questions: [{
-        title: '',
-        body: 'CLICK ON A METHOD TO SEE QUESTIONS AND ANSWERS',
-        Answers: []
-      }],
-      isAuthenticating: false
+      questions: [],
+      method: null,
+      isAuthenticating: false,
     };
   },
 
   _onChange: function() {
-    this.setState(QAStore.getQuestions());
+    this.setState(QAStore.getState());
   },
 
   componentDidMount: function() {
@@ -46,41 +43,50 @@ var QA = React.createClass({
   },
 
   render: function(){
-    if (this.state.isAuthenticating) {
-      return (
-        <div className="panel panel-default QA">
-          <QAHeader />
-          <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-            <div className="panel-body">
-              <Authentication />
-              <button onClick={this.back}>Back to Q&A</button>
-            </div>
+    return (
+      <div className="panel panel-default QA">
+        <QAHeader />
+        <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div className="panel-body">
+            {this.renderQAPanelBody()}
           </div>
         </div>
+      </div>
+    );
+  },
+
+  renderQAPanelBody: function() {
+    if(!this.state.method) {
+      return (
+        <h4><em> Click into a documentation set to see relevant Q&A content here. </em></h4>
       );
     } else {
-      return (
-        <div className="panel panel-default QA">
-          <QAHeader />
-          <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-            <div className="panel-body">
+      if (this.state.isAuthenticating) {
+        return (
+          <div>
+            <Authentication />
+            <button className="btn btn-primary center-block" onClick={this.back}>Back to Q&A</button>
+          </div>
+        );
+      } else {
+        return (
+          <div>
               {this.renderAuthRequired()}
               <QAList questions={this.state.questions} />
-            </div>
           </div>
-        </div>
-      );
+        );
+      }
     }
   },
 
   renderAuthRequired: function() {
     if(!sessionStorage.token) {
       return (
-        <button onClick={this.authenticate}>Login to Ask Questions</button>
+          <button className="signInToPost btn btn-info center-block" onClick={this.authenticate}>Sign in to ask a question</button>
       );
     } else {
       return (
-        <NewQuestionForm onQuestionSubmit={this.handleQuestionSubmit} />
+          <NewQuestionForm onQuestionSubmit={this.handleQuestionSubmit} />
       );
     }
   },

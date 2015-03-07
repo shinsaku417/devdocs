@@ -24,7 +24,9 @@ module.exports = {
   create: function (req, res) {
     Answer.create(req.body).then(function(result) {
       //TODO branch on result instanceof Sequelize.ValidaitonError
-      res.status(200).send(result);
+      createdAnswer = result.dataValues;
+      createdAnswer.User = {username: req.authedUser.username};
+      res.status(200).send(createdAnswer);
     });
   },
 
