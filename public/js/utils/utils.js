@@ -59,8 +59,9 @@ var utils = {
   },
 
   getStackInfo: function(libraryName, methodName) {
+    console.log('method: ', methodName)
     request
-      .get('http://localhost:8080/react/' + 'Underscore.js' + '/' + methodName)
+      .get(stackServer + '/react/' + 'Underscore.js' + '/' + methodName)
       .end(function(err, res){
         ServerActions.dispatchNewStackInfo(res.body.topQuestions, methodName);
       });

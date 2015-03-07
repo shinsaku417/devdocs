@@ -66,6 +66,11 @@ var Actions = {
   },
 
   scrollMethod: function(libraryName, methodName) {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.SCROLLED_TO_METHOD,
+      library: libraryName,
+      method: methodName
+    });
     Utils.getStackInfo(libraryName, methodName);
     Utils.getExamples(libraryName, methodName);
     Utils.getQuestions(libraryName, methodName);
