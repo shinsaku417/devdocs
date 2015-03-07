@@ -7,43 +7,41 @@ var ScrollToggle = function (top, callbackShow, callbackHide) {
     this.honbot = 1;
     this.bot = top + 20;
 
+
     this.show = callbackShow;
     this.hide = callbackHide;
     var self = this;
+    $('.documentation').scroll(function (event) {
+        var y = $('.documentation').scrollTop();
 
-    (function () {
-        $('.documentation').scroll(function (event) {
-            var y = $('.documentation').scrollTop();
+        if (y - self.top >= -120 && y - self.top <= -20)
+            self.ontop = 1;
+        else
+            self.ontop = 0;
 
-            if (y - self.top >= -120 && y - self.top <= -20)
-                self.ontop = 1;
-            else
-                self.ontop = 0;
-
-            if (self.ontop !== self.hontop) {
-                if (self.ontop) {
-                    self.show();
-                }
-                else {
-                    self.hide();
-                }
+        if (self.ontop !== self.hontop) {
+            if (self.ontop) {
+                self.show();
             }
-            self.hontop = (self.ontop * 1);
-
-            if (y <= self.onbot)
-              self.onbot = 1;
-            else
-              self.onbot = 0;
-
-            if (self.onbot !== self.onbot) {
-                if (self.onbot) {
-                    self.show();
-                }
-                else {
-                    self.hide();
-                }
+            else {
+                self.hide();
             }
-            self.onbot = (self.onbot * 1);
-        });
-    })();
+        }
+        self.hontop = (self.ontop * 1);
+
+        if (y <= self.onbot)
+          self.onbot = 1;
+        else
+          self.onbot = 0;
+
+        if (self.onbot !== self.onbot) {
+            if (self.onbot) {
+                self.show();
+            }
+            else {
+                self.hide();
+            }
+        }
+        self.onbot = (self.onbot * 1);
+    });
 };

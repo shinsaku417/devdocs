@@ -16,6 +16,7 @@ var Documentation = React.createClass({
   },
   // this is called everytime rendering happens
   componentDidUpdate: function() {
+    $('.documentation').off('scroll');
     var context = this;
     var cache;
     // this is selected library
