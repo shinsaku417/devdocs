@@ -23,6 +23,4 @@ $(document).ready(function() {
     $(this).attr('style', '');
   });
 
-  window.scrollspies = {};
-
 });
