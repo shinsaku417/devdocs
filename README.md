@@ -17,6 +17,9 @@ As software engineers, documentation can be hard to understand. It can be poorly
 
 Users can browse library documentation on our web application. Selecting a method from a library will load relevant code examples, Stack Overflow resources, and user questions and answers alongside the documentation.
 
+![Screen Shot](public/images/ScreenShot.png)
+![Screen Shot](public/images/ScreenActionShot.png)
+
 ### Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.  
