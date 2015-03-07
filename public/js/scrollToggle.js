@@ -15,7 +15,7 @@ var ScrollToggle = function (top, callbackShow, callbackHide) {
         $('.documentation').scroll(function (event) {
             var y = $('.documentation').scrollTop();
 
-            if (y - self.top >= -70 && y - self.top <= 30)
+            if (y - self.top >= -120 && y - self.top <= -20)
                 self.ontop = 1;
             else
                 self.ontop = 0;
