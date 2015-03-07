@@ -58,10 +58,14 @@ var utils = {
       });
   },
 
-  getStackInfo: function(libraryName, methodName) {
-    console.log('method: ', methodName)
+  getStackInfo: function(libraryName, methodName, scrolling) {
+    if (scrolling) {
+      var url = 'http://localhost:8080/react/' + libraryName + '/scroll';
+    } else {
+      var url = 'http://localhost:8080/react/' + libraryName;
+    }
     request
-      .get(stackServer + '/react/' + 'Underscore.js' + '/' + methodName)
+      .get(url + '/' + methodName)
       .end(function(err, res){
         ServerActions.dispatchNewStackInfo(res.body.topQuestions, methodName);
       });

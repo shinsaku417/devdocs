@@ -31,13 +31,13 @@ hr {
 textarea {
   transition: all 2s ease;
   height: 30px;
-  width: 50%;
+  width: 100%;
 }
 
 textarea.entering {
   transition: all 2s ease;
   height: 150px;
-  width: 90%;
+  width: 100%;
 }
 
 .examples {

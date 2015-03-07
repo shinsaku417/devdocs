@@ -33,6 +33,7 @@ var LibraryChild = React.createClass({
     actions.selectMethod(libraryName, '');
   },
   renderGrandChildHTML: function(event) {
+    console.log('event = ', event);
     if (event.target.className.split('#')[1]) {
       var method = event.target.className.split('#')[1].split(' ')[0];
     } else {
@@ -41,8 +42,9 @@ var LibraryChild = React.createClass({
     var path = event.target.className;
     var childName = this.props.name;
     var libraryName = this.props.parent;
+    var rawMethod = event.target.innerHTML;
     actions.selectGrandChild(libraryName, childName, path);
-    actions.selectMethod(libraryName, method);
+    actions.selectMethod(libraryName, method, rawMethod);
   },
   render: function() {
     var context = this;
