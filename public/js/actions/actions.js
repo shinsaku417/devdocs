@@ -55,14 +55,14 @@ var Actions = {
     });
   },
 
-  selectMethod: function(libraryName, methodName) {
+  selectMethod: function(libraryName, methodName, rawMethod) {
     AppDispatcher.handleViewAction({
       actionType: Constants.SELECTED_METHOD,
       text: methodName
     });
-    Utils.getStackInfo(libraryName, methodName);
-    Utils.getExamples(libraryName, methodName);
-    Utils.getQuestions(libraryName, methodName);
+    Utils.getStackInfo(libraryName, rawMethod);
+    Utils.getExamples(libraryName, rawMethod);
+    Utils.getQuestions(libraryName, rawMethod);
   },
 
   scrollMethod: function(libraryName, methodName) {
@@ -71,7 +71,7 @@ var Actions = {
       library: libraryName,
       method: methodName
     });
-    Utils.getStackInfo(libraryName, methodName);
+    Utils.getStackInfo(libraryName, methodName, true);
     Utils.getExamples(libraryName, methodName);
     Utils.getQuestions(libraryName, methodName);
   },
