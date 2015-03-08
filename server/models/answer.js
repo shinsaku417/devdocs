@@ -7,7 +7,10 @@ var Answer = db.define('Answers', {
 		type: Sequelize.TEXT,
 		allowNull: false,
 	},
-	score: Sequelize.INTEGER
+	score: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  }
 });
 
 module.exports = Answer;

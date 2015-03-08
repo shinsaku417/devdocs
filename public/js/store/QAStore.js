@@ -10,6 +10,7 @@ var CHANGE_EVENT = 'change';
 var _data = {
   questions: [],
   method: null,
+  selection: null,
 };
 
 var setQuestions = function(questions, methodName) {
@@ -21,6 +22,14 @@ var setQuestions = function(questions, methodName) {
 
 var addQuestion = function (question) {
   _data.questions.unshift(question);
+};
+
+var selectQuestion = function(questionId) {
+  _data.selection = questionId;
+};
+
+var deselectQuestion = function() {
+  _data.selection = null;
 };
 
 var addAnswer = function (answer) {
@@ -35,11 +44,11 @@ var addAnswer = function (answer) {
 
 var authenticate = function() {
   _data.isAuthenticating = true;
-}
+};
 
 var finishAuth = function() {
   _data.isAuthenticating = false;
-}
+};
 
 var QAStore = assign({}, EventEmitter.prototype, {
 
@@ -88,6 +97,16 @@ AppDispatcher.register(function(action) {
       finishAuth();
       QAStore.emitChange();
       break;
+
+    case Constants.SELECT_QUESTION:
+      selectQuestion(action.action.questionId);
+      QAStore.emitChange();
+      break;
+
+    case Constants.DESELECT_QUESTION:
+      deselectQuestion();
+      QAStore.emitChange();
+      break;  
     
   }
 

@@ -3,11 +3,18 @@ var Sequelize = require('sequelize');
 var User = require('./user.js');
 
 var Example = db.define('Examples', {
-	text: {
+	title: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+  },
+  text: {
 		type: Sequelize.TEXT,
 		allowNull: false,
 	},
-	score: Sequelize.INTEGER
+	score: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  }
 });
 
 module.exports = Example;

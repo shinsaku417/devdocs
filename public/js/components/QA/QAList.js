@@ -4,43 +4,34 @@ var QAStore = require('../../store/QAStore');
 
 var QAList = React.createClass({
 
-  selection: null,
-
-  select: function(questionID) {
-    this.selection = questionID;
-    QAStore.emitChange(); //TODO use flux architecture here :o
-  },
-
-  deselect: function() {
-    this.selection = null;
-  },
-
   render: function() {
     return(
-      <table className="QAList table table-hover">
-        <thead>
-          <th className="resourceTableHeader">Recent Questions</th>
-        </thead>
-        <tbody>
-          {this.renderListItems()}
-        </tbody>
-      </table>
+      <div className="QAList">
+        <table className="table table-hover">
+          <thead>
+            <th className="resourceTableHeader">Recent Questions</th>
+          </thead>
+          <tbody>
+            {this.renderListItems()}
+          </tbody>
+        </table>
+      </div>
     );
   },
 
   renderListItems: function() {
     return this.props.questions.map(function(question) {
-      if(question.id !== this.selection) {
+      if(question.id !== this.props.selection) {
         return (
           <tr>
             <td>
-              <QAListItemCollapsed question={question} parent={this} />
+              <QAListItemCollapsed question={question} />
             </td>
           </tr>
         );
       } else {
         return (
-          <QAListItemExpanded question={question} parent={this} />
+          <QAListItemExpanded question={question} />
         );
       }
     }.bind(this));

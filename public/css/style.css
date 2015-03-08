@@ -7,10 +7,9 @@ body {
   border: 1px solid gray;
 }
 
-.answer {
-  padding: 10px;
+.answer-title {
+  font: italic small-caps bold;
 }
-
 
 .dateTag {
   font-size: x-small;
@@ -51,7 +50,40 @@ body {
   margin-bottom: 10px;
 }
 
-.PostFooter {
+.footer-right {
+  margin-top: 4px;
+  display:inline;
+}
+
+.clickable {
+  cursor:pointer;
+}
+
+.footer-left {
+  display:inline;
+}
+
+.footer-left .glyphicon-triangle-bottom {
+  font-size: .7em;
+  cursor: pointer;
+}
+
+.footer-left .glyphicon-triangle-top {
+  font-size: .7em;
+  cursor: pointer;
+}
+
+.score {
+  margin-left: 4px;
+  margin-right: 3px;
+}
+
+.inline {
+  display:inline;
+}
+
+.inline-block {
+  display:inline-block;
 }
 
 hr {
@@ -116,6 +148,39 @@ textarea.entering {
 
 .QA {
   overflow: scroll;
+}
+
+.QAListItemExpanded {
+  padding: 5px;
+}
+
+.QAListItemExpanded:hover {
+  background-color: #FFFFFF !important;
+}
+
+.QAList {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.qa-question {
+  background-color: #FFF8DC;
+}
+
+.question-title {
+  text-decoration: underline;
+}
+
+.answer-title {
+  font-style: italic;
+}
+
+.QAListItemCollapsed {
+  padding-left: 2px;
+}
+
+.qa-question-inset, .qa-answer-inset, .qa-example-inset {
+  padding: 5px;
 }
 
 .question {
