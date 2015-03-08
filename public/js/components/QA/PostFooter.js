@@ -1,13 +1,38 @@
+var QAStore = require('../../store/QAStore.js');
+
 var PostFooter = React.createClass({
+
+  getInitialState: function() {
+    return {score: this.props.post.score};
+  },
+
   renderDate: function() {
     var date = new Date(this.props.post.createdAt);
     return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
   },
 
+  upVote: function() {
+    this.setState({score: this.state.score + 1})
+    QAStore.emitChange();
+  },
+
+  downVote: function() {
+    this.setState({score: this.state.score - 1})
+    QAStore.emitChange();
+  },
+
   render: function(){
     return (
       <div className="PostFooter">
-        <p className="text-right"><span className="dateTag">{this.renderDate()}</span><span className="userTag">{this.props.post.User.username}</span></p>
+        <div className="footer-left">
+          <span className="glyphicon glyphicon-triangle-bottom clickable" onClick={this.downVote}></span>
+          <span className="score">{this.state.score || 0}</span>
+          <span className="glyphicon glyphicon-triangle-top clickable" onClick={this.upVote}></span>
+        </div>
+        <div className="footer-right pull-right">
+          <span className="dateTag">{this.renderDate()}</span>
+          <span className="userTag clickable">{this.props.post.User.username}</span>
+        </div>
       </div>
     );
   }

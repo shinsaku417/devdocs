@@ -20,6 +20,19 @@ var Actions = {
     Utils.getChildHTML(libraryName, childName);
   },
 
+  selectQuestion: function(questionId) {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.SELECT_QUESTION,
+      questionId: questionId,
+    });
+  },
+
+  deselectQuestion: function() {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.DESELECT_QUESTION,
+    });
+  },
+
   selectGrandChild: function(libraryName, childName, grandChildPath) {
     AppDispatcher.handleViewAction({
       actionType: Constants.SELECTED_LIBRARY,

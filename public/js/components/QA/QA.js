@@ -13,6 +13,7 @@ var QA = React.createClass({
       questions: [],
       method: null,
       isAuthenticating: false,
+      selection: null,
     };
   },
 
@@ -47,7 +48,7 @@ var QA = React.createClass({
       <div className="panel panel-default QA">
         <QAHeader />
         <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-          <div className="panel-body">
+          <div className="panel-body" id="qa-panel-body">
             {this.renderQAPanelBody()}
           </div>
         </div>
@@ -72,7 +73,7 @@ var QA = React.createClass({
         return (
           <div>
               {this.renderAuthRequired()}
-              <QAList questions={this.state.questions} />
+              <QAList questions={this.state.questions} selection={this.state.selection}/>
           </div>
         );
       }

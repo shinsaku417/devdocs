@@ -3,6 +3,7 @@ var AnswerList = require('./AnswerList');
 var NewAnswerForm = require('./NewAnswerForm');
 var Actions = require('../../actions/actions.js');
 var Authentication = require('../Auth/Authentication.js');
+var Constants = require('../../constants/constants.js');
 
 var QAListItemExpanded = React.createClass({
 
@@ -16,11 +17,13 @@ var QAListItemExpanded = React.createClass({
 
   render: function(){
     return (
-      <div className="QAListItemExpanded">
-        <Post className="Question" title={this.props.question.title} post={this.props.question} />
-        <AnswerList answers={this.props.question.Answers} />
-        {this.renderAuthRequired()}
-      </div>
+      <tr className="QAListItemExpanded">
+        <td>
+          <Post className="Question" title={this.props.question.title} post={this.props.question} type={Constants.QUESTION} />
+          <AnswerList answers={this.props.question.Answers} />
+          {this.renderAuthRequired()}
+        </td>
+      </tr>
     );
   },
 
