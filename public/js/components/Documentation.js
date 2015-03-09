@@ -1,6 +1,8 @@
 var DocStore = require('../store/DocStore');
 var actions = require('../actions/actions');
 
+var host = window.location.origin || 'http://localhost:3000';
+
 var Documentation = React.createClass({
   getInitialState: function() {
     return {
@@ -26,7 +28,7 @@ var Documentation = React.createClass({
     var cache;
     // this is selected library
     if (this.props.method) {
-      window.location.href = "http://localhost:3000/#" + this.props.method;
+      window.location.href = host + "/#" + this.props.method;
     } else {
       $('.documentation').scrollTop(0);
     }
