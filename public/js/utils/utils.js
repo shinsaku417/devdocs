@@ -90,7 +90,7 @@ var utils = {
   createExample: function(docSetName, docElementName, text){
     request
       .post('http://localhost:3000/api/examples')
-      .set('x-access-token', sessionStorage.token)
+      .set('x-access-token', localStorage.token)
       .send({
         text: text,
         docSetName: docSetName,
@@ -105,11 +105,11 @@ var utils = {
   createQuestion: function(docSetName, docElementName, title, text) {
     request
       .post('http://localhost:3000/api/questions')
-      .set('x-access-token', sessionStorage.token)
+      .set('x-access-token', localStorage.token)
       .send({
         title: title,
         text: text,
-        UserId: sessionStorage.userId, //TODO
+        UserId: localStorage.userId, //TODO
         docSetName: docSetName,
         docElementName: docElementName
       })
@@ -121,10 +121,10 @@ var utils = {
   createAnswer: function(questionId, text) {
     request
       .post('http://localhost:3000/api/answers')
-      .set('x-access-token', sessionStorage.token)
+      .set('x-access-token', localStorage.token)
       .send({
         text: text,
-        UserId: sessionStorage.userId, //TODO
+        UserId: localStorage.userId, //TODO
         QuestionId: questionId
       })
       .end(function(err, res){

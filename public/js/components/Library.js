@@ -45,8 +45,9 @@ var Library = React.createClass({
     var buttonClasses = cx(buttonObj);
 
     return (
-      <div className="library clickable">
+      <div className="library clickable ">
           <span className={buttonClasses} aria-hidden="true" onClick={this.expandChildren}></span>
+          <span className={"_list-item _icon-" + this.props.library}></span>
           <span onClick={this.renderHTML}>{this.props.library}</span>
           <hr />
           {children}

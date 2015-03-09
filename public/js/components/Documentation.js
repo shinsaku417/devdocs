@@ -4,7 +4,7 @@ var actions = require('../actions/actions');
 var Documentation = React.createClass({
   getInitialState: function() {
     return {
-      html: '<center><h1>CROWD DOCS</h1><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr-MBRV52C0oMhyBiYcqgxN4ic38fLx9Swt35jyCedntVPj02G"></center>'
+      html: '<center><img class="logo" src="http://cdn.flaticon.com/png/256/33887.png"><h1 class="splashHeader">CrowdDocs</h1></center>'
     };
   },
   componentDidMount: function() {

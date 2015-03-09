@@ -29,7 +29,7 @@ var Navbar = React.createClass({
           <ul className="nav navbar-nav">
             <li>
               <a className="navbar-brand" href="#">
-                <img alt="Brand" src="./dist/images/colorcrowd.jpg" id="logo"/> CrowdDocs
+                <img alt="Brand" src="http://cdn.flaticon.com/png/256/33887.png" id="logo"/> CrowdDocs
               </a>
             </li>
           </ul>

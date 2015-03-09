@@ -9,7 +9,7 @@ var SignIn = React.createClass({
 
   render: function() {
     return(
-        <form className="signInForm" onSubmit={this.submitSignIn}> 
+        <form className="authForm" onSubmit={this.submitSignIn}> 
           <div className="form-group">
             <label for="signInUserOrEmail">Username (or Email)</label>
             <input type="text" className="form-control" id="signInUserOrEmail" ref="usernameOrEmail" placeholder="Enter username (or email)" />

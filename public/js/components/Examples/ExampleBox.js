@@ -42,11 +42,9 @@ var ExampleBox = React.createClass({
     if (this.state.isAuthenticating) {
       return (
         <div className="panel panel-default examples">
-          <div className="panel-heading" role="tab" id="headingThree">
+          <div className="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="tab" id="headingThree">
             <h4 className="panel-title">
-              <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
               Examples
-              </a>
             </h4>
           </div>
           <div id="collapseThree" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -60,11 +58,9 @@ var ExampleBox = React.createClass({
     } else {
       return (
         <div className="panel panel-default examples">
-          <div className="panel-heading" role="tab" id="headingThree">
+          <div className="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="tab" id="headingThree">
             <h4 className="panel-title">
-              <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
               Examples
-              </a>
             </h4>
           </div>
           <div id="collapseThree" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -79,7 +75,7 @@ var ExampleBox = React.createClass({
   }, 
 
   renderAuthRequired: function() {
-    if(!sessionStorage.token) {
+    if(!localStorage.token) {
       return (
         <button onClick={this.authenticate}>Login to Add Examples</button>
       );

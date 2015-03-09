@@ -14,8 +14,6 @@ var _data = {
 };
 
 var setQuestions = function(questions, methodName) {
-  console.log("HEEER");
-  console.dir(questions);
   _data.questions = questions.reverse();
   _data.method = methodName;
 };

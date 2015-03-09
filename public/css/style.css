@@ -1,14 +1,38 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans';
+}
+p, div {
+    font-family: 'Open Sans';
+}
+
 body {
-  font-family: 'Roboto', sans-serif;
   padding: 51px 0px 3px 0px;
 }
 
 .app {
-  border: 1px solid gray;
+  border: 1px solid #d3d3d3;
 }
 
 .answer-title {
   font: italic small-caps bold;
+}
+
+.resourceInitialText {
+  opacity: .4;
+}
+
+.logo {
+  -webkit-filter: opacity(0.5);
+  width:150px; /* you can use % */
+  position: relative;
+  margin-top: 7em;
+
+}
+
+.splashHeader {
+  font-size: 4rem ;
+  opacity: .4;
+
 }
 
 .dateTag {
@@ -27,8 +51,8 @@ body {
 }
 
 .documentation {
-  border-left: 1px solid gray;
-  border-right: 1px solid gray;
+  border-left: 1px solid #d3d3d3;
+  border-right: 1px solid #d3d3d3;
   padding: 10px;
   width: 60%;
   float: left;
@@ -47,6 +71,11 @@ body {
 }
 
 .signInToPost {
+  margin-bottom: 10px;
+}
+
+.signInToRespond {
+  margin-top:15px;
   margin-bottom: 10px;
 }
 
@@ -146,6 +175,10 @@ textarea.entering {
   margin-bottom: 0px;
 }
 
+.panel-heading {
+  cursor: pointer;
+}
+
 .QA {
   overflow: scroll;
 }
@@ -192,6 +225,7 @@ textarea.entering {
   width: 25%;
   float: left;
   height: 100%;
+  overflow-y: hidden;
 }
 
 .sidebar {
@@ -199,6 +233,7 @@ textarea.entering {
   float: left;
   height: 100%;
   overflow: scroll;
+  background-color: #F8F8F8;
 }
 
 .stackOverFlow {
@@ -208,6 +243,12 @@ textarea.entering {
 .title:hover {
   background-color: #CCFFCC;
 }
+
+.authForm {
+  margin-top: 10px;
+}
+
+
 
 /**
  * For modern browsers
@@ -238,4 +279,264 @@ textarea.entering {
 
 #logo {
   display: inline;
+  height: 32px;
+  width:auto;
+  opacity: .8;
+}
+
+
+
+/* this is from devdocs */
+
+._list-link:after,._page a[href^="http:"]:after,._page a[href^="https:"]:after,._search:before,._search-clear:before,._notif-close:before,._list-item:before,._list-arrow:before,._sidebar-footer-link:before,._docs-name:before,._path-item:first-child:before,._path-item+._path-item:after,._home-link:before,._menu-link:before {
+    content: '';
+    display: inline-block;
+    margin-left: 0px;
+    margin-right: 10px;
+    width: 1rem;
+    height: 1rem;
+    background-image: url(http://maxcdn.devdocs.io/assets/icons-8fdc5afffc78f5d6dd54b6764aae2b1f.png);
+    background-size: 10rem 8rem
+}
+
+._icon-http:before {
+    background-position: -7rem 0
+}
+
+._icon-jquery:before {
+    background-position: -8rem 0
+}
+
+._icon-underscore:before {
+    background-position: -9rem 0
+}
+
+._icon-html:before {
+    background-position: 0 -1rem
+}
+
+._icon-css:before {
+    background-position: -1rem -1rem
+}
+
+._icon-dom:before {
+    background-position: -2rem -1rem
+}
+
+._icon-dom_events:before {
+    background-position: -3rem -1rem
+}
+
+._icon-javascript:before {
+    background-position: -4rem -1rem
+}
+
+._icon-backbone:before {
+    background-position: -5rem -1rem
+}
+
+._icon-node:before {
+    background-position: -6rem -1rem
+}
+
+._icon-sass:before {
+    background-position: -7rem -1rem
+}
+
+._icon-less:before {
+    background-position: -8rem -1rem
+}
+
+._icon-angular:before {
+    background-position: -9rem -1rem
+}
+
+._icon-coffeescript:before {
+    background-position: 0 -2rem
+}
+
+._icon-ember:before {
+    background-position: -1rem -2rem
+}
+
+._icon-jqueryui:before {
+    background-position: -4rem -2rem
+}
+
+._icon-jquerymobile:before {
+    background-position: -5rem -2rem
+}
+
+._icon-lodash:before {
+    background-position: -6rem -2rem
+}
+
+._icon-php:before {
+    background-position: -7rem -2rem
+}
+
+._icon-ruby:before,._icon-minitest:before {
+    background-position: -8rem -2rem
+}
+
+._icon-rails:before {
+    background-position: -9rem -2rem
+}
+
+._icon-python:before,._icon-python2:before {
+    background-position: 0 -3rem
+}
+
+._icon-git:before {
+    background-position: -1rem -3rem
+}
+
+._icon-redis:before {
+    background-position: -2rem -3rem
+}
+
+._icon-postgresql:before {
+    background-position: -3rem -3rem
+}
+
+._icon-d3:before {
+    background-position: -4rem -3rem
+}
+
+._icon-knockout:before {
+    background-position: -5rem -3rem
+}
+
+._icon-moment:before {
+    background-position: -6rem -3rem
+}
+
+._icon-c:before {
+    background-position: -7rem -3rem
+}
+
+._icon-yii:before,._icon-yii1:before {
+    background-position: -9rem -3rem
+}
+
+._icon-cpp:before {
+    background-position: 0 -4rem
+}
+
+._icon-go:before {
+    background-position: -1rem -4rem
+}
+
+._icon-express:before {
+    background-position: -2rem -4rem
+}
+
+._icon-grunt:before {
+    background-position: -3rem -4rem
+}
+
+._icon-maxcdn:before {
+    background-position: -4rem -4rem
+}
+
+._icon-laravel:before {
+    background-position: -5rem -4rem
+}
+
+._icon-haskell:before {
+    background-position: -6rem -4rem
+}
+
+._icon-requirejs:before {
+    background-position: -7rem -4rem
+}
+
+._icon-chai:before {
+    background-position: -8rem -4rem
+}
+
+._icon-sinon:before {
+    background-position: -9rem -4rem
+}
+
+._icon-cordova:before {
+    background-position: 0 -5rem
+}
+
+._icon-markdown:before {
+    background-position: -1rem -5rem
+}
+
+._icon-django:before {
+    background-position: -2rem -5rem
+}
+
+._icon-xpath:before {
+    background-position: -3rem -5rem
+}
+
+._icon-nginx:before {
+    background-position: -4rem -5rem
+}
+
+._icon-svg:before {
+    background-position: -5rem -5rem
+}
+
+._icon-marionette:before {
+    background-position: -6rem -5rem
+}
+
+._icon-mongoose:before {
+    background-position: -7rem -5rem
+}
+
+._icon-phpunit:before {
+    background-position: -8rem -5rem
+}
+
+._icon-nokogiri:before {
+    background-position: -9rem -5rem
+}
+
+._icon-rethinkdb:before {
+    background-position: 0 -6rem
+}
+
+._icon-react:before {
+    background-position: -1rem -6rem
+}
+
+._icon-socketio:before {
+    background-position: -2rem -6rem
+}
+
+._icon-modernizr:before {
+    background-position: -3rem -6rem
+}
+
+._icon-bower:before {
+    background-position: -4rem -6rem
+}
+
+._icon-iojs:before {
+    background-position: -2rem -7rem
+}
+
+._icon-lua:before {
+    background-position: -3rem -7rem
+}
+
+._icon-clojure:before {
+    background-position: -4rem -7rem
+}
+
+._icon-symfony:before {
+    background-position: -5rem -7rem
+}
+
+html {
+    height: 100%;
+    font-size: 100%;
+    background: #fff
 }
