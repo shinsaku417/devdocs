@@ -45,6 +45,8 @@ module.exports = {
       };
       Example.create(example).then(function(result) {
         //TODO branch on result instanceof Sequelize.ValidationError
+
+        result.dataValues.User = {username: req.authedUser.username}
         res.status(200).send(result);
       });
     });
