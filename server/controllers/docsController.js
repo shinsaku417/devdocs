@@ -50,9 +50,12 @@ module.exports = {
   },
 
   getElementExamples: function (req, res) {
-    Example.findAll({where: {
-      DocElementId: req.docElement.id,
-    }}).then(function(examples) {
+    Example.findAll({
+      where: {
+        DocElementId: req.docElement.id,
+      },
+      include: [ User ],
+    }).then(function(examples) {
       res.status(200).send(examples);
     });
   },

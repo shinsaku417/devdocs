@@ -6,7 +6,7 @@ var QAList = React.createClass({
 
   render: function() {
     return(
-      <div className="QAList">
+      <div className="ResourceList">
         <table className="table table-hover">
           <thead>
             <th className="resourceTableHeader">Recent Questions</th>
@@ -23,11 +23,7 @@ var QAList = React.createClass({
     return this.props.questions.map(function(question) {
       if(question.id !== this.props.selection) {
         return (
-          <tr>
-            <td>
-              <QAListItemCollapsed question={question} />
-            </td>
-          </tr>
+          <QAListItemCollapsed question={question} />    
         );
       } else {
         return (

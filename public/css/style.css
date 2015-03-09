@@ -136,7 +136,7 @@ textarea.entering {
   width: 100%;
 }
 
-.examples {
+.ExampleBox {
   overflow: scroll;
 }
 
@@ -187,15 +187,16 @@ textarea.entering {
   overflow: scroll;
 }
 
-.QAListItemExpanded {
+.ResourceListItemExpanded {
   padding: 5px;
+  background-color: #EEEEEE !important;
 }
 
-.QAListItemExpanded:hover {
-  background-color: #FFFFFF !important;
-}
+/*.ResourceListItemExpanded:hover {
+  background-color: #FFFFFF;
+}*/
 
-.QAList {
+.ResourceList {
   margin-left: -15px;
   margin-right: -15px;
 }
@@ -212,7 +213,7 @@ textarea.entering {
   font-style: italic;
 }
 
-.QAListItemCollapsed {
+.ResourceListItemCollapsed {
   padding-left: 2px;
 }
 

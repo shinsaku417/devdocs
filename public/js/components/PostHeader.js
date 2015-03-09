@@ -1,5 +1,5 @@
-var Actions = require('../../actions/actions.js');
-var Constants = require('../../constants/constants.js');
+var Actions = require('../actions/actions.js');
+var Constants = require('../constants/constants.js');
 
 var PostHeader = React.createClass({
 
