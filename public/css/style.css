@@ -189,12 +189,8 @@ textarea.entering {
 
 .ResourceListItemExpanded {
   padding: 5px;
-  background-color: #EEEEEE !important;
+  background-color: #FAFAFA !important;
 }
-
-/*.ResourceListItemExpanded:hover {
-  background-color: #FFFFFF;
-}*/
 
 .ResourceList {
   margin-left: -15px;
@@ -300,7 +296,7 @@ textarea.entering {
     margin-right: 10px;
     width: 1rem;
     height: 1rem;
-    background-image: url(http://maxcdn.devdocs.io/assets/icons-8fdc5afffc78f5d6dd54b6764aae2b1f.png);
+    background-image: url(http://crowddocs.elasticbeanstalk.com/dist/images/icons.png);
     background-size: 10rem 8rem
 }
 
