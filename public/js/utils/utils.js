@@ -1,14 +1,14 @@
 var ServerActions = require('../actions/serverActions');
 var request = require('superagent');
 
-var host = 'http://localhost:3000/docs/'
-var stackServer = 'http://flockdocs-dev.elasticbeanstalk.com'
+var host = window.location.origin || 'http://localhost:3000';
+var stackServer = 'http://flockdocs-dev.elasticbeanstalk.com';
 
 var utils = {
 
   getLibraryHTML: function(libraryName) {
     request
-      .get(host + libraryName + '/index.html')
+      .get(host + '/docs/' + libraryName + '/index.html')
       .end(function(err, res){
         ServerActions.dispatchNewLibrary(res.text);
       });
@@ -16,7 +16,7 @@ var utils = {
 
   getChildHTML: function(libraryName, childName) {
     request
-      .get(host + libraryName + '/' + childName + '.html')
+      .get(host + '/docs/' + libraryName + '/' + childName + '.html')
       .end(function(err, res){
         if (res.error) {
           request
@@ -32,15 +32,15 @@ var utils = {
 
   getGrandChildHTML: function(libraryName, childName, grandChildPath) {
     request
-        .get(host + libraryName + '/' +  grandChildPath + '.html')
+        .get(host + '/docs/' + libraryName + '/' +  grandChildPath + '.html')
         .end(function(err, res){
           if (res.error) {
             request
-              .get(host + libraryName + '/' + childName + '.html')
+              .get(host + '/docs/' + libraryName + '/' + childName + '.html')
               .end(function(err, res) {
                 if (res.error) {
                   request
-                    .get(host + libraryName + '/index.html')
+                    .get(host + '/docs/' + libraryName + '/index.html')
                     .end(function(err, res) {
                     ServerActions.dispatchNewLibrary(res.text);
                   });
@@ -56,7 +56,7 @@ var utils = {
 
   expandChildren: function(libraryName) {
     request
-      .get(host + libraryName + '/index.json')
+      .get(host + '/docs/' + libraryName + '/index.json')
       .end(function(err, res) {
         ServerActions.dispatchExpandChildren(JSON.parse(res.text), libraryName);
       });
@@ -64,9 +64,9 @@ var utils = {
 
   getStackInfo: function(libraryName, methodName, scrolling) {
     if (scrolling) {
-      var url = 'http://localhost:8080/react/' + libraryName + '/scroll';
+      var url = stackServer + '/react/' + libraryName + '/scroll';
     } else {
-      var url = 'http://localhost:8080/react/' + libraryName;
+      var url = stackServer + '/react/' + libraryName;
     }
     request
       .get(url + '/' + methodName)
@@ -77,7 +77,7 @@ var utils = {
 
   getExamples: function(libraryName, methodName) {
     request
-      .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/examples')
+      .get(host + '/api/docs/' + libraryName + '/' + methodName + '/examples')
       .end(function(err, res){
         ServerActions.dispatchNewExamples(res.body, methodName);
       });
@@ -85,7 +85,7 @@ var utils = {
 
   getQuestions: function(libraryName, methodName) {
     request
-      .get('http://localhost:3000/api/docs/' + libraryName + '/' + methodName + '/questions')
+      .get(host + '/api/docs/' + libraryName + '/' + methodName + '/questions')
       .end(function(err, res){
         ServerActions.dispatchNewQuestions(res.body, methodName);
       });
@@ -93,7 +93,7 @@ var utils = {
 
   createExample: function(docSetName, docElementName, text){
     request
-      .post('http://localhost:3000/api/examples')
+      .post(host + '/api/examples')
       .set('x-access-token', localStorage.token)
       .send({
         text: text,
@@ -108,7 +108,7 @@ var utils = {
 
   createQuestion: function(docSetName, docElementName, title, text) {
     request
-      .post('http://localhost:3000/api/questions')
+      .post(host + '/api/questions')
       .set('x-access-token', localStorage.token)
       .send({
         title: title,
@@ -124,7 +124,7 @@ var utils = {
 
   createAnswer: function(questionId, text) {
     request
-      .post('http://localhost:3000/api/answers')
+      .post(host + '/api/answers')
       .set('x-access-token', localStorage.token)
       .send({
         text: text,
@@ -138,7 +138,7 @@ var utils = {
 
   signIn: function(usernameOrEmail, password) {
     request
-      .post('http://localhost:3000/api/users/signin')
+      .post(host + '/api/users/signin')
       .send({
         usernameOrEmail: usernameOrEmail,
         password: password
@@ -153,7 +153,7 @@ var utils = {
 
   signUp: function(username, email, password) {
     request
-      .post('http://localhost:3000/api/users/signup')
+      .post(host + '/api/users/signup')
       .send({
         username: username,
         email: email,

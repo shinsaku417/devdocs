@@ -6,6 +6,8 @@ var AppStore = require('../store/AppStore');
 
 var injectTapEventPlugin = require("react-tap-event-plugin");
 
+var host = window.location.origin || 'http://localhost:3000';
+
 //Needed for onTouchTap
 //Can go away when react 1.0 release
 //Check this repo:
@@ -25,7 +27,7 @@ var App = React.createClass({
     var context = this;
     var libraries = [];
     $.ajax({
-      url: 'http://localhost:3000/docs/docs.json',
+      url: host + '/docs/docs.json',
       dataType: 'json',
       success: function(data) {
         data.forEach(function(library) {
