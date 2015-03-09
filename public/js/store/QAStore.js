@@ -14,7 +14,9 @@ var _data = {
 };
 
 var setQuestions = function(questions, methodName) {
-  _data.questions = questions.reverse();
+  if (questions) {
+    _data.questions = questions.reverse();
+  }
   _data.method = methodName;
 };
 
@@ -104,8 +106,8 @@ AppDispatcher.register(function(action) {
     case Constants.DESELECT_QUESTION:
       deselectQuestion();
       QAStore.emitChange();
-      break;  
-    
+      break;
+
   }
 
 });

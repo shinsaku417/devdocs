@@ -71,7 +71,9 @@ var utils = {
     request
       .get(url + '/' + methodName)
       .end(function(err, res){
-        ServerActions.dispatchNewStackInfo(res.body.topQuestions, methodName);
+        if (res.body && res.body.topQuestions) {
+          ServerActions.dispatchNewStackInfo(res.body.topQuestions, methodName);
+        }
       });
   },
 
