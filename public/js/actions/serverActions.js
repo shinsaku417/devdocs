@@ -32,6 +32,15 @@ var ServerActions = {
     });
   },
 
+  dispatchConstruct: function(libraryName, childName, libraryData) {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.CONSTRUCT_HTML,
+      libraryName: libraryName,
+      childName: childName,
+      libraryData: libraryData
+    });
+  },
+
   dispatchNewStackInfo: function(stackInfo, methodName){
     AppDispatcher.handleViewAction({
       actionType: Constants.STACK_DATA_RETRIEVED,
