@@ -1,4 +1,4 @@
-var Post = require('./Post');
+var Post = require('../Post');
 var AnswerList = require('./AnswerList');
 var NewAnswerForm = require('./NewAnswerForm');
 var Actions = require('../../actions/actions.js');
@@ -17,7 +17,7 @@ var QAListItemExpanded = React.createClass({
 
   render: function(){
     return (
-      <tr className="QAListItemExpanded">
+      <tr className="ResourceListItemExpanded">
         <td>
           <Post className="Question" title={this.props.question.title} post={this.props.question} type={Constants.QUESTION} />
           <AnswerList answers={this.props.question.Answers} />

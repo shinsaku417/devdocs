@@ -33,6 +33,19 @@ var Actions = {
     });
   },
 
+  selectExample: function(exampleId) {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.SELECT_EXAMPLE,
+      exampleId: exampleId,
+    });
+  },
+
+  deselectExample: function() {
+    AppDispatcher.handleViewAction({
+      actionType: Constants.DESELECT_EXAMPLE,
+    });
+  },
+
   selectGrandChild: function(libraryName, childName, grandChildPath) {
     AppDispatcher.handleViewAction({
       actionType: Constants.SELECTED_LIBRARY,
@@ -89,8 +102,8 @@ var Actions = {
     Utils.getQuestions(libraryName, methodName);
   },
 
-  createExample: function(libraryName, methodName, text) {
-    Utils.createExample(libraryName, methodName, text);
+  createExample: function(libraryName, methodName, title, text) {
+    Utils.createExample(libraryName, methodName, title, text);
   },
 
   createQuestion: function(docSet, docElement, title, text) {

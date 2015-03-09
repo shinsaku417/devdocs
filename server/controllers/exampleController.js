@@ -38,6 +38,7 @@ module.exports = {
       });
     }).then(function(docElement){
       var example = {
+        title: req.body.title,
         text: req.body.text,
         DocElementId: docElement.id,
         UserId: req.body.UserId

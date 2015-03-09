@@ -20,7 +20,7 @@ var utils = {
       .end(function(err, res){
         if (res.error) {
           request
-            .get(host + libraryName + '/index.json')
+            .get(host + '/' + libraryName + '/index.json')
             .end(function(err, res) {
               ServerActions.dispatchConstruct(libraryName, childName, JSON.parse(res.text));
             });
@@ -91,15 +91,16 @@ var utils = {
       });
   },
 
-  createExample: function(docSetName, docElementName, text){
+  createExample: function(docSetName, docElementName, title, text){
     request
       .post(host + '/api/examples')
       .set('x-access-token', localStorage.token)
       .send({
+        title: title,
         text: text,
         docSetName: docSetName,
         docElementName: docElementName,
-        UserId: 1
+        UserId: localStorage.userId,
       })
       .end(function(err, res){
         ServerActions.dispatchCreatedExample(res.body);
@@ -113,7 +114,7 @@ var utils = {
       .send({
         title: title,
         text: text,
-        UserId: localStorage.userId, //TODO
+        UserId: localStorage.userId,
         docSetName: docSetName,
         docElementName: docElementName
       })
@@ -128,7 +129,7 @@ var utils = {
       .set('x-access-token', localStorage.token)
       .send({
         text: text,
-        UserId: localStorage.userId, //TODO
+        UserId: localStorage.userId,
         QuestionId: questionId
       })
       .end(function(err, res){

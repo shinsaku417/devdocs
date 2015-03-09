@@ -6,32 +6,42 @@ var Constants = require('../constants/constants')
 
 var CHANGE_EVENT = 'change';
 
-var _examples = {};
-_examples.examples = [];
+var _data = {
+  examples: [],
+  selection: null,
+};
 
 var setExamples = function(exampleData, methodName) {
   if (methodName) {
-    _examples.method = methodName;
+    _data.method = methodName;
   }
-  _examples.examples = exampleData;
+  _data.examples = exampleData.reverse();
 }
 
 var addExample = function(example) {
-  _examples.examples.push(example);
+  _data.examples.unshift(example);
 }
 
+var selectExample = function(exampleId) {
+  _data.selection = exampleId;
+};
+
+var deselectExample = function() {
+  _data.selection = null;
+};
+
 var authenticate = function() {
-  _examples.isAuthenticating = true;
+  _data.isAuthenticating = true;
 }
 
 var finishAuth = function() {
-  _examples.isAuthenticating = false;
+  _data.isAuthenticating = false;
 }
 
 var ExampleStore = assign({}, EventEmitter.prototype, {
 
   getExamples: function(){
-    return _examples;
+    return _data;
   },
 
   emitChange: function() {
@@ -70,6 +80,16 @@ AppDispatcher.register(function(action) {
       finishAuth();
       ExampleStore.emitChange();
       break;
+
+    case Constants.SELECT_EXAMPLE:
+      selectExample(action.action.exampleId);
+      ExampleStore.emitChange();
+      break;
+
+    case Constants.DESELECT_EXAMPLE:
+      deselectExample();
+      ExampleStore.emitChange();
+      break; 
      
   }
 

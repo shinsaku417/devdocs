@@ -1,5 +1,6 @@
 var ExampleStore = require('../../store/ExampleStore');
 var ExampleList = require('./ExampleList');
+var ExamplesHeader = require('./ExamplesHeader');
 var ExampleForm = require('./ExampleForm');
 var Actions = require('../../actions/actions.js');
 var Authentication = require('../Auth/Authentication.js');
@@ -8,10 +9,9 @@ var ExampleBox = React.createClass({
 
   getInitialState: function() {
     return {
-      examples:  [{
-        text: 'CLICK ON A METHOD TO SEE EXAMPLES'
-      }],
-      isAuthenticating: false 
+      examples:  [],
+      isAuthenticating: false,
+      selection: null,
     }
   },
 
@@ -34,50 +34,47 @@ var ExampleBox = React.createClass({
   },
 
   render: function(){
-    var exampleNodes = this.state.examples.reverse().map(function(example){
-      return (
-        <ExampleList text={example.text} />
-      );
-    });
-    if (this.state.isAuthenticating) {
-      return (
-        <div className="panel panel-default examples">
-          <div className="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="tab" id="headingThree">
-            <h4 className="panel-title">
-              Examples
-            </h4>
-          </div>
-          <div id="collapseThree" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-            <div className="panel-body">
-              <Authentication />
-              <button onClick={this.back}>Back to Examples</button>
-            </div>
+    return (
+      <div className="panel panel-default ExampleBox">
+        <ExamplesHeader />
+        <div id="collapseThree" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div className="panel-body" id="qa-panel-body">
+            {this.renderExamplesPanelBody()}
           </div>
         </div>
+      </div>
+    );
+  }, 
+
+  renderExamplesPanelBody: function() {
+
+    if(!this.state.method) {
+      return (
+        <h4 className="resourceInitialText"> Click into a documentation set to see relevant examples here. </h4>
       );
     } else {
-      return (
-        <div className="panel panel-default examples">
-          <div className="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="tab" id="headingThree">
-            <h4 className="panel-title">
-              Examples
-            </h4>
+      if (this.state.isAuthenticating) {
+        return (
+          <div>
+            <Authentication />
+            <button className="btn btn-primary" onClick={this.back}>Back to examples</button>
           </div>
-          <div id="collapseThree" className="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-            <div className="panel-body">
-              <div>{this.renderAuthRequired()}</div>
-              <div>{exampleNodes}</div>
-            </div>
+        );
+      } else {
+        return (
+          <div>
+              {this.renderAuthRequired()}
+              <ExampleList examples={this.state.examples} selection={this.state.selection} />
           </div>
-        </div>
-      );
+        );
+      }
     }
-  }, 
+  },
 
   renderAuthRequired: function() {
     if(!localStorage.token) {
       return (
-        <button onClick={this.authenticate}>Login to Add Examples</button>
+        <button className="signInToPost btn btn-info center-block" onClick={this.authenticate}>Login to Add Examples</button>
       );
     } else {
       return (

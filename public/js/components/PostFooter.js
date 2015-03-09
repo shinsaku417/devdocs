@@ -1,5 +1,3 @@
-var QAStore = require('../../store/QAStore.js');
-
 var PostFooter = React.createClass({
 
   getInitialState: function() {
@@ -13,12 +11,10 @@ var PostFooter = React.createClass({
 
   upVote: function() {
     this.setState({score: this.state.score + 1})
-    QAStore.emitChange();
   },
 
   downVote: function() {
     this.setState({score: this.state.score - 1})
-    QAStore.emitChange();
   },
 
   render: function(){

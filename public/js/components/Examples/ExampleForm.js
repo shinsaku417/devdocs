@@ -1,13 +1,14 @@
-var cx = require('react/lib/cx');
 var Actions = require('../../actions/actions');
 
 var ExampleForm = React.createClass({
 
   submitExample: function(e){
     e.preventDefault();
-    var text = this.refs.text.getDOMNode().value.trim();
-    Actions.createExample(this.props.library, this.props.method, text);
-    this.refs.text.getDOMNode().value = '';
+    var title = this.refs.exampleTitle.getDOMNode().value.trim();
+    var text = this.refs.exampleBody.getDOMNode().value.trim();
+    Actions.createExample(this.props.library, this.props.method, title, text);
+    this.refs.exampleBody.getDOMNode().value = '';
+    this.refs.exampleTitle.getDOMNode().value = '';
   },
 
   getInitialState: function() {
@@ -22,12 +23,18 @@ var ExampleForm = React.createClass({
 
   render: function() {
     return(
-      <form className="exampleForm" onSubmit={this.submitExample}>
-        <textarea type="text" placeholder="Create your own code example!" ref="text" className={cx({"entering": this.state.entering})} onClick={this.expand}></textarea>
-        <input type="submit" value="Post" />
+       <form className="exampleForm" onSubmit={this.submitExample}> 
+        <div className="form-group">
+          <input type="text" className="form-control" id="exampleTitle" ref="exampleTitle" placeholder="Title" />
+        </div>
+        <div className="form-group">
+          <label for="exampleBody"></label>
+          <textarea className="form-control" id="exampleBody" rows="3" ref="exampleBody" placeholder="Enter your example here..." />
+        </div>
+        <button type="submit" className="btn btn-primary">Post</button>
       </form>
     );
   }
-})
+});
 
 module.exports = ExampleForm;

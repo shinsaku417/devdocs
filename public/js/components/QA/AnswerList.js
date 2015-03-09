@@ -1,4 +1,4 @@
-var Post = require('./Post');
+var Post = require('../Post');
 var Constants = require('../../constants/constants.js');
 
 var AnswerList = React.createClass({
