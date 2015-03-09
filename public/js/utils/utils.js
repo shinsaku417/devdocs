@@ -20,7 +20,7 @@ var utils = {
       .end(function(err, res){
         if (res.error) {
           request
-            .get(host + '/' + libraryName + '/index.json')
+            .get(host + '/docs/' + libraryName + '/index.json')
             .end(function(err, res) {
               ServerActions.dispatchConstruct(libraryName, childName, JSON.parse(res.text));
             });
