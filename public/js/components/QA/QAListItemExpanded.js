@@ -28,9 +28,9 @@ var QAListItemExpanded = React.createClass({
   },
 
   renderAuthRequired: function() {
-    if(!sessionStorage.token) {
+    if(!localStorage.token) {
       return (
-        <button className="signInToPost btn btn-info center-block" onClick={this.authenticate}>Sign in to answer</button>
+        <button className="signInToRespond btn btn-info center-block" onClick={this.authenticate}>Sign in to answer</button>
       );
     } else {
       return (

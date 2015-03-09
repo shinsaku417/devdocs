@@ -10,7 +10,7 @@ var SignUp = React.createClass({
 
   render: function() {
     return(
-      <form className="signUpForm" onSubmit={this.submitSignUp}>
+      <form className="authForm" onSubmit={this.submitSignUp}>
         <div className="form-group">
           <label for="signUpUser">Username</label>
           <input type="text" className="form-control" id="signUpUser" ref="username" placeholder="Enter username" />

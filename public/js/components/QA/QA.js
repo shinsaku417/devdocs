@@ -59,14 +59,14 @@ var QA = React.createClass({
   renderQAPanelBody: function() {
     if(!this.state.method) {
       return (
-        <h4><em> Click into a documentation set to see relevant Q&A content here. </em></h4>
+        <h4 className="resourceInitialText"> Click into a documentation set to see relevant Q&A content here. </h4>
       );
     } else {
       if (this.state.isAuthenticating) {
         return (
           <div>
             <Authentication />
-            <button className="btn btn-primary center-block" onClick={this.back}>Back to Q&A</button>
+            <button className="btn btn-primary" onClick={this.back}>Back to Q&A</button>
           </div>
         );
       } else {
@@ -81,7 +81,7 @@ var QA = React.createClass({
   },
 
   renderAuthRequired: function() {
-    if(!sessionStorage.token) {
+    if(!localStorage.token) {
       return (
           <button className="signInToPost btn btn-info center-block" onClick={this.authenticate}>Sign in to ask a question</button>
       );
@@ -90,10 +90,6 @@ var QA = React.createClass({
           <NewQuestionForm onQuestionSubmit={this.handleQuestionSubmit} />
       );
     }
-  },
-
-  anyFunctionYouWant: function() {
-    this.setState({hi: 'hi2u eric'});
   },
 
 });

@@ -36,13 +36,13 @@ var AppStore = assign({}, EventEmitter.prototype, {
   },
 
   storeAuthData: function(authData) {
-    sessionStorage.token = authData.token;
-    sessionStorage.username = authData.username;
-    sessionStorage.userId = authData.userId;
+    localStorage.token = authData.token;
+    localStorage.username = authData.username;
+    localStorage.userId = authData.userId;
   },
 
   getAuthToken: function() {
-    return sessionStorage.get('token');
+    return localStorage.get('token');
   },
 
   emitChange: function() {
