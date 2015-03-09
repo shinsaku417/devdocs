@@ -17,6 +17,11 @@ var Documentation = React.createClass({
   // this is called everytime rendering happens
   componentDidUpdate: function() {
     $('.documentation').off('scroll');
+
+    $('pre').each(function() {
+      $(this).addClass('prettyprint');
+    });
+
     var context = this;
     var cache;
     // this is selected library
@@ -39,10 +44,6 @@ var Documentation = React.createClass({
         var myScroller = new ScrollToggle($('#' + id)[0].offsetTop, cb, function () {
         });
       }
-    });
-
-    $('pre').each(function() {
-      $(this).addClass('prettyprint');
     });
 
     $('.documentation').append('<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>');
