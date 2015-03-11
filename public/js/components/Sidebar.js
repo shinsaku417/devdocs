@@ -16,6 +16,7 @@ var Sidebar = React.createClass({
 
   render: function(){
     var context = this;
+    // create librarynodes using libraries passed down from parent component
     var libraryNodes = this.props.libraries.map(function(library){
       return (
         <Library library={library} libraryData={context.state.libraryData} />
